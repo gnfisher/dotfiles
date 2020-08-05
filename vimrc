@@ -29,7 +29,7 @@ set scrolloff=3
 set sidescrolloff=3
 
 " statusline
-:set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+" :set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -111,6 +111,8 @@ augroup vimrcEx
 
   " Only wrap md and text
   autocmd BufRead,BufNewFile *.md,*.txt setlocal textwidth=80
+
+  au BufRead,BufNewFile *.sbt set filetype=scala
 augroup END
 
 " When the type of shell script is /bin/sh, assume a POSIX-compatible
@@ -152,7 +154,7 @@ inoremap <Tab> <C-r>=InsertTabWrapper()<CR>
 inoremap <S-Tab> <C-n>
 
 " Switch between the last two files
-nnoremap <Leader><Leader> <C-^>
+" nnoremap <Leader><Leader> <C-^>
 
 " vim-test mappings
 nnoremap <silent> <Leader>tf :TestFile<CR>
@@ -161,7 +163,8 @@ nnoremap <silent> <Leader>tl :TestLast<CR>
 nnoremap <silent> <Leader>ta :TestSuite<CR>
 nnoremap <silent> <Leader>tv :TestVisit<CR>
 let test#strategy = "dispatch"
-
+let test#scala#runner = 'blooptest'
+let g:test#scala#blooptest#executable = 'heroku local:run -- bloop'
 " Run commands that require an interactive shell
 nnoremap <Leader>r :RunInInteractiveShell<Space>
 
@@ -245,6 +248,10 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+
+nmap <leader>rn <Plug>(coc-rename)
 
 nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
 nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
@@ -289,6 +296,20 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Show all diagnostics
 nnoremap <silent> <space>d  :<C-u>CocList diagnostics<cr>
 
+" Notify coc.nvim that <enter> has been pressed.
+" Currently used for the formatOnType feature.
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Toggle panel with Tree Views
+nnoremap <silent> <space>t :<C-u>CocCommand metals.tvp<CR>
+" Toggle Tree View 'metalsBuild'
+nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
+" Toggle Tree View 'metalsCompile'
+nnoremap <silent> <space>tc :<C-u>CocCommand metals.tvp metalsCompile<CR>
+" Reveal current current class (trait or object) in Tree View 'metalsBuild'
+nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsBuild<CR>
+
 " fzf
 nnoremap <C-p> :Files<CR>
 nnoremap <C-a> :Ag<space>
@@ -304,16 +325,34 @@ nnoremap <leader>fy :Files app/assets/stylesheets/<cr>
 nnoremap <leader>fj :Files app/assets/javascripts/<cr>
 nnoremap <leader>fs :Files spec/<cr>
 
-let g:fzf_files_options = '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
-  " \ '--reverse ' .
+" let g:fzf_files_options = '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+"   " \ '--reverse ' .
 
-" shortcut to open files
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+  " shortcut to open files
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 map <Leader>se :sp <C-R>=expand("%:p:h") . "/" <CR>
 
-nmap <Leader>g :silent !termite -e gitsh &> /dev/null &<CR>
-nmap <Leader>z :silent !termite &> /dev/null &<CR>
+" nmap <Leader>g :silent !termite -e gitsh &> /dev/null &<CR>
+" nmap <Leader>z :silent !termite &> /dev/null &<CR>
+" nmap <Leader>g :silent !tmux split-window -p 33 -h 'gitsh'<CR>
+" nmap <Leader>g :silent !tmux split-window -p 33 -h 'psad'<CR>
+" nmap <Leader>z :silent !tmux split-window -p 33 -h<CR>
 
 " Easier than "+
 nmap cp "+y
@@ -333,10 +372,25 @@ endfunction
 com -range=% -nargs=0 CopyToBasecamp :<line1>,<line2>call CopyToBasecamp()
 xnoremap <Leader>b <esc>:'<,'>CopyToBasecamp<CR>
 
-" let g:lightline = {
-"   \ 'colorscheme': 'dracula',
-"   \ }
-highlight SignColumn ctermbg=white
+nnoremap <Leader>pn <esc>:vsp project_notes.md<CR>
 
-set background=light
-" colorscheme dracula
+let g:lightline = {
+      \ 'colorscheme': 'onedark',
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \ }
+      \ }
+
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
+
+set termguicolors
+set background=dark
+colorscheme onedark
+highlight clear SignColumn
