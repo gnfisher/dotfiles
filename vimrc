@@ -27,9 +27,9 @@ set foldmethod=manual
 set nojoinspaces
 set scrolloff=3
 set sidescrolloff=3
+set fillchars+=vert:\|
 
-" statusline
-" :set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+let g:ale_linters_explicit = 1
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -156,6 +156,10 @@ inoremap <S-Tab> <C-n>
 " Switch between the last two files
 " nnoremap <Leader><Leader> <C-^>
 
+" statusline
+set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+set statusline+=%{FugitiveStatusline()}
+
 " vim-test mappings
 nnoremap <silent> <Leader>tf :TestFile<CR>
 nnoremap <silent> <Leader>tn :TestNearest<CR>
@@ -216,6 +220,13 @@ nmap k gk
 
 nnoremap <leader>sub :%s///g<left><left>
 vnoremap <leader>sub :s///g<left><left>
+
+" let g:ale_linters_explicit = 1
+" let g:ale_linters = { 'ruby': ['ruby'] }
+
+
+" autocmd BufNew,BufEnter *.vim,*.rb,*.erb execute "silent! CocDisable"
+" autocmd BufLeave *.vim,*.rb,*.erb execute "silent! CocEnable"
 
 " CoC config
 set updatetime=300
@@ -374,23 +385,7 @@ xnoremap <Leader>b <esc>:'<,'>CopyToBasecamp<CR>
 
 nnoremap <Leader>pn <esc>:vsp project_notes.md<CR>
 
-let g:lightline = {
-      \ 'colorscheme': 'onedark',
-      \ 'component_function': {
-      \   'filename': 'LightlineFilename',
-      \ }
-      \ }
-
-function! LightlineFilename()
-  let root = fnamemodify(get(b:, 'git_dir'), ':h')
-  let path = expand('%:p')
-  if path[:len(root)-1] ==# root
-    return path[len(root)+1:]
-  endif
-  return expand('%')
-endfunction
-
-set termguicolors
+" set termguicolors
 set background=dark
-colorscheme onedark
+colorscheme solarized
 highlight clear SignColumn

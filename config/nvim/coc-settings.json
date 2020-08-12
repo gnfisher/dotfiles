@@ -17,5 +17,5 @@
     }
 },
 "coc.preferences.formatOnType": true,
-"workspace.ignoredFiletypes": ["gitcommit"]
+"workspace.ignoredFiletypes": ["gitcommit", "ruby"]
 }
