@@ -17,5 +17,6 @@
     }
 },
 "coc.preferences.formatOnType": true,
+"metals.statusBarEnabled": true,
 "workspace.ignoredFiletypes": ["gitcommit", "ruby"]
 }

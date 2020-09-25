@@ -41,6 +41,7 @@ export PATH="/usr/local/sbin:$PATH"
 export BAT_THEME="base16"
 
 alias vim=nvim
+alias vimrc=vim ~/.vimrc
 alias g=git
 alias c=clear
 alias scratch='nvim ~/Scratch'

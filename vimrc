@@ -277,7 +277,7 @@ vnoremap <leader>sub :s///g<left><left>
 " ALE CONFIG
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" let g:ale_linters = {'scala': ['metals-vim'], 'ruby': ['ruby'], 'javascript': [], 'typescript': ['tsserver', 'eslint'], 'typescript.tsx': ['tsserver', 'eslint']}
+" let g:ale_linters = {'scala': ['metals'], 'ruby': ['ruby'], 'javascript': [], 'typescript': ['tsserver', 'eslint'], 'typescript.tsx': ['tsserver', 'eslint']}
 " let g:ale_fixers = {'javascript': [], 'typescript': ['prettier'], 'typescript.tsx': ['prettier']}
 " let g:ale_linters_explicit = 1
 " let g:ale_lint_on_text_changed = 'normal'
@@ -295,8 +295,8 @@ vnoremap <leader>sub :s///g<left><left>
 " " happens yet, but I think that it's related to renaming files.
 " nnoremap g0 :ALEStopAllLSPs<cr>
 
-" autocmd BufNew,BufEnter *.vim,*.rb,*.erb execute "silent! CocDisable"
-" autocmd BufLeave *.vim,*.rb,*.erb execute "silent! CocEnable"
+" " autocmd BufNew,BufEnter *.vim,*.rb,*.erb execute "silent! CocDisable"
+" " autocmd BufLeave *.vim,*.rb,*.erb execute "silent! CocEnable"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -306,6 +306,7 @@ set updatetime=300
 set shortmess+=c
 set signcolumn=yes
 
+hi link CocFloating normal
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
