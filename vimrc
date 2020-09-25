@@ -100,9 +100,10 @@ endfunction
 
 set tabline=%!TabLine()
 syntax enable
-set t_Co=256 " 256 colors
+" set t_Co=256 " 256 colors
 " a better pattern for drawing vertical borders.
 set fillchars+=vert:\|
+set termguicolors
 colorscheme lucius
 set background=dark
 let g:lucius_contrast_bg = 1
@@ -110,6 +111,23 @@ let g:lucius_use_bold = 1
 " When the type of shell script is /bin/sh, assume a POSIX-compatible
 " shell for syntax highlighting purposes.
 let g:is_posix = 1
+
+let g:terminal_color_0  = '#303030'
+let g:terminal_color_1  = '#ff8787'
+let g:terminal_color_2  = '#d7ffaf'
+let g:terminal_color_3  = '#ffffd7'
+let g:terminal_color_4  = '#afffff'
+let g:terminal_color_5  = '#ffd7ff'
+let g:terminal_color_6  = '#afffd7'
+let g:terminal_color_7  = '#eeeeee'
+let g:terminal_color_8  = '#303030'
+let g:terminal_color_9  = '#ff8787'
+let g:terminal_color_10 = '#d7ffaf'
+let g:terminal_color_11 = '#ffffd7'
+let g:terminal_color_12 = '#afffff'
+let g:terminal_color_13 = '#ffd7ff'
+let g:terminal_color_14 = '#afffd7'
+let g:terminal_color_15 = '#eeeeee'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -381,7 +399,6 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 " FZF CONFIG
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Use ag in fzf for listing files. Lightning fast and respects .gitignore
 let $FZF_DEFAULT_COMMAND = 'ag --literal --files-with-matches --hidden -g ""'
 nnoremap <C-p> :Files<CR>
 nnoremap <C-a> :Ag<space>
@@ -394,6 +411,7 @@ nnoremap <leader>fo :BTag<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " QUICKLY CREATE FILES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 map <Leader>se :sp <C-R>=expand("%:p:h") . "/" <CR>
@@ -402,6 +420,7 @@ map <Leader>se :sp <C-R>=expand("%:p:h") . "/" <CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " EASIER COPY PASTE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 nmap cp "+y
 xnoremap cp "+y
 nmap cv "+p
@@ -411,6 +430,7 @@ nmap cV "+P
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COPY FOR RICH TEXT EDITORS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 function CopyToBasecamp() range
   echo system('echo '.shellescape(join(getline(a:firstline, a:lastline), "\n")).' | pandoc -f markdown | textutil -stdin -format html -convert rtf -stdout | pbcopy')
 endfunction
