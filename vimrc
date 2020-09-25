@@ -1,76 +1,120 @@
 set encoding=utf-8
 
-" Leader
-let mapleader = " "
+" remove all existing autcmd
+autocmd! 
 
-set backspace=2   " Backspace deletes like most programs in insert mode
-set nobackup
-set nowritebackup
-set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
-set undofile
-set undodir=~/.vim/undodir
-set history=50
-set ruler         " show the cursor position all the time
-set showcmd       " display incomplete commands
-set incsearch     " do incremental searching
-set laststatus=2  " Always display the status line
-set autowrite     " Automatically :write before running commands
-set modelines=0   " Disable modelines as a security precaution
-set nomodeline
-set ignorecase smartcase
-set autoread
-set noeb vb t_vb=
-set complete=.,w,b,u,t,i
-:set completeopt=menu,preview
-set nofoldenable
-set foldmethod=manual
-set nojoinspaces
-set scrolloff=3
-set sidescrolloff=3
-set fillchars+=vert:\|
-
-let g:ale_linters_explicit = 1
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
-  syntax enable
-endif
-
+" load plugs
 if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
 
-" Load matchit.vim, but only if the user hasn't installed a newer version.
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-  runtime! macros/matchit.vim
-endif
-
 filetype plugin indent on
 
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
+" set leader
+let mapleader = " "
 
-  " Use ag in fzf for listing files. Lightning fast and respects .gitignore
-  let $FZF_DEFAULT_COMMAND = 'ag --literal --files-with-matches --hidden -g ""'
-endif
 
-" Tab completion
-" will insert tab at beginning of line,
-" will use completion if not at beginning
-set wildmode=list:longest,list:full
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<Tab>"
-    else
-        return "\<C-p>"
-    endif
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" BASIC CONFIGURATION
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Backspace deletes like most programs in insert mode
+set backspace=2
+" allow unsaced backgroudn buffers and remember their undo/marks
+set hidden 
+set undofile
+set undodir=~/.vim/undodir
+set nowritebackup
+" http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
+set noswapfile
+set history=10000
+set autoread
+" Automatically :write before running commands
+set autowrite
+" display incomplete commands
+set showcmd
+set incsearch
+" ignore case unless  there are capital
+set ignorecase smartcase
+set laststatus=2
+" Disable modelines as a security precaution
+set modelines=0
+set nomodeline
+set noeb vb t_vb=
+set complete=.,w,b,u,t,i
+set completeopt=menu,preview
+"  no folding
+set nofoldenable
+set foldmethod=manual
+" insert only one space when joining lines ending with punctuation '.', etc.
+set nojoinspaces
+set scrolloff=3
+set sidescrolloff=3
+set relativenumber
+set signcolumn=yes
+highlight clear SignColumn
+set tabstop=2
+set shiftwidth=2
+set shiftround
+set expandtab
+set list listchars=tab:»·,trail:·,nbsp:·
+" Make it obvious where 80 characters is
+set colorcolumn=81
+set number
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+" Set spellfile to location that is guaranteed to exist, can be symlinked to
+set spellfile=$HOME/.vim-spell-en.utf-8.add
+" Autocomplete with dictionary words when spell check is on
+set complete+=kspell
+" Always use vertical diffs
+set diffopt+=vertical
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" APPEARANCE SETTINGS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" only show the parent folder in tabline if nested deeper.
+function! TabLabel(n)
+  let buflist = tabpagebuflist(a:n)
+  let winnr = tabpagewinnr(a:n)
+  let currentBuffPath = bufname(buflist[winnr - 1])
+  return fnamemodify(currentBuffPath, ":h:t") . "/" . fnamemodify(currentBuffPath, ":t")
 endfunction
-inoremap <Tab> <C-r>=InsertTabWrapper()<CR>
-inoremap <S-Tab> <C-n>
+
+function! TabLine()
+  let s = ''
+  for i in range(tabpagenr('$'))
+    if i + 1 == tabpagenr()
+      let s .= '%#TabLineSel#'
+    else
+      let s .= '%#TabLine#'
+    endif
+    let s .= ' %{TabLabel(' . (i + 1) . ')} '
+  endfor
+  let s .= '%#TabLineFill#%T'
+  return s
+endfunction
+
+set tabline=%!TabLine()
+syntax enable
+set t_Co=256 " 256 colors
+" a better pattern for drawing vertical borders.
+set fillchars+=vert:\|
+colorscheme lucius
+set background=dark
+let g:lucius_contrast_bg = 1
+let g:lucius_use_bold = 1
+" When the type of shell script is /bin/sh, assume a POSIX-compatible
+" shell for syntax highlighting purposes.
+let g:is_posix = 1
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" EXTENDED SETTINGS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 augroup vimrcEx
   autocmd!
@@ -83,6 +127,8 @@ augroup vimrcEx
     \   exe "normal g`\"" |
     \ endif
 
+  autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | setlocal textwidth=80 | endif
+
   " Set syntax highlighting for specific file types
   autocmd BufRead,BufNewFile *.md set filetype=markdown
   autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
@@ -90,19 +136,9 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile gitconfig.local set filetype=gitconfig
   autocmd BufRead,BufNewFile tmux.conf.local set filetype=tmux
   autocmd BufRead,BufNewFile vimrc.local set filetype=vim
-
-  autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | setlocal textwidth=80 | endif
-
-  " json
   autocmd! FileType json set sw=2 sts=2 expandtab
   autocmd! FileType scss set sw=2 sts=2 expandtab
-
-  " elm indentation
   autocmd! FileType elm set sw=4 sts=4 expandtab autoindent smartindent nocindent
-
-  " Remove whitespace at end of lines
-  autocmd BufWritePre *.erb,*.scss,*.rb,*.js,*.c,*.py,*.php,*.coffee :%s/\s\+$//e
-
   autocmd BufRead,BufNewFile *.sbt set filetype=scala
 
   " Spell check gitcommits and Markdown
@@ -112,31 +148,17 @@ augroup vimrcEx
   " Only wrap md and text
   autocmd BufRead,BufNewFile *.md,*.txt setlocal textwidth=80
 
-  au BufRead,BufNewFile *.sbt set filetype=scala
+  " Remove whitespace at end of lines
+  autocmd BufWritePre *.erb,*.scss,*.rb,*.js,*.c,*.py,*.php,*.coffee :%s/\s\+$//e
 augroup END
 
-" When the type of shell script is /bin/sh, assume a POSIX-compatible
-" shell for syntax highlighting purposes.
-let g:is_posix = 1
+" Load matchit.vim, but only if the user hasn't installed a newer version.
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
+endif
 
-" Softtabs, 2 spaces
-set tabstop=2
-set shiftwidth=2
-set shiftround
-set expandtab
-
-" Display extra whitespace
-set list listchars=tab:»·,trail:·,nbsp:·
-
-" Use one space, not two, after punctuation.
-set nojoinspaces
-
-" Make it obvious where 80 characters is
-set colorcolumn=81
-
-" Numbers
-set number
-set numberwidth=5
+" use Ag over Grep
+set grepprg=ag\ --nogroup\ --nocolor
 
 " Tab completion
 " will insert tab at beginning of line,
@@ -153,14 +175,16 @@ endfunction
 inoremap <Tab> <C-r>=InsertTabWrapper()<CR>
 inoremap <S-Tab> <C-n>
 
-" Switch between the last two files
-" nnoremap <Leader><Leader> <C-^>
-
 " statusline
 set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
-set statusline+=%{FugitiveStatusline()}
+" hi statusline ctermbg=15 ctermfg=8
+" set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 
-" vim-test mappings
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VIM-TEST MAPPINGS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 nnoremap <silent> <Leader>tf :TestFile<CR>
 nnoremap <silent> <Leader>tn :TestNearest<CR>
 nnoremap <silent> <Leader>tl :TestLast<CR>
@@ -169,35 +193,43 @@ nnoremap <silent> <Leader>tv :TestVisit<CR>
 let test#strategy = "dispatch"
 let test#scala#runner = 'blooptest'
 let g:test#scala#blooptest#executable = 'heroku local:run -- bloop'
-" Run commands that require an interactive shell
-nnoremap <Leader>r :RunInInteractiveShell<Space>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" HTML IS ANNOYING
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
-" Set tags for vim-fugitive
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FUGITIVE SETTINGS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 set tags^=.git/tags
+set statusline+=%{FugitiveStatusline()}
 
-" Open new split panes to right and bottom, which feels more natural
-set splitbelow
-set splitright
 
-" Quicker window movement
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" QUICKER MOVEMENT
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+" move between wrapped lines
+nnoremap j gj
+nnoremap k gk
 
-" Set spellfile to location that is guaranteed to exist, can be symlinked to
-" Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
-set spellfile=$HOME/.vim-spell-en.utf-8.add
 
-" Autocomplete with dictionary words when spell check is on
-set complete+=kspell
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ESCAPE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Always use vertical diffs
-set diffopt+=vertical
-
+" treat C-c as Esc in insert mode
+inoremap <c-c> <esc>
 " use C-Space to Esc any mode
 nnoremap <C-Space> <Esc>:noh<CR>
 vnoremap <C-Space> <Esc>gV
@@ -214,21 +246,44 @@ inoremap <C-@> <Esc>
 " convenience
 nnoremap <leader>; :
 
-" move between wrapped lines
-nmap j gj
-nmap k gk
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SEARCH
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 nnoremap <leader>sub :%s///g<left><left>
 vnoremap <leader>sub :s///g<left><left>
 
-" let g:ale_linters_explicit = 1
-" let g:ale_linters = { 'ruby': ['ruby'] }
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ALE CONFIG
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" let g:ale_linters = {'scala': ['metals-vim'], 'ruby': ['ruby'], 'javascript': [], 'typescript': ['tsserver', 'eslint'], 'typescript.tsx': ['tsserver', 'eslint']}
+" let g:ale_fixers = {'javascript': [], 'typescript': ['prettier'], 'typescript.tsx': ['prettier']}
+" let g:ale_linters_explicit = 1
+" let g:ale_lint_on_text_changed = 'normal'
+" let g:ale_lint_on_insert_leave = 1
+" let g:ale_lint_delay = 0
+" let g:ale_set_quickfix = 0
+" let g:ale_set_loclist = 0
+" let g:ale_javascript_eslint_executable = 'eslint --cache'
+" nnoremap gj :ALENextWrap<cr>
+" nnoremap gk :ALEPreviousWrap<cr>
+" nnoremap g1 :ALEFirst<cr>
+" " This mapping will kill all ALE-related processes (including tsserver). It's
+" " necessary when those processes get confused. E.g., tsserver will sometimes
+" " show type errors that don't actually exist. I don't know exactly why that
+" " happens yet, but I think that it's related to renaming files.
+" nnoremap g0 :ALEStopAllLSPs<cr>
 
 " autocmd BufNew,BufEnter *.vim,*.rb,*.erb execute "silent! CocDisable"
 " autocmd BufLeave *.vim,*.rb,*.erb execute "silent! CocEnable"
 
-" CoC config
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COC CONFIG
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
@@ -255,8 +310,8 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Or use `complete_info` if your vim support it, like:
 " noremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> gj <Plug>(coc-diagnostic-prev)
+nmap <silent> gk <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -301,7 +356,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+set statusline+=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
 " Show all diagnostics
@@ -312,80 +367,52 @@ nnoremap <silent> <space>d  :<C-u>CocList diagnostics<cr>
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
       \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" Toggle panel with Tree Views
-nnoremap <silent> <space>t :<C-u>CocCommand metals.tvp<CR>
-" Toggle Tree View 'metalsBuild'
-nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
-" Toggle Tree View 'metalsCompile'
-nnoremap <silent> <space>tc :<C-u>CocCommand metals.tvp metalsCompile<CR>
-" Reveal current current class (trait or object) in Tree View 'metalsBuild'
-nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsBuild<CR>
+" " Toggle panel with Tree Views
+" nnoremap <silent> <space>t :<C-u>CocCommand metals.tvp<CR>
+" " Toggle Tree View 'metalsBuild'
+" nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
+" " Toggle Tree View 'metalsCompile'
+" nnoremap <silent> <space>tc :<C-u>CocCommand metals.tvp metalsCompile<CR>
+" " Reveal current current class (trait or object) in Tree View 'metalsBuild'
+" nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsBuild<CR>
 
-" fzf
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FZF CONFIG
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Use ag in fzf for listing files. Lightning fast and respects .gitignore
+let $FZF_DEFAULT_COMMAND = 'ag --literal --files-with-matches --hidden -g ""'
 nnoremap <C-p> :Files<CR>
 nnoremap <C-a> :Ag<space>
 nnoremap <leader>fp :Files<cr>
 nnoremap <leader>fb :Buffers<CR>
 nnoremap <leader>ft :Tag<cr>
 nnoremap <leader>fo :BTag<cr>
-nnoremap <leader>fa :Files app/<cr>
-nnoremap <leader>fm :Files app/models/<cr>
-nnoremap <leader>fv :Files app/views/<cr>
-nnoremap <leader>fc :Files app/controllers/<cr>
-nnoremap <leader>fy :Files app/assets/stylesheets/<cr>
-nnoremap <leader>fj :Files app/assets/javascripts/<cr>
-nnoremap <leader>fs :Files spec/<cr>
 
-" let g:fzf_files_options = '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
-"   " \ '--reverse ' .
 
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-  " shortcut to open files
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" QUICKLY CREATE FILES
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 map <Leader>se :sp <C-R>=expand("%:p:h") . "/" <CR>
 
-" nmap <Leader>g :silent !termite -e gitsh &> /dev/null &<CR>
-" nmap <Leader>z :silent !termite &> /dev/null &<CR>
-" nmap <Leader>g :silent !tmux split-window -p 33 -h 'gitsh'<CR>
-" nmap <Leader>g :silent !tmux split-window -p 33 -h 'psad'<CR>
-" nmap <Leader>z :silent !tmux split-window -p 33 -h<CR>
 
-" Easier than "+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" EASIER COPY PASTE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap cp "+y
 xnoremap cp "+y
 nmap cv "+p
 nmap cV "+P
 
-" in line, around line operators
-xnoremap il g_o0
-onoremap il :normal vil<CR>
-xnoremap al $o0
-onoremap al :normal val<CR>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COPY FOR RICH TEXT EDITORS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function CopyToBasecamp() range
   echo system('echo '.shellescape(join(getline(a:firstline, a:lastline), "\n")).' | pandoc -f markdown | textutil -stdin -format html -convert rtf -stdout | pbcopy')
 endfunction
 com -range=% -nargs=0 CopyToBasecamp :<line1>,<line2>call CopyToBasecamp()
 xnoremap <Leader>b <esc>:'<,'>CopyToBasecamp<CR>
-
-nnoremap <Leader>pn <esc>:vsp project_notes.md<CR>
-
-" set termguicolors
-set background=dark
-colorscheme solarized
-highlight clear SignColumn
