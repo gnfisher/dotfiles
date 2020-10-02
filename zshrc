@@ -27,8 +27,14 @@ stty -ixon
 # . $HOME/.asdf/completions/asdf.bash
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Gruvbox Dark
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
 
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#eeeeee,bg:#404040,hl:#afffff --color=fg+:#d0d0d0,bg+:#303030,hl+:#5fd7ff --color=info:#d7ffaf,prompt:#5fd7ff,pointer:#afffff --color=marker:#ffffd7,spinner:#afffff,header:#afffd7'
+# Lucius Dark
+#export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#eeeeee,bg:#404040,hl:#afffff --color=fg+:#d0d0d0,bg+:#303030,hl+:#5fd7ff --color=info:#d7ffaf,prompt:#5fd7ff,pointer:#afffff --color=marker:#ffffd7,spinner:#afffff,header:#afffd7'
+
+# Mac Light
+# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#8a8a8a,bg:#ffffff,hl:#0072f5 --color=fg+:#000000,bg+:#ffffff,hl+:#0034e0 --color=info:#80db69,prompt:#ff0000,pointer:#af5fff --color=marker:#87ff00,spinner:#299900,header:#080808'
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 

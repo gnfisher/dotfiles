@@ -70,6 +70,7 @@ set spellfile=$HOME/.vim-spell-en.utf-8.add
 set complete+=kspell
 " Always use vertical diffs
 set diffopt+=vertical
+set mouse=a
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -104,30 +105,37 @@ syntax enable
 " a better pattern for drawing vertical borders.
 set fillchars+=vert:\|
 set termguicolors
-colorscheme lucius
+colorscheme gruvbox
 set background=dark
-let g:lucius_contrast_bg = 1
-let g:lucius_use_bold = 1
+let g:gruvbox_contrast_dark = 'soft'
+let g:gruvbox_italicize_strings = 1
+let g:gruvbox_invert_tabline = 1
+" let g:lucius_contrast_bg = 1
+" let g:lucius_use_bold = 1
+
+" set background=light
+" colorscheme mac_classic
+
 " When the type of shell script is /bin/sh, assume a POSIX-compatible
 " shell for syntax highlighting purposes.
 let g:is_posix = 1
 
-let g:terminal_color_0  = '#303030'
-let g:terminal_color_1  = '#ff8787'
-let g:terminal_color_2  = '#d7ffaf'
-let g:terminal_color_3  = '#ffffd7'
-let g:terminal_color_4  = '#afffff'
-let g:terminal_color_5  = '#ffd7ff'
-let g:terminal_color_6  = '#afffd7'
-let g:terminal_color_7  = '#eeeeee'
-let g:terminal_color_8  = '#303030'
-let g:terminal_color_9  = '#ff8787'
-let g:terminal_color_10 = '#d7ffaf'
-let g:terminal_color_11 = '#ffffd7'
-let g:terminal_color_12 = '#afffff'
-let g:terminal_color_13 = '#ffd7ff'
-let g:terminal_color_14 = '#afffd7'
-let g:terminal_color_15 = '#eeeeee'
+" let g:terminal_color_0  = '#303030'
+" let g:terminal_color_1  = '#ff8787'
+" let g:terminal_color_2  = '#d7ffaf'
+" let g:terminal_color_3  = '#ffffd7'
+" let g:terminal_color_4  = '#afffff'
+" let g:terminal_color_5  = '#ffd7ff'
+" let g:terminal_color_6  = '#afffd7'
+" let g:terminal_color_7  = '#eeeeee'
+" let g:terminal_color_8  = '#303030'
+" let g:terminal_color_9  = '#ff8787'
+" let g:terminal_color_10 = '#d7ffaf'
+" let g:terminal_color_11 = '#ffffd7'
+" let g:terminal_color_12 = '#afffff'
+" let g:terminal_color_13 = '#ffd7ff'
+" let g:terminal_color_14 = '#afffd7'
+" let g:terminal_color_15 = '#eeeeee'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -264,6 +272,9 @@ inoremap <C-@> <Esc>
 " convenience
 nnoremap <leader>; :
 
+" terminal
+tnoremap <leader><Esc> <C-\><C-n>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SEARCH
@@ -277,26 +288,26 @@ vnoremap <leader>sub :s///g<left><left>
 " ALE CONFIG
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" let g:ale_linters = {'scala': ['metals'], 'ruby': ['ruby'], 'javascript': [], 'typescript': ['tsserver', 'eslint'], 'typescript.tsx': ['tsserver', 'eslint']}
-" let g:ale_fixers = {'javascript': [], 'typescript': ['prettier'], 'typescript.tsx': ['prettier']}
-" let g:ale_linters_explicit = 1
-" let g:ale_lint_on_text_changed = 'normal'
-" let g:ale_lint_on_insert_leave = 1
-" let g:ale_lint_delay = 0
-" let g:ale_set_quickfix = 0
-" let g:ale_set_loclist = 0
-" let g:ale_javascript_eslint_executable = 'eslint --cache'
-" nnoremap gj :ALENextWrap<cr>
-" nnoremap gk :ALEPreviousWrap<cr>
-" nnoremap g1 :ALEFirst<cr>
-" " This mapping will kill all ALE-related processes (including tsserver). It's
-" " necessary when those processes get confused. E.g., tsserver will sometimes
-" " show type errors that don't actually exist. I don't know exactly why that
-" " happens yet, but I think that it's related to renaming files.
-" nnoremap g0 :ALEStopAllLSPs<cr>
+let g:ale_linters = {'ruby': ['ruby'], 'javascript': [], 'typescript': ['tsserver', 'eslint'], 'typescript.tsx': ['tsserver', 'eslint']}
+let g:ale_fixers = {'javascript': [], 'typescript': ['prettier'], 'typescript.tsx': ['prettier']}
+let g:ale_linters_explicit = 1
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_delay = 0
+let g:ale_set_quickfix = 0
+let g:ale_set_loclist = 0
+let g:ale_javascript_eslint_executable = 'eslint --cache'
+nnoremap gj :ALENextWrap<cr>
+nnoremap gk :ALEPreviousWrap<cr>
+nnoremap g1 :ALEFirst<cr>
+" This mapping will kill all ALE-related processes (including tsserver). It's
+" necessary when those processes get confused. E.g., tsserver will sometimes
+" show type errors that don't actually exist. I don't know exactly why that
+" happens yet, but I think that it's related to renaming files.
+nnoremap g0 :ALEStopAllLSPs<cr>
 
-" " autocmd BufNew,BufEnter *.vim,*.rb,*.erb execute "silent! CocDisable"
-" " autocmd BufLeave *.vim,*.rb,*.erb execute "silent! CocEnable"
+autocmd BufNew,BufEnter *.vim,*.rb,*.erb execute "silent! CocDisable"
+autocmd BufLeave *.vim,*.rb,*.erb execute "silent! CocEnable"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -306,7 +317,7 @@ set updatetime=300
 set shortmess+=c
 set signcolumn=yes
 
-hi link CocFloating normal
+" hi link CocFloating normal
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
@@ -335,11 +346,9 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gi <Plug>(coc-diagnostic-info)
 
 nmap <leader>rn <Plug>(coc-rename)
-
-nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
-nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -437,3 +446,5 @@ function CopyToBasecamp() range
 endfunction
 com -range=% -nargs=0 CopyToBasecamp :<line1>,<line2>call CopyToBasecamp()
 xnoremap <Leader>b <esc>:'<,'>CopyToBasecamp<CR>
+
+nmap <leader>g :silent !open -a iTerm.app '/usr/local/bin/gitsh' &> /dev/null &<CR><CR>:redraw!<CR>

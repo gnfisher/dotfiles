@@ -16,7 +16,15 @@
       }
     }
 },
+"coc.preferences.hoverTarget": "echo",
+"diagnostic.messageTarget": "echo",
+"signature.target": "echo",
+"suggest.floatEnable": false,
+"suggest.maxCompleteItemCount": 7,
+"suggest.localityBonus": true,
 "coc.preferences.formatOnType": true,
 "metals.statusBarEnabled": true,
-"workspace.ignoredFiletypes": ["gitcommit", "ruby"]
+"workspace.ignoredFiletypes": ["gitcommit", "ruby"],
+"diagnostic.virtualText": true,
+"diagnostic.virtualTextPrefix": " # "
 }

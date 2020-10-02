@@ -26,11 +26,12 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'derekwyatt/vim-scala'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'leafgarland/typescript-vim'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
+Plug 'morhetz/gruvbox'
 call plug#end()
