@@ -105,11 +105,11 @@ syntax enable
 " a better pattern for drawing vertical borders.
 set fillchars+=vert:\|
 set termguicolors
-colorscheme gruvbox
+" colorscheme gruvbox
 set background=dark
-let g:gruvbox_contrast_dark = 'soft'
-let g:gruvbox_italicize_strings = 1
-let g:gruvbox_invert_tabline = 1
+" let g:gruvbox_contrast_dark = 'soft'
+" let g:gruvbox_italicize_strings = 1
+" let g:gruvbox_invert_tabline = 1
 " let g:lucius_contrast_bg = 1
 " let g:lucius_use_bold = 1
 
@@ -448,3 +448,26 @@ com -range=% -nargs=0 CopyToBasecamp :<line1>,<line2>call CopyToBasecamp()
 xnoremap <Leader>b <esc>:'<,'>CopyToBasecamp<CR>
 
 nmap <leader>g :silent !open -a iTerm.app '/usr/local/bin/gitsh' &> /dev/null &<CR><CR>:redraw!<CR>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Fill lines with chars
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+function! FillLine( str )
+    let tw = &textwidth
+    if tw==0 | let tw = 80 | endif
+    .s/[[:space:]]*$//
+    " calculate total number of 'str's to insert
+    let reps = (tw - col("$")) / len(a:str)
+    if reps > 0
+        .s/^/\=(repeat(a:str, reps).' ')/
+    endif
+endfunction
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Shortcuts
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+nmap <leader>p :tabe ~/Documents/.plan<CR>
