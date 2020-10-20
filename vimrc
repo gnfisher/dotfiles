@@ -52,7 +52,6 @@ set scrolloff=3
 set sidescrolloff=3
 set relativenumber
 set signcolumn=yes
-highlight clear SignColumn
 set tabstop=2
 set shiftwidth=2
 set shiftround
@@ -105,19 +104,9 @@ syntax enable
 " a better pattern for drawing vertical borders.
 set fillchars+=vert:\|
 set termguicolors
-" colorscheme gruvbox
-set background=dark
-" let g:gruvbox_contrast_dark = 'soft'
-" let g:gruvbox_italicize_strings = 1
-" let g:gruvbox_invert_tabline = 1
-" let g:lucius_contrast_bg = 1
-" let g:lucius_use_bold = 1
-
-" set background=light
-" colorscheme mac_classic
-
-" When the type of shell script is /bin/sh, assume a POSIX-compatible
-" shell for syntax highlighting purposes.
+set background=light
+" colorscheme solarized
+highlight clear SignColumn
 let g:is_posix = 1
 
 " let g:terminal_color_0  = '#303030'
@@ -471,3 +460,18 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 nmap <leader>p :tabe ~/Documents/.plan<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" WRITING
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Set undo to end of each sentence while remaining in insert mode.
+autocmd FileType markdown inoremap . .<C-g>u
+autocmd FileType markdown inoremap ! !<C-g>u
+autocmd FileType markdown inoremap ? ?<C-g>u
+autocmd FileType markdown inoremap : :<C-g>u
+
+" function! Img()
+"     r~/.vim/cpp/img.txt
+" endfunction
+" nmap <C-i> :call Img()<CR>

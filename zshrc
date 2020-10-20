@@ -38,19 +38,18 @@ stty -ixon
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 
-export PATH=$PATH:/usr/bin:/Users/greg/bin
+export PATH=$PATH:/usr/bin:/Users/greg/bin:/Applications
 export EDITOR=nvim
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/
-export PATH="/usr/local/opt/scala@2.12/bin:$PATH"
+# export PATH="/usr/local/opt/scala@2.12/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-
 export BAT_THEME="base16"
 
 alias vim=nvim
-alias vimrc=vim ~/.vimrc
+alias vimrc='vim ~/.vimrc'
 alias g=git
 alias c=clear
-alias scratch='nvim ~/Scratch'
+alias plan='vim ~/Documents/.plan'
 
 alias sf='~/Code/ADS/ads-quoting-server/bin/salesforce'
 alias sfq='~/Code/ADS/ads-quoting-server/bin/salesforce query '
