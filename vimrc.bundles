@@ -35,4 +35,9 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
 Plug 'jiangmiao/auto-pairs'
 Plug 'altercation/vim-colors-solarized'
+Plug 'rakr/vim-one'
+Plug 'jonathanfilip/vim-lucius'
+Plug 'mattn/emmet-vim'
+" Plug 'honza/vim-snippets'
+
 call plug#end()

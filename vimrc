@@ -104,27 +104,28 @@ syntax enable
 " a better pattern for drawing vertical borders.
 set fillchars+=vert:\|
 set termguicolors
-set background=light
-" colorscheme solarized
+set background=dark
+colorscheme lucius
+LuciusDarkHighContrast
 highlight clear SignColumn
 let g:is_posix = 1
 
-" let g:terminal_color_0  = '#303030'
-" let g:terminal_color_1  = '#ff8787'
-" let g:terminal_color_2  = '#d7ffaf'
-" let g:terminal_color_3  = '#ffffd7'
-" let g:terminal_color_4  = '#afffff'
-" let g:terminal_color_5  = '#ffd7ff'
-" let g:terminal_color_6  = '#afffd7'
-" let g:terminal_color_7  = '#eeeeee'
-" let g:terminal_color_8  = '#303030'
-" let g:terminal_color_9  = '#ff8787'
-" let g:terminal_color_10 = '#d7ffaf'
-" let g:terminal_color_11 = '#ffffd7'
-" let g:terminal_color_12 = '#afffff'
-" let g:terminal_color_13 = '#ffd7ff'
-" let g:terminal_color_14 = '#afffd7'
-" let g:terminal_color_15 = '#eeeeee'
+let g:terminal_color_0  = '#303030'
+let g:terminal_color_1  = '#ff8787'
+let g:terminal_color_2  = '#d7ffaf'
+let g:terminal_color_3  = '#ffffd7'
+let g:terminal_color_4  = '#afffff'
+let g:terminal_color_5  = '#ffd7ff'
+let g:terminal_color_6  = '#afffd7'
+let g:terminal_color_7  = '#eeeeee'
+let g:terminal_color_8  = '#303030'
+let g:terminal_color_9  = '#ff8787'
+let g:terminal_color_10 = '#d7ffaf'
+let g:terminal_color_11 = '#ffffd7'
+let g:terminal_color_12 = '#afffff'
+let g:terminal_color_13 = '#ffd7ff'
+let g:terminal_color_14 = '#afffd7'
+let g:terminal_color_15 = '#eeeeee'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -191,7 +192,8 @@ inoremap <Tab> <C-r>=InsertTabWrapper()<CR>
 inoremap <S-Tab> <C-n>
 
 " statusline
-set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+" set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+:set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 " hi statusline ctermbg=15 ctermfg=8
 " set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 
@@ -223,7 +225,7 @@ let g:html_indent_tags = 'li\|p'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set tags^=.git/tags
-set statusline+=%{FugitiveStatusline()}
+" set statusline+=%{FugitiveStatusline()}
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -302,6 +304,7 @@ autocmd BufLeave *.vim,*.rb,*.erb execute "silent! CocEnable"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COC CONFIG
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
@@ -373,7 +376,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline+=%{coc#status()}%{get(b:,'coc_current_function','')}
+" set statusline+=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
 " Show all diagnostics
@@ -383,6 +386,11 @@ nnoremap <silent> <space>d  :<C-u>CocList diagnostics<cr>
 " Currently used for the formatOnType feature.
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
       \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " " Toggle panel with Tree Views
 " nnoremap <silent> <space>t :<C-u>CocCommand metals.tvp<CR>
@@ -399,6 +407,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let $FZF_DEFAULT_COMMAND = 'ag --literal --files-with-matches --hidden -g ""'
+let g:fzf_layout = { 'down': '~60%' }
 nnoremap <C-p> :Files<CR>
 nnoremap <C-a> :Ag<space>
 nnoremap <leader>fp :Files<cr>
@@ -475,3 +484,10 @@ autocmd FileType markdown inoremap : :<C-g>u
 "     r~/.vim/cpp/img.txt
 " endfunction
 " nmap <C-i> :call Img()<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Emmet settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
