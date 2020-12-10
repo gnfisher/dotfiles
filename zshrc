@@ -43,6 +43,7 @@ export EDITOR=nvim
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/
 # export PATH="/usr/local/opt/scala@2.12/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+export PATH="$PATH:/Users/greg/Library/Application Support/Coursier/bin"
 export BAT_THEME="base16"
 
 alias vim=nvim
