@@ -47,10 +47,9 @@ export PATH="$PATH:/Users/greg/Library/Application Support/Coursier/bin"
 export BAT_THEME="base16"
 
 alias vim=nvim
-alias vimrc='vim ~/.vimrc'
+alias vimrc='vim ~/.config/nvim'
 alias g=git
 alias c=clear
-alias plan='vim ~/Documents/.plan'
 
 alias sf='~/Code/ADS/ads-quoting-server/bin/salesforce'
 alias sfq='~/Code/ADS/ads-quoting-server/bin/salesforce query '
