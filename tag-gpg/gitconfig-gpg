@@ -1,0 +1,6 @@
+[user]
+  signingkey = 3F923BFFC0D0DD18
+[commit]
+  gpgsign = true
+[gpg]
+  program = gpg
