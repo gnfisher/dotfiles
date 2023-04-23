@@ -1,0 +1,12 @@
+export PATH="$PATH:/Users/greg/Library/Application Support/Coursier/bin"
+
+export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_UPDATE=1
+
+export PATH="$PATH:$HOME/go/bin"
+export GOPATH=$HOME/go
+
+export JAVA_HOME="$(/usr/libexec/java_home -v 11.0)"
+# export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+
