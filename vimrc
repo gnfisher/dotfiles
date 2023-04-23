@@ -57,9 +57,13 @@ augroup gnfisher
   autocmd BufNewFile,BufRead *.css.erb setfiletype css
   autocmd BufNewFile,BufRead *.mkd,*.md,*.markdown setfiletype markdown
   autocmd BufNewFile,BufRead *.json setfiletype javascript
+  autocmd BufNewFile,BufRead *.go setfiletype go
 
   autocmd Filetype markdown setlocal spell textwidth=100
   autocmd Filetype gitcommit setlocal spell textwidth=76 colorcolumn=77
+
+  autocmd Filetype make,automake setlocal noexpandtab
+  autocmd Filetype go setlocal noexpandtab
 
   autocmd QuickFixCmdPost [^l]* cwindow
   autocmd QuickFixCmdPost l* lwindow
@@ -78,6 +82,8 @@ call plug#begin()
   Plug 'dense-analysis/ale'
   Plug 'tpope/vim-dispatch'
   Plug 'vim-test/vim-test'
+  Plug 'jnwhiteh/vim-golang'
+  Plug 'leafgarland/typescript-vim'
 call plug#end()
 
 set background=dark
