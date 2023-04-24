@@ -23,7 +23,7 @@ if [[ "$CODESPACES" = "true" ]]; then
 
 elif [[ "$(uname)" = "Darwin" ]]; then
   brew install rcm
-  rcup -v -d . -t macos
+  rcup -v -d . -t macos -t development -t gpg
   rcup -v
 else
   >&2 echo "error: Unknown system"
