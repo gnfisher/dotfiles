@@ -113,7 +113,6 @@ if executable("rg")
   let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore-vcs --hiden'
 endif
 
-command -nargs=+ -complete=file -bar Rg silent! grep! <args>|cwindow|redraw!
 nmap \ :Rg<SPACE>
 nmap K :grep "\b<C-R><C-W>\b"<CR>:cw<CR>:redraw!<CR>
 
