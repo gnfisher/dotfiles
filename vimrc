@@ -6,7 +6,6 @@ set encoding=utf-8
 set shell=/bin/sh
 set term=screen-256color
 set nocompatible
-set list listchars=tab:▸\ ,trail:·,nbsp:·
 set mouse=a
 set expandtab
 set backspace=2   " Backspace deletes like most programs in insert mode
