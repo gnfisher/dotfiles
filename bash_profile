@@ -18,3 +18,8 @@ export GPG_TTY=$(tty)
 for path in $(ls -a ~/.bash_profile.*); do
   source $path
 done
+
+if [ -d "$HOME/.asdf" ]; then
+  . "/opt/homebrew/opt/asdf/libexec/asdf.sh"
+. "/opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash"
+fi
