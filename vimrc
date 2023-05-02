@@ -78,12 +78,13 @@ call plug#begin()
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-rails'
   Plug 'leafgarland/typescript-vim'
-  Plug 'ctrlpvim/ctrlp.vim'
   Plug 'dense-analysis/ale'
   Plug 'tpope/vim-dispatch'
   Plug 'vim-test/vim-test'
   Plug 'jnwhiteh/vim-golang'
   Plug 'leafgarland/typescript-vim'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
 call plug#end()
 
 set background=dark
@@ -109,19 +110,19 @@ cnoremap <expr> %% expand('%:h').'/'
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m,%f:%l:%m
-  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-  let g:ctrlp_use_caching = 0
-else
-  let g:ctrlp_clear_cache_on_exit = 0
+  let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore-vcs --hiden'
 endif
 
 command -nargs=+ -complete=file -bar Rg silent! grep! <args>|cwindow|redraw!
 nmap \ :Rg<SPACE>
 nmap K :grep "\b<C-R><C-W>\b"<CR>:cw<CR>:redraw!<CR>
 
-let g:ctrlp_custom_ignore = {
-    \ 'dir': '\.git\|node_modules\|target$'
-\ }
+let g:fzf_preview_window = []
+let g:fzf_layout = { 'down': '40%' }
+nnoremap <silent> <leader>ff :GitFiles<CR>
+nnoremap <silent> <leader>fF :Files<CR>
+nnoremap <silent> <leader>fb :Buffers<CR>
+nnoremap <silent> <leader>fg :Rg<CR>
 
 set omnifunc=ale#completion#OmniFunc
 nmap <silent> [r <Plug>(ale_previous_wrap)
