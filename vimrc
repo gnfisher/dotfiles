@@ -87,7 +87,7 @@ call plug#begin()
   Plug 'junegunn/fzf.vim'
 call plug#end()
 
-set background=dark
+set background=light
 silent! color solarized
 
 " Ruby configuration
