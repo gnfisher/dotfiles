@@ -78,6 +78,7 @@ call plug#begin()
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-rails'
   Plug 'leafgarland/typescript-vim'
+  Plug 'elm-tooling/elm-vim'
   Plug 'dense-analysis/ale'
   Plug 'tpope/vim-dispatch'
   Plug 'vim-test/vim-test'
@@ -127,6 +128,8 @@ set omnifunc=ale#completion#OmniFunc
 nmap <silent> [r <Plug>(ale_previous_wrap)
 nmap <silent> ]r <Plug>(ale_next_wrap)
 nmap gr :ALEFindReferences -quickfix<CR>
+nmap gh :ALEHover<CR>
+nmap gd :ALEGoToDefinition<CR>
 let g:ale_fixers = {
 \  '*': ['trim_whitespace'],
 \  'javascript': ['prettier'],
