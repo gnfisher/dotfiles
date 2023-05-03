@@ -77,6 +77,7 @@ call plug#begin()
   Plug 'tpope/vim-projectionist'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-rails'
+  Plug 'github/copilot.vim'
   Plug 'leafgarland/typescript-vim'
   Plug 'elm-tooling/elm-vim'
   Plug 'dense-analysis/ale'
@@ -114,7 +115,6 @@ if executable("rg")
   let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore-vcs --hiden'
 endif
 
-nmap \ :Rg<SPACE>
 nmap K :grep "\b<C-R><C-W>\b"<CR>:cw<CR>:redraw!<CR>
 
 let g:fzf_preview_window = []
@@ -134,7 +134,13 @@ let g:ale_fixers = {
 \  '*': ['trim_whitespace'],
 \  'javascript': ['prettier'],
 \  'typescript': ['prettier'],
+\  'go': ['gofmt', 'goimports'],
 \}
+let g:ale_fix_on_save = 1
+
+inoremap <Esc>\ <Plug>(copilot-suggest)
+inoremap <Esc>] <Plug>(copilot-next)
+inoremap <Esc>[ <Plug>(copilot-next)
 
 let test#strategy = "dispatch"
 
