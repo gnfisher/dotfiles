@@ -77,6 +77,7 @@ call plug#begin()
   Plug 'tpope/vim-projectionist'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-fugitive'
   Plug 'github/copilot.vim'
   Plug 'leafgarland/typescript-vim'
   Plug 'elm-tooling/elm-vim'
