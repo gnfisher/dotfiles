@@ -141,6 +141,9 @@ let g:ale_fix_on_save = 1
 inoremap <Esc>\ <Plug>(copilot-suggest)
 inoremap <Esc>] <Plug>(copilot-next)
 inoremap <Esc>[ <Plug>(copilot-next)
+" Do not use tab to accept completion because we are not barbarians
+imap <silent><script><expr> <C-Y> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
 
 let test#strategy = "dispatch"
 
