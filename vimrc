@@ -91,7 +91,7 @@ call plug#begin()
 call plug#end()
 
 set background=light
-silent! color solarized
+" silent! color solarized
 
 " Ruby configuration
 let g:ruby_indent_block_style = 'do'
@@ -131,6 +131,7 @@ nmap <silent> ]r <Plug>(ale_next_wrap)
 nmap gr :ALEFindReferences -quickfix<CR>
 nmap gh :ALEHover<CR>
 nmap gd :ALEGoToDefinition<CR>
+nmap gD :ALEDetail<CR>
 let g:ale_fixers = {
 \  '*': ['trim_whitespace'],
 \  'javascript': ['prettier'],
