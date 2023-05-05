@@ -124,6 +124,7 @@ nnoremap <silent> <leader>ff :GitFiles<CR>
 nnoremap <silent> <leader>fF :Files<CR>
 nnoremap <silent> <leader>fb :Buffers<CR>
 nnoremap <silent> <leader>fg :Rg<CR>
+nnoremap <silent> <leader>ft :Tags<CR>
 
 set omnifunc=ale#completion#OmniFunc
 nmap <silent> [r <Plug>(ale_previous_wrap)
