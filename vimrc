@@ -7,6 +7,7 @@ set shell=/bin/sh
 set term=screen-256color
 set nocompatible
 set mouse=a
+set noerrorbells
 set expandtab
 set backspace=2   " Backspace deletes like most programs in insert mode
 set tabstop=2 softtabstop=2 shiftwidth=2 " Default tab size
