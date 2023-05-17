@@ -7,6 +7,7 @@ set -x
 
 if [[ "$CODESPACES" = "true" ]]; then
   rm ~/.bashrc
+  sudo apt update
   sudo apt-get install -y rcm tmux universal-ctags wget
   rcup -f -v -d . -t development -t github
 
