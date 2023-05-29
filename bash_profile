@@ -9,6 +9,7 @@ export VISUAL=vim
 alias psg="ps auxwww | head -n 1 ; ps auxwww | grep -Ei"
 alias ll="ls -l"
 
+export HISTSIZE=10000
 export HISTFILESIZE=10000
 export CLICOLOR=1
 export LSCOLORS=gxFxCxDxBxegedabagacad
