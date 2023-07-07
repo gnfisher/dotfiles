@@ -57,3 +57,5 @@
 [include]
   path = ~/.gitconfig-gpg
   path = ~/.gitconfig-macos
+[url "git@github.com:"]
+	insteadOf = https://github.com/

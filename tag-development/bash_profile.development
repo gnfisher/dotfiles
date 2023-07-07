@@ -1,5 +1,10 @@
 source ~/.bin/git-completion.sh
 
+export GOPROXY=https://goproxy.githubapp.com/mod,https://proxy.golang.org/,direct
+export GOPRIVATE=
+export GONOPROXY=
+export GONOSUMDB=github.com/github/*
+
 alias g=git
 alias gc="git commit -v"
 alias gca="git commit --amend -v"

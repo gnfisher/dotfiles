@@ -92,7 +92,9 @@ call plug#begin()
 call plug#end()
 
 set background=light
-" silent! color solarized
+silent! color solarized
+let g:solarized_italic = 1
+let g:solarized_termcolors=256
 
 " Ruby configuration
 let g:ruby_indent_block_style = 'do'
