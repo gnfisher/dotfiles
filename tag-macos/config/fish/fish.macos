@@ -1,0 +1,6 @@
+set HOMEBREW_NO_AUTO_UPDATE 1
+set HOMEBREW_DIR /opt/homebrew
+
+fish_add_path $HOMEBREW_DIR/sbin $HOMEBREW_DIR/bin
+
+source (brew --prefix asdf)/libexec/asdf.fish
