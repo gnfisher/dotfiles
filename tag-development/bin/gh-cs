@@ -7,7 +7,14 @@ pid=$!
 rdm server &
 
 gh cs ssh -c "$codespace" -- -R 128.0.0.1:7391:$(rdm socket)
+cspid=$!
 
-kill -s TERM "$pid"
-rdm stop
-echo "Done."
+cleanup() {
+  sudo kill -s TERM "$pid"
+  sudo kill -s TERM "$cspid"
+  rdm stop
+  echo "Done."
+}
+
+trap cleanup EXIT SIGINT SIGTERM
+
