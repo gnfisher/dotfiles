@@ -1,3 +1,4 @@
+vim.lsp.set_log_level("debug")
 local status_ok, config = pcall(require, "lspconfig")
 if not status_ok then
   return
@@ -87,24 +88,25 @@ if vim.fn.executable('srb') == 1 then
 end
 
 if vim.fn.executable('lua-language-server') == 1 then
-  -- config.lua_ls.setup {
-  --   on_attach = on_attach,
-  --   capabilities = capabilities,
-  --   settings = {
-  --     Lua = {
-  --       runtime = {
-  --         version = 'LuaJIT',
-  --       },
-  --       diagnostics = {
-  --         globals = { 'vim' },
-  --       },
-  --       workspace = {
-  --         library = vim.api.nvim_get_runtime_file("", true),
-  --       },
-  --       telemetry = {
-  --         enable = false,
-  --       },
-  --     },
-  --   },
-  -- }
+  config.sumneko_lua.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+      Lua = {
+        runtime = {
+          version = 'LuaJIT',
+        },
+        diagnostics = {
+          globals = { 'vim' },
+        },
+        workspace = {
+          library = vim.api.nvim_get_runtime_file("", true),
+          checkThirdParty = false,
+        },
+        telemetry = {
+          enable = false,
+        },
+      },
+    },
+  }
 end

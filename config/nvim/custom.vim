@@ -25,7 +25,7 @@ map <M-k> :cprev<CR>
 
 " Stuff
 nnoremap <leader>fG :call <SID>ToggleGstatus()<CR>
-nnoremap g] <cmd>lua require('telescope').extensions.ctags_plus.jump_to_tag()<cr>
+" nnoremap g] <cmd>lua require('telescope').extensions.ctags_plus.jump_to_tag()<cr>
 
 " Terminal
 command! -nargs=0 TSOpen exec winheight(0)/3."split" | terminal

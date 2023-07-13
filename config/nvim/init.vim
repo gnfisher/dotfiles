@@ -108,6 +108,8 @@ call plug#begin()
   Plug 'hrsh7th/nvim-cmp'
   Plug 'onsails/lspkind.nvim'
   Plug 'mfussenegger/nvim-lint'
+  Plug 'L3MON4D3/LuaSnip'
+  Plug 'saadparwaiz1/cmp_luasnip'
 
   " Other
   Plug 'github/copilot.vim'
