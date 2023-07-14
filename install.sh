@@ -18,6 +18,11 @@ if [[ "$CODESPACES" = "true" ]]; then
 
   gh config set browser "rdm open"
 
+  # Install neovim
+  wget https://github.com/neovim/neovim/releases/download/v0.7.0/nvim.appimage
+  chmod u+x nvim.appimage
+  sudo mv nvim.appimage /usr/local/bin/nvim
+
   if [[ -d /etc/ssh ]]; then
     echo 'AcceptEnv TZ LC_*' >> /etc/ssh/sshd_config
   fi
