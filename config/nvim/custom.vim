@@ -32,6 +32,7 @@ command! -nargs=0 TSOpen exec winheight(0)/3."split" | terminal
 command! -nargs=* TSCall exec winheight(0)/3."split" | terminal <args>
 
 " Magic trick
+map <F6> :call ToggleBackground()<CR>
 function! ToggleBackground()
     if &background == "light"
         set background=dark
@@ -50,3 +51,5 @@ function! s:ToggleGstatus() abort
   endfor
 endfunction
 
+" Doom One colorscheme
+lua require('gnfisher.doom')
