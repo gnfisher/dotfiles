@@ -92,7 +92,7 @@ call plug#begin()
   Plug 'nvim-lualine/lualine.nvim'
   Plug 'nvim-tree/nvim-web-devicons'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-  Plug 'j-hui/fidget.nvim', { 'tag': 'legacy' } " They are rewriting this? Check later.
+  Plug 'j-hui/fidget.nvim', { 'tag': 'legacy' }
 
   " Telescope
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }

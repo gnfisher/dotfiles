@@ -20,13 +20,13 @@ configs.setup {
 
   endwise = { enable = true, },
   -- A list of parser names, or "all"
-  ensure_installed = { "lua", "ruby", "elm", "scala", "javascript", "typescript" , "vim", "html", "json", "go" },
+  ensure_installed = { "lua", "ruby", "elm", "scala", "javascript", "typescript" , "vim", "html", "json", "go", "bash", "dockerfile", "diff", "elixir", "fish", "git_config", "git_rebase", "gitcommit", "gitignore", "graphql", "json", "proto", "python", "ruby", "rust", "scss", "sql", "vimdoc", "yaml" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
 
   -- Automatically install missing parsers when entering buffer
-  auto_install = true,
+  auto_install = false,
 
   -- List of parsers to ignore installing (for "all")
   -- ignore_install = { "javascript" },
