@@ -28,6 +28,9 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gd', telescope.lsp_definitions, bufopts)
   vim.keymap.set('n', 'gi', telescope.lsp_implementations, bufopts)
   vim.keymap.set('n', 'gR', telescope.lsp_references, bufopts)
+  vim.keymap.set('n', 'go', telescope.builtin.lsp_document_symbols, bufopts)
+  vim.keymap.set('n', 'gw', telescope.builtin.lsp_document_symbols, bufopts)
+
   vim.keymap.set('n', 'gh', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', '==', vim.lsp.buf.formatting, bufopts)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
@@ -88,7 +91,7 @@ if vim.fn.executable('srb') == 1 then
 end
 
 if vim.fn.executable('lua-language-server') == 1 then
-  config.sumneko_lua.setup {
+  config.lua_ls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {

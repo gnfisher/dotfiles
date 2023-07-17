@@ -7,7 +7,7 @@ map <leader>s :so ~/.config/nvim/init.vim<CR>
 
 set nocompatible
 set termguicolors
-set list listchars=tab:▸\ ,trail:·,nbsp:·
+" set list listchars=tab:▸\ ,trail:·,nbsp:·
 set mouse=a
 set belloff=all
 set expandtab
@@ -92,7 +92,7 @@ call plug#begin()
   Plug 'nvim-lualine/lualine.nvim'
   Plug 'nvim-tree/nvim-web-devicons'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-  Plug 'j-hui/fidget.nvim'
+  Plug 'j-hui/fidget.nvim', { 'tag': 'legacy' } " They are rewriting this? Check later.
 
   " Telescope
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }

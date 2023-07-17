@@ -3,4 +3,8 @@ set HOMEBREW_DIR /opt/homebrew
 
 fish_add_path $HOMEBREW_DIR/sbin $HOMEBREW_DIR/bin
 
+set -x GOPATH $HOME/golang
+set -x GOROOT (brew --prefix golang)/libexec
+set PATH $GOPATH/bin $GOROOT/bin $PATH
+
 source (brew --prefix asdf)/libexec/asdf.fish

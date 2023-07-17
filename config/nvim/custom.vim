@@ -53,3 +53,4 @@ endfunction
 
 " Doom One colorscheme
 lua require('gnfisher.doom')
+

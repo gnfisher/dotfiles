@@ -15,13 +15,10 @@ if [[ "$CODESPACES" = "true" ]]; then
   wget https://github.com/BlakeWilliams/remote-development-manager/releases/download/v0.0.3/rdm-linux-amd64
   sudo mv rdm-linux-amd64 /usr/local/bin/rdm
   chmod +x /usr/local/bin/rdm
-
   gh config set browser "rdm open"
 
-  # Install neovim
-  wget https://github.com/neovim/neovim/releases/download/v0.7.0/nvim.appimage
-  chmod u+x nvim.appimage
-  sudo mv nvim.appimage /usr/local/bin/nvim
+  brew install neovim
+  brew install starship
 
   if [[ -d /etc/ssh ]]; then
     echo 'AcceptEnv TZ LC_*' >> /etc/ssh/sshd_config
