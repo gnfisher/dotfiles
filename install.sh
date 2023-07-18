@@ -32,7 +32,7 @@ else
   exit 1
 fi
 
-nvim +PluginInstall +qa
+# nvim +PluginInstall +qa
 
 if [[ "$CODESPACES" = "true" ]]; then
   # Default to HTTPS for GitHub access
