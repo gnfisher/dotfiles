@@ -28,8 +28,6 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gd', telescope.lsp_definitions, bufopts)
   vim.keymap.set('n', 'gi', telescope.lsp_implementations, bufopts)
   vim.keymap.set('n', 'gR', telescope.lsp_references, bufopts)
-  vim.keymap.set('n', 'go', telescope.builtin.lsp_document_symbols, bufopts)
-  vim.keymap.set('n', 'gw', telescope.builtin.lsp_document_symbols, bufopts)
 
   vim.keymap.set('n', 'gh', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', '==', vim.lsp.buf.formatting, bufopts)

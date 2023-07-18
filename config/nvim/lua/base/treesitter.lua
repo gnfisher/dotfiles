@@ -48,3 +48,10 @@ configs.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+local status_ok, telescope = pcall(require, "telescope.builtin")
+if not status_ok then
+  return
+end
+local bufopts = { noremap = true, silent = true }
+vim.keymap.set('n', '<leader>fs', telescope.treesitter, bufopts)

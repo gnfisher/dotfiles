@@ -17,8 +17,7 @@ if [[ "$CODESPACES" = "true" ]]; then
   chmod +x /usr/local/bin/rdm
   gh config set browser "rdm open"
 
-  brew install neovim
-  brew install starship
+  brew install neovim starship typescript-language-server
 
   if [[ -d /etc/ssh ]]; then
     echo 'AcceptEnv TZ LC_*' >> /etc/ssh/sshd_config

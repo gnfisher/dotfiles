@@ -146,7 +146,7 @@ nnoremap <leader>fq <cmd>lua require('telescope.builtin').quickfix()<cr>
 nnoremap <leader>fl <cmd>lua require('telescope.builtin').loclist()<cr>
 nnoremap <leader>ft <cmd>lua require('telescope.builtin').tags(dropdown)<cr>
 nnoremap <leader>gi <cmd>lua require('telescope').extensions.gh.issues()<cr>
-nnoremap <leader>gp <cmd>lua require('telescope').extensions.gh.pull_request()<cr>
+" nnoremap <leader>gp <cmd>lua require('telescope').extensions.gh.pull_request()<cr>
 
 " Lua snip expansion
 imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
