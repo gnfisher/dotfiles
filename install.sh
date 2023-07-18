@@ -17,6 +17,7 @@ if [[ "$CODESPACES" = "true" ]]; then
   chmod +x /usr/local/bin/rdm
   gh config set browser "rdm open"
 
+  export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
   brew install neovim starship typescript-language-server
 
   if [[ -d /etc/ssh ]]; then
