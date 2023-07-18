@@ -8,7 +8,7 @@ set -x
 if [[ "$CODESPACES" = "true" ]]; then
   rm ~/.bashrc
   sudo apt update
-  sudo apt-get install -y rcm tmux universal-ctags wget
+  sudo apt-get install -y rcm tmux universal-ctags wget fuse
   rcup -f -v -d . -t development -t github
 
   # Use RDM for copy/paste and open support
@@ -23,7 +23,6 @@ if [[ "$CODESPACES" = "true" ]]; then
   if [[ -d /etc/ssh ]]; then
     echo 'AcceptEnv TZ LC_*' >> /etc/ssh/sshd_config
   fi
-
 elif [[ "$(uname)" = "Darwin" ]]; then
   brew install rcm
   rcup -v -d . -t macos -t development -t gpg
@@ -33,9 +32,13 @@ else
   exit 1
 fi
 
-vim +PluginInstall +qa
+nvim +PluginInstall +qa
 
 if [[ "$CODESPACES" = "true" ]]; then
   # Default to HTTPS for GitHub access
   git config --global url.https://github.com/.insteadOf git@github.com:
+
+  # Use fish
+  chsh -s /usr/bin/fish
+
 fi
