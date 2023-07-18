@@ -39,6 +39,6 @@ if [[ "$CODESPACES" = "true" ]]; then
   git config --global url.https://github.com/.insteadOf git@github.com:
 
   # Use fish
-  chsh -s /usr/bin/fish
+  sudo chsh -s $(which fish) $(whoami)
 
 fi
