@@ -2,14 +2,14 @@
 
 codespace="$1"
 
-sudo gh cs ports forward 80:80 -c "$codespace" &
+gh cs ports forward 80:80 -c "$codespace" &
 pid=$!
 rdm server &
 
 gh cs ssh -c "$codespace" -- -R 128.0.0.1:7391:$(rdm socket)
 
 cleanup() {
-  sudo kill -s TERM "$pid"
+  kill -s TERM "$pid"
   rdm stop
   echo "Done."
 }
