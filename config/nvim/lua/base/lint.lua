@@ -4,7 +4,10 @@ if not status_ok then
 end
 
 config.linters_by_ft = {
-  ruby = { 'rubocop', 'ruby' }
+  ruby = { 'rubocop', 'ruby' },
+  javascript = { 'eslint' },
+  typescript = { 'eslint' },
+  typescriptreact = { 'eslint' },
 }
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
