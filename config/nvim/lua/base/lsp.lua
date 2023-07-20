@@ -35,6 +35,13 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+
+  if vim.fn.executable('vscode-eslint-language-server') == 1 then
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end
 end
 
 -- Setup lspconfig.
@@ -68,6 +75,13 @@ end
 
 if vim.fn.executable('vscode-json-language-server') == 1 then
   config.jsonls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities
+  }
+end
+
+if vim.fn.executable('vscode-eslint-language-server') == 1 then
+  config.eslint.setup {
     on_attach = on_attach,
     capabilities = capabilities
   }

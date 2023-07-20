@@ -18,7 +18,7 @@ if [[ "$CODESPACES" = "true" ]]; then
   gh config set browser "rdm open"
 
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
-  brew install neovim starship typescript-language-server
+  brew install neovim starship typescript-language-server vscode-langservers-extracted
 
   if [[ -d /etc/ssh ]]; then
     echo 'AcceptEnv TZ LC_*' >> /etc/ssh/sshd_config
@@ -41,5 +41,4 @@ if [[ "$CODESPACES" = "true" ]]; then
 
   # Use fish
   sudo chsh -s $(which fish) $(whoami)
-
 fi
