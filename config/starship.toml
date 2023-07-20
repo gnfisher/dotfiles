@@ -1,0 +1,19 @@
+format = "$directory$git_branch$git_status"
+add_newline = false
+
+[git_branch]
+symbol = "🌱 "
+style = "bold blue"
+
+[git_status]
+style = "blue"
+conflicted = "🚩"
+ahead = "⏩${count}"
+behind = "⏪${count}"
+diverged = "🤷 ⬆️a${ahead_count} ⬇️${behind_count}"
+up_to_date = "✅"
+untracked = "❓"
+modified = "✏️"
+stashed = "📦"
+staged = '[++\($count\)](green)'
+deleted = "🗑️"
