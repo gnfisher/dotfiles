@@ -32,7 +32,8 @@ else
   exit 1
 fi
 
-nvim --headless -c "PlugInstall | TSUpdate | qa"
+nvim -s --headless -c "PlugInstall | qa"
+nvim -s --headless -c "TSUpdate | qa"
 
 if [[ "$CODESPACES" = "true" ]]; then
   # Default to HTTPS for GitHub access
