@@ -18,7 +18,7 @@ if [[ "$CODESPACES" = "true" ]]; then
   gh config set browser "rdm open"
 
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
-  brew install neovim starship typescript-language-server vscode-langservers-extracted
+  brew install neovim starship typescript-language-server vscode-langservers-extracted golangci-lint
 
   if [[ -d /etc/ssh ]]; then
     echo 'AcceptEnv TZ LC_*' >> /etc/ssh/sshd_config
