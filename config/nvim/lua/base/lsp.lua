@@ -66,6 +66,13 @@ if vim.fn.executable('gopls') == 1 then
   }
 end
 
+if vim.fn.executable('golangci-lint-langserver') == 1 then
+  config.golangci_lint_ls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities
+  }
+end
+
 if vim.fn.executable('vscode-html-language-server') == 1 then
   config.html.setup {
     on_attach = on_attach,
