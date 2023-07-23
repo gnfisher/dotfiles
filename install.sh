@@ -35,6 +35,12 @@ fi
 nvim -s --headless -c "PlugInstall | qa"
 nvim -s --headless -c "TSUpdate | qa"
 
+if command -v go &>/dev/null; then
+  go install github.com/nametake/golangci-lint-langserver@latest
+else
+  echo "Could not install golangci-lint-langserver. Go is not installed or not in PATH."
+fi
+
 if [[ "$CODESPACES" = "true" ]]; then
   # Default to HTTPS for GitHub access
   git config --global url.https://github.com/.insteadOf git@github.com:
