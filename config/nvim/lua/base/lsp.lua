@@ -16,8 +16,6 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -29,17 +27,22 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gi', telescope.lsp_implementations, bufopts)
   vim.keymap.set('n', 'gR', telescope.lsp_references, bufopts)
 
+
   vim.keymap.set('n', 'gh', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', '==', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '==', vim.lsp.buf.format, bufopts)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
 
-  -- Glory to the mouse.
   vim.api.nvim_set_keymap('n', '<LeftMouse>', '<LeftMouse><cmd>lua vim.lsp.buf.hover({border = "single"})<CR>', { noremap=true, silent=true })
   vim.api.nvim_set_keymap('n', '<C-LeftMouse>', '<LeftMouse><cmd>lua vim.lsp.buf.definition()<CR>', { noremap=true, silent=true })
+end
 
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach_eslint = function(client, bufnr)
+  on_attach(client, bufnr)
   if vim.fn.executable('vscode-eslint-language-server') == 1 then
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
@@ -93,7 +96,7 @@ end
 
 if vim.fn.executable('vscode-eslint-language-server') == 1 then
   config.eslint.setup {
-    on_attach = on_attach,
+    on_attach = on_attach_eslint,
     capabilities = capabilities
   }
 end

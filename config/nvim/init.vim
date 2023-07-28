@@ -167,3 +167,4 @@ lua require('lualine').setup({ options = { theme = 'auto' }})
 if filereadable(expand("~/.config/nvim/custom.vim"))
     source ~/.config/nvim/custom.vim
 endif
+

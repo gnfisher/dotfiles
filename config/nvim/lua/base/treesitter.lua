@@ -55,3 +55,4 @@ if not status_ok then
 end
 local bufopts = { noremap = true, silent = true }
 vim.keymap.set('n', '<leader>fs', telescope.treesitter, bufopts)
+
