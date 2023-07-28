@@ -36,6 +36,10 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
 
+  -- Glory to the mouse.
+  vim.api.nvim_set_keymap('n', '<LeftMouse>', '<LeftMouse><cmd>lua vim.lsp.buf.hover({border = "single"})<CR>', { noremap=true, silent=true })
+  vim.api.nvim_set_keymap('n', '<C-LeftMouse>', '<LeftMouse><cmd>lua vim.lsp.buf.definition()<CR>', { noremap=true, silent=true })
+
   if vim.fn.executable('vscode-eslint-language-server') == 1 then
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
