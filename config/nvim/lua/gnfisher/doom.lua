@@ -29,4 +29,4 @@ vim.g.doom_one_plugin_vim_illuminate = true
 vim.g.doom_one_plugin_lspsaga = false
 
 -- Set the colorscheme
-vim.cmd("colorscheme doom-one")
+vim.cmd("silent! colorscheme doom-one")
