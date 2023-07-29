@@ -34,7 +34,7 @@ set nomodeline
 set number
 set relativenumber
 set ruler
-set colorcolumn=120
+set colorcolumn=100
 set signcolumn=number
 set hidden
 set showtabline=2 " Always show tabline
@@ -167,3 +167,4 @@ lua require('lualine').setup({ options = { theme = 'auto' }})
 if filereadable(expand("~/.config/nvim/custom.vim"))
     source ~/.config/nvim/custom.vim
 endif
+

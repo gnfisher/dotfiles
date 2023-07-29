@@ -18,11 +18,8 @@ if [[ "$CODESPACES" = "true" ]]; then
   gh config set browser "rdm open"
 
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
-  brew install neovim starship typescript-language-server vscode-langservers-extracted golangci-lint
+  brew install neovim starship typescript-language-server vscode-langservers-extracted golangci-lint tree-sitter
 
-  if [[ -d /etc/ssh ]]; then
-    echo 'AcceptEnv TZ LC_*' >> /etc/ssh/sshd_config
-  fi
 elif [[ "$(uname)" = "Darwin" ]]; then
   brew install rcm
   rcup -v -d . -t macos -t development -t gpg
@@ -32,8 +29,14 @@ else
   exit 1
 fi
 
-nvim -s --headless -c "PlugInstall | qa"
-nvim -s --headless -c "TSUpdate | qa"
+# nvim +silent +PlugInstall +qa
+# nvim +silent +TSUpdate +qa
+
+if command -v go &>/dev/null; then
+  go install github.com/nametake/golangci-lint-langserver@latest
+else
+  echo "Could not install golangci-lint-langserver. Go is not installed or not in PATH."
+fi
 
 if [[ "$CODESPACES" = "true" ]]; then
   # Default to HTTPS for GitHub access
