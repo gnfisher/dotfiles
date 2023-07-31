@@ -467,14 +467,6 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
-
-  -- Setup eslint autocommand
-  if vim.fn.executable('vscode-eslint-language-server') == 1 then
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      command = "EslintFixAll",
-    })
-  end
 end
 
 -- Enable the following language servers
@@ -487,12 +479,23 @@ end
 --  define the property 'filetypes' to the map in question.
 local servers = {
   jsonls = {},
-  eslint = {},
+  eslint = {
+    on_attach = function(n, bufnr)
+      -- Setup eslint autocommand
+      if vim.fn.executable('vscode-eslint-language-server') == 1 then
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          buffer = bufnr,
+          command = "EslintFixAll",
+        })
+      end
+      on_attach(n, bufnr)
+    end
+  },
   gopls = {},
   golangci_lint_ls = {},
   elmls = {},
   tsserver = {},
-  srb = { cmd = { "srb", "tc", "--lsp" } },
+  sorbet = { cmd = { "srb", "tc", "--lsp" } },
   html = { filetypes = { 'html', 'twig', 'hbs' } },
 
   lua_ls = {
@@ -521,7 +524,7 @@ mason_lspconfig.setup_handlers {
   function(server_name)
     require('lspconfig')[server_name].setup {
       capabilities = capabilities,
-      on_attach = on_attach,
+      on_attach = servers[server_name][on_attach] or on_attach,
       settings = servers[server_name],
       filetypes = (servers[server_name] or {}).filetypes,
     }
