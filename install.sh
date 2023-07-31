@@ -29,10 +29,6 @@ else
   exit 1
 fi
 
-# nvim +silent +PlugInstall +qa
-# nvim +silent +TSUpdate +qa
-nvim -es -u init.vim -i NONE -c "PlugInstall" -c "qa"
-
 if command -v go &>/dev/null; then
   go install github.com/nametake/golangci-lint-langserver@latest
 else
