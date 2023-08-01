@@ -256,12 +256,12 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 
 -- Better copy and paste
-vim.keymap.set('n', 'cp', '"+y"', { silent = true })
-vim.keymap.set('n', 'cv', '"+p"', { silent = true })
-vim.keymap.set('n', 'cV', '"+P"', { silent = true })
-vim.keymap.set('v', 'cp', '"+y"', { silent = true })
-vim.keymap.set('v', 'cv', '"+p"', { silent = true })
-vim.keymap.set('v', 'cV', '"+P"', { silent = true })
+vim.keymap.set('n', 'cp', '"+y', { silent = true })
+vim.keymap.set('n', 'cv', '"+p', { silent = true })
+vim.keymap.set('n', 'cV', '"+P', { silent = true })
+vim.keymap.set('v', 'cp', '"+y', { silent = true })
+vim.keymap.set('v', 'cv', '"+p', { silent = true })
+vim.keymap.set('v', 'cV', '"+P', { silent = true })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
