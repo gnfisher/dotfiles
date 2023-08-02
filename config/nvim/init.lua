@@ -218,8 +218,12 @@ vim.o.backup = false
 
 vim.o.showmd = true
 
+-- "Re" read a buffer if its changed
 vim.o.autoread = true
+
+-- Write a buffer when you move away from it
 vim.o.autowrite = true
+vim.o.hidden = false
 
 vim.o.virtualedit = 'block'
 
