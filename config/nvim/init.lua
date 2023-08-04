@@ -26,6 +26,7 @@ require('lazy').setup({
   'tpope/vim-surround',
   'tpope/vim-rails',
   'github/copilot.vim',
+  'christoomey/vim-tmux-runner',
 
   {
     -- LSP Configuration & Plugins
@@ -37,7 +38,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
+      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -495,7 +496,7 @@ local servers = {
       on_attach(n, bufnr)
     end
   },
-  gopls = {},
+  gopls = { cmd = "gopls" },
   golangci_lint_ls = {},
   elmls = {},
   tsserver = {},
