@@ -162,7 +162,7 @@ require('lazy').setup({
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
   -- Only load if `make` is available. Make sure you have the system
   -- requirements installed.
-  {
+ {
     'nvim-telescope/telescope-fzf-native.nvim',
     -- NOTE: If you are having trouble with this installation,
     --       refer to the README for telescope-fzf-native for more instructions.
@@ -186,6 +186,30 @@ require('lazy').setup({
 
   require 'gnfisher.metals',
 }, {})
+
+-- Trim whitespace when you write a buffer.
+local function trim_whitespace()
+  local save = vim.fn.winsaveview()
+  local cmd = 'keeppatterns %s/\\s\\+$//e'
+  vim.api.nvim_command(cmd)
+  vim.fn.winrestview(save)
+end
+vim.api.nvim_create_autocmd("BufWritePre", {
+	callback = trim_whitespace
+})
+
+-- When you open a file jump to the last line you were at.
+local function jump_to_last_line()
+  local ft = vim.bo.filetype
+  local ln = vim.fn.line("'\"")
+  local last_line = vim.fn.line("$")
+  if ft ~= 'gitcommit' and ln > 0 and ln < last_line then
+    vim.api.nvim_command([[:normal g`"]])
+  end
+end
+vim.api.nvim_create_autocmd("BufReadPost", {
+	callback = jump_to_last_line
+})
 
 -- Fail in peace.
 vim.o.belloff = 'all'
@@ -217,7 +241,7 @@ vim.o.undofile = true
 vim.o.swapfile = false
 vim.o.backup = false
 
-vim.o.showmd = true
+vim.o.showcmd = true
 
 -- "Re" read a buffer if its changed
 vim.o.autoread = true
@@ -501,8 +525,8 @@ local servers = {
   elmls = {},
   tsserver = {},
   sorbet = { cmd = { "srb", "tc", "--lsp" } },
+  rubocop = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
-
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
