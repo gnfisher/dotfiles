@@ -212,6 +212,16 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	callback = jump_to_last_line
 })
 
+-- Toggle background light/dark
+function toggle_bg()
+  if vim.opt.background:get() == "dark" then
+    vim.opt.background = "light"
+  else
+    vim.opt.background = "dark"
+  end
+end
+vim.api.nvim_set_keymap('n', '<F6>', '<cmd>lua toggle_bg()<CR>', { noremap = true, silent = true })
+
 -- Fail in peace.
 vim.o.belloff = 'all'
 vim.o.visualbell = true
@@ -260,6 +270,9 @@ vim.o.smartcase = true
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
 
+-- Some more room for the cmd dispaly
+vim.o.cmdheight = 2
+
 -- Decrease update time
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
@@ -267,12 +280,17 @@ vim.o.timeoutlen = 300
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noinsert,noselect'
 
+vim.o.wildmenu = true
+vim.o.wildmode = "longest:list"
+
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
 vim.o.scrolloff = 5
 
-vim.opt.textwidth = 100
+-- What happened to the days of 80?
+vim.opt.textwidth = 120
+vim.opt.colorcolumn = "121"
 
 vim.opt.expandtab = true
 vim.opt.backspace = '2'
@@ -289,7 +307,6 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
 
 -- Better copy and paste
 vim.keymap.set('n', 'cp', '"+y', { silent = true })
