@@ -184,6 +184,7 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
+  -- Installs nvim-metals and sets it up for Scala.
   require 'gnfisher.metals',
 }, {})
 
@@ -272,6 +273,12 @@ vim.o.termguicolors = true
 vim.o.scrolloff = 5
 
 vim.opt.textwidth = 100
+
+vim.opt.expandtab = true
+vim.opt.backspace = '2'
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
 
 -- [[ Basic Keymaps ]]
 
