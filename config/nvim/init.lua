@@ -316,9 +316,6 @@ vim.keymap.set('v', 'cp', '"+y', { silent = true })
 vim.keymap.set('v', 'cv', '"+p', { silent = true })
 vim.keymap.set('v', 'cV', '"+P', { silent = true })
 
--- Convenience
-vim.keymap.set('n', '<Leader>;', ':', { silent = true })
-
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -525,6 +522,17 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
+local eslint_on_attach = function(n, bufnr)
+  -- Setup eslint autocommand
+  if vim.fn.executable('vscode-eslint-language-server') == 1 then
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end
+  on_attach(n, bufnr)
+end
+
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 --
@@ -535,18 +543,7 @@ end
 --  define the property 'filetypes' to the map in question.
 local servers = {
   jsonls = {},
-  eslint = {
-    on_attach = function(n, bufnr)
-      -- Setup eslint autocommand
-      if vim.fn.executable('vscode-eslint-language-server') == 1 then
-        vim.api.nvim_create_autocmd("BufWritePre", {
-          buffer = bufnr,
-          command = "EslintFixAll",
-        })
-      end
-      on_attach(n, bufnr)
-    end
-  },
+  eslint = {},
   gopls = { cmd = "gopls" },
   golangci_lint_ls = {},
   elmls = {},
@@ -580,7 +577,13 @@ mason_lspconfig.setup_handlers {
   function(server_name)
     require('lspconfig')[server_name].setup {
       capabilities = capabilities,
-      on_attach = servers[server_name].on_attach or on_attach,
+      on_attach = function(client, bufnr)
+        if server_name == "eslint" then
+          eslint_on_attach(client, bufnr)
+        else
+          on_attach(client, bufnr)
+        end
+      end,
       settings = servers[server_name],
       filetypes = (servers[server_name] or {}).filetypes,
     }
