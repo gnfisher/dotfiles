@@ -188,9 +188,6 @@ require('lazy').setup({
   require 'gnfisher.metals',
 }, {})
 
--- If we are in a codespace use rdm to copy
-require 'base.rdm'
-
 -- Trim whitespace when you write a buffer.
 local function trim_whitespace()
   local save = vim.fn.winsaveview()
@@ -244,6 +241,10 @@ vim.o.mousefocus = true
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.o.clipboard = 'unnamedplus'
+
+-- If we are in a codespace use rdm to copy
+require 'base.rdm'
+
 
 -- Enable break indent
 vim.o.breakindent = true
