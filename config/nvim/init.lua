@@ -38,7 +38,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+      { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -162,7 +162,7 @@ require('lazy').setup({
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
   -- Only load if `make` is available. Make sure you have the system
   -- requirements installed.
- {
+  {
     'nvim-telescope/telescope-fzf-native.nvim',
     -- NOTE: If you are having trouble with this installation,
     --       refer to the README for telescope-fzf-native for more instructions.
@@ -196,7 +196,7 @@ local function trim_whitespace()
   vim.fn.winrestview(save)
 end
 vim.api.nvim_create_autocmd("BufWritePre", {
-	callback = trim_whitespace
+  callback = trim_whitespace
 })
 
 -- When you open a file jump to the last line you were at.
@@ -209,7 +209,7 @@ local function jump_to_last_line()
   end
 end
 vim.api.nvim_create_autocmd("BufReadPost", {
-	callback = jump_to_last_line
+  callback = jump_to_last_line
 })
 
 -- Toggle background light/dark
@@ -220,6 +220,7 @@ function toggle_bg()
     vim.opt.background = "dark"
   end
 end
+
 vim.api.nvim_set_keymap('n', '<F6>', '<cmd>lua toggle_bg()<CR>', { noremap = true, silent = true })
 
 -- Fail in peace.
@@ -527,6 +528,13 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
+
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    buffer = bufnr,
+    callback = function()
+      vim.lsp.buf.format { async = false }
+    end
+  })
 end
 
 local eslint_on_attach = function(n, bufnr)
