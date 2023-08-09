@@ -245,6 +245,9 @@ vim.o.clipboard = 'unnamedplus'
 -- If we are in a codespace use rdm to copy
 require 'base.rdm'
 
+-- Where am I?
+vim.o.cursorcolumn = true
+vim.o.cursorline = true
 
 -- Enable break indent
 vim.o.breakindent = true
