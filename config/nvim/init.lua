@@ -186,9 +186,10 @@ require('lazy').setup({
 
   -- Installs nvim-metals and sets it up for Scala.
   require 'gnfisher.metals',
-  -- If we are in a codespace use rdm
-  require 'base.rdm',
 }, {})
+
+-- If we are in a codespace use rdm to copy
+require 'base.rdm'
 
 -- Trim whitespace when you write a buffer.
 local function trim_whitespace()
