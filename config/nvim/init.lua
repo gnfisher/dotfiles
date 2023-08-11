@@ -157,7 +157,11 @@ require('lazy').setup({
   },
 
   -- Fuzzy Finder (files, lsp, etc)
-  { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+  {
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+  },
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
   -- Only load if `make` is available. Make sure you have the system
@@ -182,6 +186,19 @@ require('lazy').setup({
       'RRethy/nvim-treesitter-endwise',
     },
     build = ':TSUpdate',
+  },
+
+  -- Testing is good
+  {
+    'vim-test/vim-test',
+    config = function()
+      vim.keymap.set('n', '<Leader>tf', ':TestNearest<CR>', { silent = true })
+      vim.keymap.set('n', '<Leader>ta', ':TestSuite<CR>', { silent = true })
+      vim.keymap.set('n', '<Leader>tl', ':TestLast<CR>', { silent = true })
+      vim.keymap.set('n', '<Leader>tv', ':TestVisit<CR>', { silent = true })
+
+      vim.g["test#strategy"] = "vtr"
+    end
   },
 
   -- Installs nvim-metals and sets it up for Scala.
@@ -337,12 +354,74 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
+local actions = require "telescope.actions"
+local action_layout = require "telescope.actions.layout"
 require('telescope').setup {
   defaults = {
+    prompt_prefix = "> ",
+    selection_caret = "> ",
+    entry_prefix = "  ",
+    multi_icon = "<>",
+    winblend = 0,
+    layout_strategy = "horizontal",
+    layout_config = {
+      width = 0.95,
+      height = 0.85,
+      -- preview_cutoff = 120,
+      prompt_position = "top",
+
+      horizontal = {
+        preview_width = function(_, cols, _)
+          if cols > 200 then
+            return math.floor(cols * 0.4)
+          else
+            return math.floor(cols * 0.6)
+          end
+        end,
+      },
+
+      vertical = {
+        width = 0.9,
+        height = 0.95,
+        preview_height = 0.5,
+      },
+
+      flex = {
+        horizontal = {
+          preview_width = 0.9,
+        },
+      },
+    },
+
+    selection_strategy = "reset",
+    sorting_strategy = "descending",
+    scroll_strategy = "cycle",
+    color_devicons = true,
+
     mappings = {
       i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
+        ["<RightMouse>"] = actions.close,
+        ["<LeftMouse>"] = actions.select_default,
+        ["<ScrollWheelDown>"] = actions.move_selection_next,
+        ["<ScrollWheelUp>"] = actions.move_selection_previous,
+
+        ["<C-x>"] = false,
+        ["<C-s>"] = actions.select_horizontal,
+        ["<C-n>"] = "move_selection_next",
+
+        ["<C-e>"] = actions.results_scrolling_down,
+        ["<C-y>"] = actions.results_scrolling_up,
+
+        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+
+        ["<C-w>"] = function()
+          vim.api.nvim_input "<c-s-w>"
+        end,
+      },
+
+      n = {
+        ["<C-e>"] = actions.results_scrolling_down,
+        ["<C-y>"] = actions.results_scrolling_up,
       },
     },
   },
