@@ -284,7 +284,7 @@ vim.o.autoread = true
 
 -- Write a buffer when you move away from it
 vim.o.autowrite = true
-vim.o.hidden = false
+vim.o.hidden = true
 
 vim.o.virtualedit = 'block'
 
