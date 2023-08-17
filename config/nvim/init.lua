@@ -29,6 +29,34 @@ require('lazy').setup({
   'christoomey/vim-tmux-runner',
 
   {
+    'nvim-tree/nvim-tree.lua',
+    config = function()
+      local api = require "nvim-tree.api"
+      -- disable netrw at the very start of your init.lua
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+
+      vim.keymap.set('n', '<leader>nf', api.tree.find_file)
+      vim.keymap.set('n', '<leader>nt', api.tree.toggle)
+      vim.keymap.set('n', '<leader>nn', api.tree.focus)
+
+      -- OR setup with some options
+      require("nvim-tree").setup({
+        sort_by = "case_sensitive",
+        view = {
+          width = 30,
+        },
+        renderer = {
+          group_empty = true,
+        },
+        filters = {
+          dotfiles = true,
+        },
+      })
+    end
+  },
+
+  {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -93,6 +121,14 @@ require('lazy').setup({
       end,
     },
   },
+
+  -- {
+  --   'RRethy/nvim-base16',
+  --   config = function()
+  --     vim.cmd.colorscheme 'base16-windows-95-light'
+  --     vim.o.background = 'light'
+  --   end
+  -- },
 
   {
     -- Colorscheme and config
