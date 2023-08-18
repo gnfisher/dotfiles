@@ -1,6 +1,9 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+local in_codespace = os.getenv("CODESPACES") ~= nil
+
+
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -674,6 +677,8 @@ end
 --
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
+local rubocop = in_codespace and { cmd = { "/workspaces/github/bin/rubocop", "--lsp" } } or {}
+
 local servers = {
   jsonls = {},
   eslint = {},
@@ -682,7 +687,7 @@ local servers = {
   elmls = {},
   tsserver = {},
   sorbet = { cmd = { "srb", "tc", "--lsp" } },
-  rubocop = {},
+  rubocop = rubocop,
   html = { filetypes = { 'html', 'twig', 'hbs' } },
   lua_ls = {
     Lua = {
