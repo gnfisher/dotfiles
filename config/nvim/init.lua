@@ -377,6 +377,9 @@ vim.keymap.set('v', 'cp', '"+y', { silent = true })
 vim.keymap.set('v', 'cv', '"+p', { silent = true })
 vim.keymap.set('v', 'cV', '"+P', { silent = true })
 
+-- Convenience
+vim.keymap.set('n', '<Leader>;', ':', { silent = true })
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
