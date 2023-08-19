@@ -383,6 +383,10 @@ vim.keymap.set('v', 'cV', '"+P', { silent = true })
 -- Convenience
 vim.keymap.set('n', '<Leader>;', ':', { silent = true })
 
+-- Better quickfix window toggle
+vim.keymap.set({ 'n', 'v' }, '<C-j>', ':cnext<CR>')
+vim.keymap.set({ 'n', 'v' }, '<C-k>', ':cprev<CR>')
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -635,7 +639,7 @@ local on_attach = function(_, bufnr)
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  nmap('<M-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
