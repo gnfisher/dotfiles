@@ -270,10 +270,12 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 -- Toggle background light/dark
 function toggle_bg()
-  if vim.opt.background:get() == "dark" then
-    vim.opt.background = "light"
+  if vim.opt.background:get() == 'dark' then
+    vim.opt.background = 'light'
+    vim.cmd.colorscheme 'github_light'
   else
-    vim.opt.background = "dark"
+    vim.opt.background = 'dark'
+    vim.cmd.colorscheme 'github_dark'
   end
 end
 
