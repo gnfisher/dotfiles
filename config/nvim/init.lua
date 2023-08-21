@@ -36,8 +36,8 @@ require('lazy').setup({
     config = function()
       local api = require "nvim-tree.api"
       -- disable netrw at the very start of your init.lua
-      vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
+      -- vim.g.loaded_netrw = 1
+      -- vim.g.loaded_netrwPlugin = 1
 
       vim.keymap.set('n', '<leader>nf', api.tree.find_file)
       vim.keymap.set('n', '<leader>nt', api.tree.toggle)
@@ -826,7 +826,6 @@ require('tabline').setup({
   inactive_tab_max_length = 0 -- max length of inactive tab titles, 0 to ignore
 })
 
-vim.g.nvim_tree_disable_netrw = 0 -- GBrowse requirement
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
