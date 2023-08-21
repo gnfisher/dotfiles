@@ -205,7 +205,27 @@ require('lazy').setup({
 
   {
     'nvim-neorg/neorg',
+    build = ":Neorg sync-parsers",
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
+      require("neorg").setup {
+        load = {
+          ["core.defaults"] = {},
+          ["core.concealer"] = {},
+          -- ["core.journal"] = {
+          --   workspace = "personal"
+          -- },
+          ["core.dirman"] = {
+            config = {
+              workspaces = {
+                work = "~/notes/work",
+                zettl = "~/notes/zettl",
+                personal = "~/notes/personal",
+              }
+            }
+          },
+        }
+      }
     end,
   },
 
@@ -778,26 +798,6 @@ cmp.setup {
     }
   },
 }
-
-require("neorg").setup {
-  load = {
-    ["core.defaults"] = {},
-    ["core.concealer"] = {},
-    ["core.journal"] = {
-      workspace = "personal"
-    },
-    ["core.dirman"] = {
-      config = {
-        workspaces = {
-          work = "~/notes/work",
-          zettl = "~/notes/zettl",
-          personal = "~/notes/personal",
-        }
-      }
-    }
-  }
-}
--- vim.api.nvim_command('Neorg sync-parsers')
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
