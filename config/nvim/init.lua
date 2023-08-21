@@ -28,8 +28,16 @@ require('lazy').setup({
   'tpope/vim-commentary',
   'tpope/vim-surround',
   'tpope/vim-rails',
-  'github/copilot.vim',
   'christoomey/vim-tmux-runner',
+
+  {
+    'github/copilot.vim',
+    config = function()
+      vim.g.copilot_assume_mapped = true
+      -- vim.api.nvim_set_keymap('i', '<C-J>', [[v:lua.require'copilot'.Accept("<CR>")]], { noremap = true, expr = true })
+      -- vim.g.copilot_no_tab_map = true
+    end
+  },
 
   {
     'nvim-tree/nvim-tree.lua',
@@ -773,9 +781,7 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
-    ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
-    ['<Tab>'] = cmp.mapping(function(fallback)
+    ['<C-n>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_locally_jumpable() then
@@ -783,8 +789,8 @@ cmp.setup {
       else
         fallback()
       end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
+    end, { 'i', 's', 'c' }),
+    ['<C-p>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.locally_jumpable(-1) then
@@ -792,7 +798,7 @@ cmp.setup {
       else
         fallback()
       end
-    end, { 'i', 's' }),
+    end, { 'i', 's', 'c' }),
   },
   sources = {
     { name = 'nvim_lsp' },
@@ -813,7 +819,6 @@ cmp.setup {
     }
   },
 }
-
 
 require('tabline').setup({
   show_index = true,          -- show tab index
