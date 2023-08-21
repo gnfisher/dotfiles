@@ -45,9 +45,18 @@ require('lazy').setup({
 
       -- OR setup with some options
       require("nvim-tree").setup({
+        auto_reload_on_write = true,
+        hijack_unnamed_buffer_when_opening = true,
+        prefer_startup_root = true,
         sort_by = "case_sensitive",
+        actions = {
+          open_file = {
+            quit_on_open = true
+          }
+        },
         view = {
           width = 30,
+          preserve_window_proportions = true,
         },
         renderer = {
           group_empty = true,
@@ -227,6 +236,12 @@ require('lazy').setup({
         }
       }
     end,
+  },
+
+  {
+    'crispgm/nvim-tabline',
+    dependencies = { 'nvim-tree/nvim-web-devicons' }, -- optional
+    config = true,
   },
 
   -- Installs nvim-metals and sets it up for Scala.
@@ -798,6 +813,20 @@ cmp.setup {
     }
   },
 }
+
+
+require('tabline').setup({
+  show_index = true,          -- show tab index
+  show_modify = true,         -- show buffer modification indicator
+  show_icon = true,           -- show file extension icon
+  fnamemodify = ':.',         -- file name modifier
+  modify_indicator = '[+]',   -- modify indicator
+  no_name = 'No name',        -- no name buffer name
+  brackets = { '[', ']' },    -- file name brackets surrounding
+  inactive_tab_max_length = 0 -- max length of inactive tab titles, 0 to ignore
+})
+
+vim.g.loaded_netrwPlugin = 1 -- GBrowse requirement
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
