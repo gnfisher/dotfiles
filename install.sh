@@ -18,7 +18,7 @@ if [[ "$CODESPACES" = "true" ]]; then
   gh config set browser "rdm open"
 
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
-  brew install neovim starship typescript-language-server vscode-langservers-extracted golangci-lint tree-sitter
+  brew install neovim starship tree-sitter
 
 elif [[ "$(uname)" = "Darwin" ]]; then
   brew install rcm
