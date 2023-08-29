@@ -47,7 +47,7 @@ require('lazy').setup({
       -- vim.g.loaded_netrw = 1
       -- vim.g.loaded_netrwPlugin = 1
 
-      vim.keymap.set('n', '<leader>nf', api.tree.find_file)
+      vim.keymap.set('n', '<leader>nf', ':NvimTreeFindFileToggle<CR>')
       vim.keymap.set('n', '<leader>nt', api.tree.toggle)
       vim.keymap.set('n', '<leader>nn', api.tree.focus)
 
