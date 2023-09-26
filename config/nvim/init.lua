@@ -47,7 +47,7 @@ require('lazy').setup({
       -- vim.g.loaded_netrw = 1
       -- vim.g.loaded_netrwPlugin = 1
 
-      vim.keymap.set('n', '<leader>nf', ':NvimTreeFindFileToggle<CR>')
+      vim.keymap.set('n', '<leader>nf', ':NvimTreeFindFile<CR>')
       vim.keymap.set('n', '<leader>nt', api.tree.toggle)
       vim.keymap.set('n', '<leader>nn', api.tree.focus)
 
@@ -59,7 +59,7 @@ require('lazy').setup({
         sort_by = "case_sensitive",
         actions = {
           open_file = {
-            quit_on_open = true
+            quit_on_open = false
           }
         },
         view = {
@@ -212,6 +212,7 @@ require('lazy').setup({
     'vim-test/vim-test',
     config = function()
       vim.keymap.set('n', '<Leader>tf', ':TestNearest<CR>', { silent = true })
+      vim.keymap.set('n', '<Leader>tt', ':TestFile<CR>', { silent = true })
       vim.keymap.set('n', '<Leader>ta', ':TestSuite<CR>', { silent = true })
       vim.keymap.set('n', '<Leader>tl', ':TestLast<CR>', { silent = true })
       vim.keymap.set('n', '<Leader>tv', ':TestVisit<CR>', { silent = true })
