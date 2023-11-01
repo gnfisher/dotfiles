@@ -29,6 +29,7 @@ require('lazy').setup({
   'tpope/vim-surround',
   'tpope/vim-rails',
   'christoomey/vim-tmux-runner',
+  'https://github.com/metalelf0/jellybeans-nvim',
 
   {
     'github/copilot.vim',
@@ -145,11 +146,18 @@ require('lazy').setup({
   {
     'projekt0n/github-nvim-theme',
     config = function()
-      vim.cmd.colorscheme 'github_dark'
+      -- vim.cmd.colorscheme 'github_dark'
+      -- vim.o.background = 'dark'
+    end
+  },
+  {
+    "ellisonleao/gruvbox.nvim",
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme 'gruvbox'
       vim.o.background = 'dark'
     end
   },
-
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
@@ -218,6 +226,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<Leader>tv', ':TestVisit<CR>', { silent = true })
 
       vim.g["test#strategy"] = "vtr"
+      vim.g["test#go#gotest#options"] = "-v"
     end
   },
 
@@ -822,9 +831,9 @@ cmp.setup {
 }
 
 require('tabline').setup({
-  show_index = true,          -- show tab index
+  show_index = false,         -- show tab index
   show_modify = true,         -- show buffer modification indicator
-  show_icon = true,           -- show file extension icon
+  show_icon = false,          -- show file extension icon
   fnamemodify = ':.',         -- file name modifier
   modify_indicator = '[+]',   -- modify indicator
   no_name = 'No name',        -- no name buffer name
@@ -832,6 +841,33 @@ require('tabline').setup({
   inactive_tab_max_length = 0 -- max length of inactive tab titles, 0 to ignore
 })
 
+require("gruvbox").setup({
+  terminal_colors = true, -- add neovim terminal colors
+  undercurl = true,
+  underline = true,
+  bold = true,
+  italic = {
+    strings = true,
+    emphasis = true,
+    comments = true,
+    operators = false,
+    folds = true,
+  },
+  strikethrough = true,
+  invert_selection = false,
+  invert_signs = false,
+  invert_tabline = false,
+  invert_intend_guides = false,
+  inverse = true, -- invert background for search, diffs, statuslines and errors
+  contrast = "",  -- can be "hard", "soft" or empty string
+  palette_overrides = {},
+  overrides = {
+    ["LineNr"] = { fg = "#00CFFF" },
+  },
+  dim_inactive = false,
+  transparent_mode = true,
+})
+vim.cmd("colorscheme gruvbox")
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
