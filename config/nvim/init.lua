@@ -146,8 +146,8 @@ require('lazy').setup({
   {
     'projekt0n/github-nvim-theme',
     config = function()
-      -- vim.cmd.colorscheme 'github_dark'
-      -- vim.o.background = 'dark'
+      vim.cmd.colorscheme 'github_dark'
+      vim.o.background = 'dark'
     end
   },
   {
@@ -841,33 +841,33 @@ require('tabline').setup({
   inactive_tab_max_length = 0 -- max length of inactive tab titles, 0 to ignore
 })
 
-require("gruvbox").setup({
-  terminal_colors = true, -- add neovim terminal colors
-  undercurl = true,
-  underline = true,
-  bold = true,
-  italic = {
-    strings = true,
-    emphasis = true,
-    comments = true,
-    operators = false,
-    folds = true,
-  },
-  strikethrough = true,
-  invert_selection = false,
-  invert_signs = false,
-  invert_tabline = false,
-  invert_intend_guides = false,
-  inverse = true, -- invert background for search, diffs, statuslines and errors
-  contrast = "",  -- can be "hard", "soft" or empty string
-  palette_overrides = {},
-  overrides = {
-    ["LineNr"] = { fg = "#00CFFF" },
-  },
-  dim_inactive = false,
-  transparent_mode = true,
-})
-vim.cmd("colorscheme gruvbox")
+-- require("gruvbox").setup({
+--   terminal_colors = true, -- add neovim terminal colors
+--   undercurl = true,
+--   underline = true,
+--   bold = true,
+--   italic = {
+--     strings = true,
+--     emphasis = true,
+--     comments = true,
+--     operators = false,
+--     folds = true,
+--   },
+--   strikethrough = true,
+--   invert_selection = false,
+--   invert_signs = false,
+--   invert_tabline = false,
+--   invert_intend_guides = false,
+--   inverse = true, -- invert background for search, diffs, statuslines and errors
+--   contrast = "",  -- can be "hard", "soft" or empty string
+--   palette_overrides = {},
+--   overrides = {
+--     ["LineNr"] = { fg = "#00CFFF" },
+--   },
+--   dim_inactive = false,
+--   transparent_mode = true,
+-- })
+-- vim.cmd("colorscheme gruvbox")
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
