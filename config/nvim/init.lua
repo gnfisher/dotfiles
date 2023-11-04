@@ -41,43 +41,6 @@ require('lazy').setup({
   },
 
   {
-    'nvim-tree/nvim-tree.lua',
-    config = function()
-      local api = require "nvim-tree.api"
-      -- disable netrw at the very start of your init.lua
-      -- vim.g.loaded_netrw = 1
-      -- vim.g.loaded_netrwPlugin = 1
-
-      vim.keymap.set('n', '<leader>nf', ':NvimTreeFindFile<CR>')
-      vim.keymap.set('n', '<leader>nt', api.tree.toggle)
-      vim.keymap.set('n', '<leader>nn', api.tree.focus)
-
-      -- OR setup with some options
-      require("nvim-tree").setup({
-        auto_reload_on_write = true,
-        hijack_unnamed_buffer_when_opening = true,
-        prefer_startup_root = true,
-        sort_by = "case_sensitive",
-        actions = {
-          open_file = {
-            quit_on_open = false
-          }
-        },
-        view = {
-          width = 30,
-          preserve_window_proportions = true,
-        },
-        renderer = {
-          group_empty = true,
-        },
-        filters = {
-          dotfiles = true,
-        },
-      })
-    end
-  },
-
-  {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
