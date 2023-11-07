@@ -410,6 +410,7 @@ vim.keymap.set('v', 'cV', '"+P', { silent = true })
 
 -- Convenience
 vim.keymap.set('n', '<Leader>;', ':', { silent = true })
+vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true, silent = true })
 
 -- Better quickfix window toggle
 vim.keymap.set({ 'n', 'v' }, '<C-j>', ':cnext<CR>')
