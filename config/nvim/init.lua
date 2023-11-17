@@ -277,6 +277,11 @@ vim.o.hlsearch = false
 -- Make line numbers default
 vim.wo.number = true
 
+-- Listchars
+vim.opt.listchars:append({ tab = '› ' })
+vim.opt.listchars:append({ eol = '¬' })
+vim.opt.list = true
+
 -- Enable mouse mode
 vim.o.mouse = 'a'
 vim.o.mousefocus = true
