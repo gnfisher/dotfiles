@@ -30,6 +30,7 @@ require('lazy').setup({
   'tpope/vim-rails',
   'christoomey/vim-tmux-runner',
   'https://github.com/metalelf0/jellybeans-nvim',
+  'Mofiqul/dracula.nvim',
 
   {
     'github/copilot.vim',
@@ -109,8 +110,8 @@ require('lazy').setup({
   {
     'projekt0n/github-nvim-theme',
     config = function()
-      vim.cmd.colorscheme 'github_dark'
-      vim.o.background = 'dark'
+      -- vim.cmd.colorscheme 'github_dark'
+      -- vim.o.background = 'dark'
     end
   },
   {
@@ -254,13 +255,15 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 -- Toggle background light/dark
+vim.cmd.colorscheme 'dracula'
+vim.o.background = 'dark'
 function toggle_bg()
   if vim.opt.background:get() == 'dark' then
     vim.opt.background = 'light'
     vim.cmd.colorscheme 'github_light'
   else
     vim.opt.background = 'dark'
-    vim.cmd.colorscheme 'github_dark'
+    vim.cmd.colorscheme 'dracula'
   end
 end
 
