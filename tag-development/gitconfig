@@ -55,5 +55,5 @@
   lineNumber = true
   patternType = extended
 [include]
-  path = ~/.gitconfig-gpg
+  ; path = ~/.gitconfig-gpg
   path = ~/.gitconfig-macos
