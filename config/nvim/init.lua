@@ -275,7 +275,6 @@ require('lazy').setup({
       -- Close commands
       --                 :BufferCloseAllButCurrent
       --                 :BufferCloseAllButPinned
-      --                 :BufferCloseAllButCurrentOrPinned
       --                 :BufferCloseBuffersLeft
       --                 :BufferCloseBuffersRight
       -- Magic buffer-picking mode
@@ -285,6 +284,7 @@ require('lazy').setup({
       map('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', opts)
       map('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', opts)
       map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)
+      map('n', '<Space>ba', '<Cmd>BufferCloseAllButCurrentOrPinned<CR>', opts)
     end,
   },
 
