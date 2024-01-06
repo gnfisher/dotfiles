@@ -21,6 +21,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
+  -- Our lord and savior
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
   'tpope/vim-vinegar',
@@ -28,8 +29,38 @@ require('lazy').setup({
   'tpope/vim-commentary',
   'tpope/vim-surround',
   'tpope/vim-rails',
+
+  -- Mr. Toomey
   'christoomey/vim-tmux-runner',
+
+  -- Remember the past?
   'https://github.com/metalelf0/jellybeans-nvim',
+
+  -- DAP for GO
+  {
+    'mfussenegger/nvim-dap',
+    config = function()
+      vim.keymap.set('n', '<leader>dc', ':lua require"dap".continue()<CR>')
+      vim.keymap.set('n', '<leader>do', ':lua require"dap".step_out()<CR>')
+      vim.keymap.set('n', '<leader>di', ':lua require"dap".step_into()<CR>')
+      vim.keymap.set('n', '<leader>ds', ':lua require"dap".step_over()<CR>')
+
+      vim.keymap.set('n', '<leader>db', ':lua require"dap".toggle_breakpoint()<CR>')
+      vim.keymap.set('n', '<leader>dr', ':lua require"dap".repl.toggle()<CR>')
+
+      vim.keymap.set('n', '<leader>dl', ':lua require"dap".run_last()<CR>')
+      vim.keymap.set('n', '<leader>dd', ':lua require"dap".disconnect()<CR>')
+    end
+  },
+  {
+    'leoluz/nvim-dap-go',
+  },
+  {
+    'rcarriga/nvim-dap-ui',
+    config = function()
+      require('dapui').setup()
+    end
+  },
 
   {
     'github/copilot.vim',
@@ -177,12 +208,6 @@ require('lazy').setup({
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     main = "ibl",
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
-    -- opts = {
-    --   char = '┊',
-    --   show_trailing_blankline_indent = false,
-    -- },
   },
 
   -- Fuzzy Finder (files, lsp, etc)
