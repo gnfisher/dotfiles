@@ -33,9 +33,6 @@ require('lazy').setup({
   -- Mr. Toomey
   'christoomey/vim-tmux-runner',
 
-  -- Remember the past?
-  'https://github.com/metalelf0/jellybeans-nvim',
-
   -- DAP for GO
   {
     'mfussenegger/nvim-dap',
@@ -888,6 +885,14 @@ cmp.setup {
       }
     }
   },
+  window = {
+    completion = cmp.config.window.bordered({
+      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None",
+    }),
+    documentation = cmp.config.window.bordered({
+      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None",
+    }),
+  }
 }
 
 -- require('tabline').setup({
