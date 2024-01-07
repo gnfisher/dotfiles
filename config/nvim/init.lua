@@ -895,6 +895,16 @@ cmp.setup {
   }
 }
 
+-- Also borders for dagnostics and hover
+vim.diagnostic.config {
+  virtual_text = false,
+  float = {
+    header = true,
+    border = 'rounded',
+    focusable = true,
+  },
+}
+
 -- require('tabline').setup({
 --   show_index = false,         -- show tab index
 --   show_modify = true,         -- show buffer modification indicator
