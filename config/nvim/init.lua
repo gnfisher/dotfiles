@@ -38,11 +38,13 @@ require('lazy').setup({
     'mfussenegger/nvim-dap',
     config = function()
       vim.keymap.set('n', '<leader>dc', ':lua require"dap".continue()<CR>')
+      vim.keymap.set('n', '<leader>dt', ':lua require"dap".debug_test()<CR>')
       vim.keymap.set('n', '<leader>do', ':lua require"dap".step_out()<CR>')
       vim.keymap.set('n', '<leader>di', ':lua require"dap".step_into()<CR>')
       vim.keymap.set('n', '<leader>ds', ':lua require"dap".step_over()<CR>')
 
       vim.keymap.set('n', '<leader>db', ':lua require"dap".toggle_breakpoint()<CR>')
+
       vim.keymap.set('n', '<leader>dr', ':lua require"dap".repl.toggle()<CR>')
 
       vim.keymap.set('n', '<leader>dl', ':lua require"dap".run_last()<CR>')
