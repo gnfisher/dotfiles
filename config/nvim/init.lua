@@ -51,7 +51,12 @@ require('lazy').setup({
   },
   {
     'leoluz/nvim-dap-go',
+    config = function()
+      require('dap-go').setup()
+    end
   },
+  { 'theHamsta/nvim-dap-virtual-text' },
+  { 'nvim-telescope/telescope-dap.nvim' },
   {
     'rcarriga/nvim-dap-ui',
     config = function()
@@ -762,7 +767,9 @@ end
 --
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
-local rubocop = in_codespace and { cmd = { "/workspaces/github/bin/rubocop", "--lsp" } } or {}
+--
+-- Can't use this yet, rubocop old
+-- local rubocop = in_codespace and { cmd = { "/workspaces/github/bin/rubocop", "--lsp" } } or {}
 
 local servers = {
   jsonls = {},
@@ -772,7 +779,6 @@ local servers = {
   elmls = {},
   tsserver = {},
   sorbet = { cmd = { "srb", "tc", "--lsp" } },
-  rubocop = rubocop,
   html = { filetypes = { 'html', 'twig', 'hbs' } },
   lua_ls = {
     Lua = {
@@ -896,14 +902,14 @@ cmp.setup {
 }
 
 -- Also borders for dagnostics and hover
-vim.diagnostic.config {
-  virtual_text = false,
-  float = {
-    header = true,
-    border = 'rounded',
-    focusable = true,
-  },
-}
+-- vim.diagnostic.config {
+--   virtual_text = false,
+--   float = {
+--     header = true,
+--     border = 'rounded',
+--     focusable = true,
+--   },
+-- }
 
 -- require('tabline').setup({
 --   show_index = false,         -- show tab index
