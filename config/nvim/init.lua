@@ -38,7 +38,7 @@ require('lazy').setup({
     'mfussenegger/nvim-dap',
     config = function()
       vim.keymap.set('n', '<leader>dc', ':lua require"dap".continue()<CR>')
-      vim.keymap.set('n', '<leader>dt', ':lua require"dap".debug_test()<CR>')
+      vim.keymap.set('n', '<leader>dt', ':lua require"dap-go".debug_test()<CR>')
       vim.keymap.set('n', '<leader>do', ':lua require"dap".step_out()<CR>')
       vim.keymap.set('n', '<leader>di', ':lua require"dap".step_into()<CR>')
       vim.keymap.set('n', '<leader>ds', ':lua require"dap".step_over()<CR>')
@@ -954,3 +954,17 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+local dap, dapui = require("dap"), require("dapui")
+dap.listeners.before.attach.dapui_config = function()
+  dapui.open()
+end
+dap.listeners.before.launch.dapui_config = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated.dapui_config = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited.dapui_config = function()
+  dapui.close()
+end
