@@ -41,7 +41,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>dt', ':lua require"dap-go".debug_test()<CR>')
       vim.keymap.set('n', '<leader>do', ':lua require"dap".step_out()<CR>')
       vim.keymap.set('n', '<leader>di', ':lua require"dap".step_into()<CR>')
-      vim.keymap.set('n', '<leader>ds', ':lua require"dap".step_over()<CR>')
+      vim.keymap.set('n', '<leader>du', ':lua require"dap".step_over()<CR>')
 
       vim.keymap.set('n', '<leader>db', ':lua require"dap".toggle_breakpoint()<CR>')
 
