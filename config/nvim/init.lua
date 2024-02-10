@@ -181,7 +181,7 @@ require('lazy').setup({
   {
     'projekt0n/github-nvim-theme',
     config = function()
-      vim.cmd.colorscheme 'gruvbox'
+      vim.cmd.colorscheme 'github_dark'
       vim.o.background = 'dark'
     end
   },
@@ -349,10 +349,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 function toggle_bg()
   if vim.opt.background:get() == 'dark' then
     vim.opt.background = 'light'
-    -- vim.cmd.colorscheme 'github_light'
+    vim.cmd.colorscheme 'github_light'
   else
     vim.opt.background = 'dark'
-    -- vim.cmd.colorscheme 'github_dark'
+    vim.cmd.colorscheme 'github_dark'
   end
 end
 
@@ -968,8 +968,3 @@ end
 dap.listeners.before.event_exited.dapui_config = function()
   dapui.close()
 end
-
-vim.cmd [[
-  hi Normal guibg=NONE ctermbg=NONE
-  hi NonText guibg=NONE ctermbg=NONE
-]]
