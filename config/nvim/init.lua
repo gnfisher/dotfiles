@@ -767,11 +767,6 @@ local handlers = {
       settings = servers.lua_ls
     }
   end,
-  ["gopls"] = function()
-    require("lspconfig").gopls.setup {
-      cmd = servers.gopls.cmd
-    }
-  end,
   ["golangci_lint_ls"] = function()
     require("lspconfig").golangci_lint_ls.setup {
       cmd = servers.golangci_lint_ls.cmd,
@@ -835,12 +830,18 @@ mason_lspconfig.setup_handlers {
   ["lua_ls"] = function()
     local lspconfig = require("lspconfig")
     lspconfig.lua_ls.setup {
-      settings = servers.lua_ls
+      settings = servers.lua_ls,
+      on_attach = function(client, bufnr)
+          on_attach(client, bufnr)
+      end,
     }
   end,
   ["gopls"] = function()
     require("lspconfig").gopls.setup {
-      cmd = servers.gopls.cmd
+      cmd = servers.gopls.cmd,
+      on_attach = function(client, bufnr)
+          on_attach(client, bufnr)
+      end,
     }
   end,
   ["golangci_lint_ls"] = function()
@@ -849,29 +850,26 @@ mason_lspconfig.setup_handlers {
       root_dir = function(fname)
         return util.root_pattern('go.mod')(fname)
       end,
+      on_attach = function(client, bufnr)
+          on_attach(client, bufnr)
+      end,
     }
   end,
   ["sorbet"] = function()
     require("lspconfig").sorbet.setup {
-      cmd = servers.sorbet.cmd
+      cmd = servers.sorbet.cmd,
+      on_attach = function(client, bufnr)
+          on_attach(client, bufnr)
+      end,
     }
   end,
   ["html"] = function()
     require("lspconfig").html.setup {
-      filetypes = servers.html.filetypes
+      filetypes = servers.html.filetypes,
+      on_attach = function(client, bufnr)
+          on_attach(client, bufnr)
+      end,
     }
-  end,
-  ["tsserver"] = function()
-    require("lspconfig").tsserver.setup(servers.tsserver or {})
-  end,
-  ["elmls"] = function()
-    require("lspconfig").elmls.setup(servers.elmls or {})
-  end,
-  ["jsonls"] = function()
-    require("lspconfig").jsonls.setup(servers.jsonls or {})
-  end,
-  ["eslint"] = function()
-    require("lspconfig").eslint.setup(servers.eslint or {})
   end,
 }
 
