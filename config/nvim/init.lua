@@ -33,39 +33,6 @@ require('lazy').setup({
   -- Mr. Toomey
   'christoomey/vim-tmux-runner',
 
-  -- DAP for GO
-  {
-    'mfussenegger/nvim-dap',
-    config = function()
-      vim.keymap.set('n', '<leader>dc', ':lua require"dap".continue()<CR>')
-      vim.keymap.set('n', '<leader>dt', ':lua require"dap-go".debug_test()<CR>')
-      vim.keymap.set('n', '<leader>do', ':lua require"dap".step_out()<CR>')
-      vim.keymap.set('n', '<leader>di', ':lua require"dap".step_into()<CR>')
-      vim.keymap.set('n', '<leader>du', ':lua require"dap".step_over()<CR>')
-
-      vim.keymap.set('n', '<leader>db', ':lua require"dap".toggle_breakpoint()<CR>')
-
-      vim.keymap.set('n', '<leader>dr', ':lua require"dap".repl.toggle()<CR>')
-
-      vim.keymap.set('n', '<leader>dl', ':lua require"dap".run_last()<CR>')
-      vim.keymap.set('n', '<leader>dd', ':lua require"dap".disconnect()<CR>')
-    end
-  },
-  {
-    'leoluz/nvim-dap-go',
-    config = function()
-      require('dap-go').setup()
-    end
-  },
-  { 'theHamsta/nvim-dap-virtual-text' },
-  { 'nvim-telescope/telescope-dap.nvim' },
-  {
-    'rcarriga/nvim-dap-ui',
-    config = function()
-      require('dapui').setup()
-    end
-  },
-
   {
     'github/copilot.vim',
     config = function()
@@ -773,11 +740,14 @@ end
 -- Can't use this yet, rubocop old
 -- local rubocop = in_codespace and { cmd = { "/workspaces/github/bin/rubocop", "--lsp" } } or {}
 
+local util = require 'lspconfig.util'
 local servers = {
   jsonls = {},
   eslint = {},
-  gopls = { cmd = "gopls" },
-  golangci_lint_ls = {},
+  gopls = {},
+  golangci_lint_ls = {
+    cmd = { "golangci-lint-langserver" },
+  },
   elmls = {},
   tsserver = {},
   sorbet = { cmd = { "srb", "tc", "--lsp" } },
@@ -790,6 +760,49 @@ local servers = {
   },
 }
 
+local handlers = {
+  ["lua_ls"] = function()
+    local lspconfig = require("lspconfig")
+    lspconfig.lua_ls.setup {
+      settings = servers.lua_ls
+    }
+  end,
+  ["gopls"] = function()
+    require("lspconfig").gopls.setup {
+      cmd = servers.gopls.cmd
+    }
+  end,
+  ["golangci_lint_ls"] = function()
+    require("lspconfig").golangci_lint_ls.setup {
+      cmd = servers.golangci_lint_ls.cmd,
+      root_dir = function(fname)
+        return util.root_pattern('go.mod')(fname)
+      end,
+    }
+  end,
+  ["sorbet"] = function()
+    require("lspconfig").sorbet.setup {
+      cmd = servers.sorbet.cmd
+    }
+  end,
+  ["html"] = function()
+    require("lspconfig").html.setup {
+      filetypes = servers.html.filetypes
+    }
+  end,
+  ["tsserver"] = function()
+    require("lspconfig").tsserver.setup(servers.tsserver or {})
+  end,
+  ["elmls"] = function()
+    require("lspconfig").elmls.setup(servers.elmls or {})
+  end,
+  ["jsonls"] = function()
+    require("lspconfig").jsonls.setup(servers.jsonls or {})
+  end,
+  ["eslint"] = function()
+    require("lspconfig").eslint.setup(servers.eslint or {})
+  end,
+}
 -- Setup neovim lua configuration
 require('neodev').setup()
 
@@ -818,7 +831,48 @@ mason_lspconfig.setup_handlers {
       settings = servers[server_name],
       filetypes = (servers[server_name] or {}).filetypes,
     }
-  end
+  end,
+  ["lua_ls"] = function()
+    local lspconfig = require("lspconfig")
+    lspconfig.lua_ls.setup {
+      settings = servers.lua_ls
+    }
+  end,
+  ["gopls"] = function()
+    require("lspconfig").gopls.setup {
+      cmd = servers.gopls.cmd
+    }
+  end,
+  ["golangci_lint_ls"] = function()
+    require("lspconfig").golangci_lint_ls.setup {
+      cmd = servers.golangci_lint_ls.cmd,
+      root_dir = function(fname)
+        return util.root_pattern('go.mod')(fname)
+      end,
+    }
+  end,
+  ["sorbet"] = function()
+    require("lspconfig").sorbet.setup {
+      cmd = servers.sorbet.cmd
+    }
+  end,
+  ["html"] = function()
+    require("lspconfig").html.setup {
+      filetypes = servers.html.filetypes
+    }
+  end,
+  ["tsserver"] = function()
+    require("lspconfig").tsserver.setup(servers.tsserver or {})
+  end,
+  ["elmls"] = function()
+    require("lspconfig").elmls.setup(servers.elmls or {})
+  end,
+  ["jsonls"] = function()
+    require("lspconfig").jsonls.setup(servers.jsonls or {})
+  end,
+  ["eslint"] = function()
+    require("lspconfig").eslint.setup(servers.eslint or {})
+  end,
 }
 
 -- [[ Configure nvim-cmp ]]
@@ -955,6 +1009,7 @@ cmp.setup {
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 
+<<<<<<< Updated upstream
 local dap, dapui = require("dap"), require("dapui")
 dap.listeners.before.attach.dapui_config = function()
   dapui.open()
@@ -968,3 +1023,10 @@ end
 dap.listeners.before.event_exited.dapui_config = function()
   dapui.close()
 end
+=======
+
+-- vim.cmd [[
+--   hi Normal guibg=NONE ctermbg=NONE
+--   hi NonText guibg=NONE ctermbg=NONE
+-- ]]
+>>>>>>> Stashed changes
