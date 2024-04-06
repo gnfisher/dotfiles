@@ -40,6 +40,14 @@ require('lazy').setup({
   },
 
   {
+    'crispgm/nvim-go',
+    dependencies = 'nvim-lua/plenary.nvim',
+    config = function()
+      require('go').setup({})
+    end,
+  },
+
+  {
     'nvim-tree/nvim-tree.lua',
     config = function()
       local api = require "nvim-tree.api"
@@ -216,7 +224,7 @@ require('lazy').setup({
     config = function()
       vim.keymap.set('n', '<Leader>tn', ':TestNearest<CR>', { silent = true })
       vim.keymap.set('n', '<Leader>tf', ':TestFile<CR>', { silent = true })
-      vim.keymap.set('n', '<Leader>ta', ':TestSuite<CR>', { silent = true })
+      vim.keymap.set('n', '<Leader>ts', ':TestSuite<CR>', { silent = true })
       vim.keymap.set('n', '<Leader>tl', ':TestLast<CR>', { silent = true })
       vim.keymap.set('n', '<Leader>tv', ':TestVisit<CR>', { silent = true })
 
