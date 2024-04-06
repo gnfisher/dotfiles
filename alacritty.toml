@@ -1,0 +1,12 @@
+[window]
+option_as_alt = "Both"
+padding = { x = 10, y = 10 }
+
+[scrolling]
+history = 100000
+multiplier = 5
+
+[font]
+normal = { family = "SFMono Nerd Font" }
+bold = { style = "medium" }
+size = 15
