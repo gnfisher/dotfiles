@@ -1,9 +1,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-local in_codespace = os.getenv("CODESPACES") ~= nil
-
-
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -226,62 +223,6 @@ require('lazy').setup({
       vim.g["test#strategy"] = "vtr"
       vim.g["test#go#gotest#options"] = "-v"
     end
-  },
-  {
-    'romgrk/barbar.nvim',
-    dependencies = {
-      'lewis6991/gitsigns.nvim',     -- OPTIONAL: for git status
-      'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
-    },
-    init = function() vim.g.barbar_auto_setup = true end,
-    opts = {
-      -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
-      animation = true,
-      insert_at_start = true,
-      -- …etc.
-    },
-    version = '^1.0.0', -- optional: only update when a new 1.x version is released
-    config = function()
-      local map = vim.api.nvim_set_keymap
-      local opts = { noremap = true, silent = true }
-
-      -- Move to previous/next
-      map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
-      map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
-      -- Re-order to previous/next
-      map('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
-      map('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opts)
-      -- Goto buffer in position...
-      map('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', opts)
-      map('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', opts)
-      map('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', opts)
-      map('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', opts)
-      map('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', opts)
-      map('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', opts)
-      map('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', opts)
-      map('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', opts)
-      map('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', opts)
-      map('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
-      -- Pin/unpin buffer
-      map('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
-      -- Close buffer
-      map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
-      -- Wipeout buffer
-      --                 :BufferWipeout
-      -- Close commands
-      --                 :BufferCloseAllButCurrent
-      --                 :BufferCloseAllButPinned
-      --                 :BufferCloseBuffersLeft
-      --                 :BufferCloseBuffersRight
-      -- Magic buffer-picking mode
-      map('n', '<C-p>', '<Cmd>BufferPick<CR>', opts)
-      -- Sort automatically by...
-      map('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', opts)
-      map('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', opts)
-      map('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', opts)
-      map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)
-      map('n', '<Space>ba', '<Cmd>BufferCloseAllButCurrentOrPinned<CR>', opts)
-    end,
   },
 
   -- Installs nvim-metals and sets it up for Scala.
@@ -832,7 +773,7 @@ mason_lspconfig.setup_handlers {
     lspconfig.lua_ls.setup {
       settings = servers.lua_ls,
       on_attach = function(client, bufnr)
-          on_attach(client, bufnr)
+        on_attach(client, bufnr)
       end,
     }
   end,
@@ -840,7 +781,7 @@ mason_lspconfig.setup_handlers {
     require("lspconfig").gopls.setup {
       cmd = servers.gopls.cmd,
       on_attach = function(client, bufnr)
-          on_attach(client, bufnr)
+        on_attach(client, bufnr)
       end,
     }
   end,
@@ -851,7 +792,7 @@ mason_lspconfig.setup_handlers {
         return util.root_pattern('go.mod')(fname)
       end,
       on_attach = function(client, bufnr)
-          on_attach(client, bufnr)
+        on_attach(client, bufnr)
       end,
     }
   end,
@@ -859,7 +800,7 @@ mason_lspconfig.setup_handlers {
     require("lspconfig").sorbet.setup {
       cmd = servers.sorbet.cmd,
       on_attach = function(client, bufnr)
-          on_attach(client, bufnr)
+        on_attach(client, bufnr)
       end,
     }
   end,
@@ -867,7 +808,7 @@ mason_lspconfig.setup_handlers {
     require("lspconfig").html.setup {
       filetypes = servers.html.filetypes,
       on_attach = function(client, bufnr)
-          on_attach(client, bufnr)
+        on_attach(client, bufnr)
       end,
     }
   end,
@@ -954,60 +895,3 @@ cmp.setup {
     }),
   }
 }
-
--- Also borders for dagnostics and hover
--- vim.diagnostic.config {
---   virtual_text = false,
---   float = {
---     header = true,
---     border = 'rounded',
---     focusable = true,
---   },
--- }
-
--- require('tabline').setup({
---   show_index = false,         -- show tab index
---   show_modify = true,         -- show buffer modification indicator
---   show_icon = false,          -- show file extension icon
---   fnamemodify = ':.',         -- file name modifier
---   modify_indicator = '[+]',   -- modify indicator
---   no_name = 'No name',        -- no name buffer name
---   brackets = { '[', ']' },    -- file name brackets surrounding
---   inactive_tab_max_length = 0 -- max length of inactive tab titles, 0 to ignore
--- })
-
--- require("gruvbox").setup({
---   terminal_colors = true, -- add neovim terminal colors
---   undercurl = true,
---   underline = true,
---   bold = true,
---   italic = {
---     strings = true,
---     emphasis = true,
---     comments = true,
---     operators = false,
---     folds = true,
---   },
---   strikethrough = true,
---   invert_selection = false,
---   invert_signs = false,
---   invert_tabline = false,
---   invert_intend_guides = false,
---   inverse = true, -- invert background for search, diffs, statuslines and errors
---   contrast = "",  -- can be "hard", "soft" or empty string
---   palette_overrides = {},
---   overrides = {
---     ["LineNr"] = { fg = "#00CFFF" },
---   },
---   dim_inactive = false,
---   transparent_mode = true,
--- })
--- vim.cmd("colorscheme gruvbox")
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
-
--- vim.cmd [[
---   hi Normal guibg=NONE ctermbg=NONE
---   hi NonText guibg=NONE ctermbg=NONE
--- ]]
