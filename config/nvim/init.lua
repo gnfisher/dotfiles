@@ -40,14 +40,6 @@ require('lazy').setup({
   },
 
   {
-    'crispgm/nvim-go',
-    dependencies = 'nvim-lua/plenary.nvim',
-    config = function()
-      require('go').setup({})
-    end,
-  },
-
-  {
     'nvim-tree/nvim-tree.lua',
     config = function()
       local api = require "nvim-tree.api"
