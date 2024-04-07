@@ -17,17 +17,16 @@ if [[ "$CODESPACES" = "true" ]]; then
   chmod +x /usr/local/bin/rdm
   gh config set browser "rdm open"
 
+  sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
-  brew install neovim starship tree-sitter
+  brew install neovim tree-sitter
 
 elif [[ "$(uname)" = "Darwin" ]]; then
   brew install rcm
   rcup -v -d . -t macos -t development -t gpg
   rcup -v
 
-  # Must.. go.. faster..
-  # defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
-  # defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 else
   >&2 echo "error: Unknown system"
   exit 1
@@ -42,7 +41,4 @@ fi
 if [[ "$CODESPACES" = "true" ]]; then
   # Default to HTTPS for GitHub access
   git config --global url.https://github.com/.insteadOf git@github.com:
-
-  # Use fish
-  sudo chsh -s $(which fish) $(whoami)
 fi
