@@ -41,7 +41,7 @@ require('lazy').setup({
 
   {
     'nvim-tree/nvim-tree.lua',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    -- dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       local api = require "nvim-tree.api"
       -- disable netrw at the very start of your init.lua
