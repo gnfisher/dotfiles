@@ -401,48 +401,41 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 local actions = require "telescope.actions"
-local action_layout = require "telescope.actions.layout"
+-- Set up pickers with the ivy theme
+local picker_names = { "find_files", "git_files", "grep_string", "live_grep", "buffers", "tags", "marks", "quickfix",
+  "lsp_references", "lsp_document_symbols", "lsp_document_symbols", "lsp_dynamic_workspace_symbols", "lsp_diagnostics",
+  "lsp_definitions", "lsp_type_definitions", "oldfiles", "help_tags", }
+local pickers = {}
+for _, picker in ipairs(picker_names) do
+  pickers[picker] = {
+    theme = "ivy",
+    previewer = true,
+    layout_config = {
+      height = 0.3,
+      horizontal = {
+        preview_width = 0.25,
+      },
+      vertical = {
+        preview_width = 0.25,
+      },
+    },
+  }
+end
 require('telescope').setup {
+  pickers = pickers,
   defaults = {
     prompt_prefix = "> ",
     selection_caret = "> ",
     entry_prefix = "  ",
     multi_icon = "<>",
     winblend = 0,
-    layout_strategy = "horizontal",
-    layout_config = {
-      width = 0.95,
-      height = 0.85,
-      -- preview_cutoff = 120,
-      prompt_position = "top",
-
-      horizontal = {
-        preview_width = function(_, cols, _)
-          if cols > 200 then
-            return math.floor(cols * 0.4)
-          else
-            return math.floor(cols * 0.6)
-          end
-        end,
-      },
-
-      vertical = {
-        width = 0.9,
-        height = 0.95,
-        preview_height = 0.5,
-      },
-
-      flex = {
-        horizontal = {
-          preview_width = 0.9,
-        },
-      },
-    },
-
     selection_strategy = "reset",
     sorting_strategy = "descending",
     scroll_strategy = "cycle",
     color_devicons = true,
+    layout_config = {
+      preview_width = 0.45,
+    },
 
     mappings = {
       i = {
@@ -486,6 +479,7 @@ vim.keymap.set('n', '<leader>/', function()
     previewer = false,
   })
 end, { desc = '[/] Fuzzily search in current buffer' })
+vim.keymap.set('n', '<leader>m', require('telescope.builtin').marks, { desc = 'View [M]arks' })
 
 vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
@@ -899,3 +893,6 @@ cmp.setup {
     }),
   }
 }
+
+vim.api.nvim_set_hl(0, 'LineNr', { fg = '#ADD8E6' })
+vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#ADD8E6' })
