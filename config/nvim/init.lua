@@ -444,7 +444,7 @@ require('telescope').setup {
         ["<ScrollWheelDown>"] = actions.move_selection_next,
         ["<ScrollWheelUp>"] = actions.move_selection_previous,
 
-        ["<C-x>"] = false,
+        ["<C-x>"] = actions.delete_buffer + actions.move_to_top,
         ["<C-s>"] = actions.select_horizontal,
         ["<C-n>"] = "move_selection_next",
 
