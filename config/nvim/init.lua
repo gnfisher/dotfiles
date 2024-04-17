@@ -896,3 +896,5 @@ cmp.setup {
 
 vim.api.nvim_set_hl(0, 'LineNr', { fg = '#ADD8E6' })
 vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#ADD8E6' })
+
+vim.keymap.set('n', '<leader>`', ':e scratch.md<CR>', { desc = 'Open scratch' })
