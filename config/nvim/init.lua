@@ -406,7 +406,7 @@ local pickers = {}
 for _, picker in ipairs(picker_names) do
   pickers[picker] = {
     theme = "ivy",
-    previewer = true,
+    previewer = false,
     layout_config = {
       height = 0.3,
       horizontal = {
@@ -430,9 +430,6 @@ require('telescope').setup {
     sorting_strategy = "descending",
     scroll_strategy = "cycle",
     color_devicons = true,
-    layout_config = {
-      preview_width = 0.45,
-    },
 
     mappings = {
       i = {
