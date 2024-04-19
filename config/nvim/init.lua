@@ -26,6 +26,7 @@ require('lazy').setup({
   'tpope/vim-commentary',
   'tpope/vim-surround',
   'tpope/vim-rails',
+  'tpope/vim-unimpaired',
 
   -- Mr. Toomey
   'christoomey/vim-tmux-runner',
@@ -396,10 +397,6 @@ vim.keymap.set('v', 'cV', '"+P', { silent = true })
 -- Convenience
 vim.keymap.set('n', '<Leader>;', ':', { silent = true })
 vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true, silent = true })
-
--- Better quickfix window toggle
-vim.keymap.set({ 'n', 'v' }, '<C-j>', ':cnext<CR>')
-vim.keymap.set({ 'n', 'v' }, '<C-k>', ':cprev<CR>')
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
