@@ -8,6 +8,9 @@ if [ -d "$HOME/.asdf" ]; then
   source $(brew --prefix asdf)/libexec/asdf.sh
 fi
 
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --zsh)"
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
