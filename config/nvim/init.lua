@@ -350,8 +350,8 @@ vim.o.termguicolors = true
 vim.o.scrolloff = 5
 
 -- What happened to the days of 80?
-vim.opt.textwidth = 120
-vim.opt.colorcolumn = "121"
+vim.opt.textwidth = 100
+vim.opt.colorcolumn = "101"
 
 -- Give me old school borders
 vim.opt.fillchars:append("vert:█")
