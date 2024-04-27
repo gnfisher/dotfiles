@@ -1,1 +1,0 @@
-noremap <C-]> :ALEGoToDefinition<CR>
