@@ -3,6 +3,5 @@ set -g pane-border-lines simple
 
 bind   -T copy-mode-vi y   send -X copy-pipe "pbcopy" \; send -X clear-selection # Copy to clipboard
 bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe "pbcopy" \; send -X clear-selection
-bind   -T copy-mode-vi y   send -X copy-pipe "pbcopy" \; send -X clear-selection # Copy to clipboard
 bind-key -T copy-mode MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "pbcopy"
 
