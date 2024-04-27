@@ -58,7 +58,9 @@
   ; path = ~/.gitconfig-gpg
   path = ~/.gitconfig-macos
 [credential]
-	helper = 
+	helper =
 	helper = /usr/local/share/gcm-core/git-credential-manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+[oh-my-zsh]
+  hide-info = 1

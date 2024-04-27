@@ -41,44 +41,6 @@ require('lazy').setup({
   },
 
   {
-    'nvim-tree/nvim-tree.lua',
-    -- dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function()
-      local api = require "nvim-tree.api"
-      -- disable netrw at the very start of your init.lua
-      -- vim.g.loaded_netrw = 1
-      -- vim.g.loaded_netrwPlugin = 1
-
-      vim.keymap.set('n', '<leader>nf', ':NvimTreeFindFile<CR>')
-      vim.keymap.set('n', '<leader>nt', api.tree.toggle)
-      vim.keymap.set('n', '<leader>nn', api.tree.focus)
-
-      -- OR setup with some options
-      require("nvim-tree").setup({
-        auto_reload_on_write = true,
-        hijack_unnamed_buffer_when_opening = true,
-        prefer_startup_root = true,
-        sort_by = "case_sensitive",
-        actions = {
-          open_file = {
-            quit_on_open = true
-          }
-        },
-        view = {
-          width = 30,
-          preserve_window_proportions = true,
-        },
-        renderer = {
-          group_empty = true,
-        },
-        filters = {
-          dotfiles = true,
-        },
-      })
-    end
-  },
-
-  {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -138,12 +100,12 @@ require('lazy').setup({
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
       },
-      on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
-          { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
-        vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
-        vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
-      end,
+      -- on_attach = function(bufnr)
+      --   vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
+      --     { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
+      --   vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
+      --   vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
+      -- end,
     },
   },
 
@@ -154,7 +116,7 @@ require('lazy').setup({
       -- vim.o.background = 'dark'
     end
   },
-  { 'RRethy/nvim-base16' },
+
   {
     "ellisonleao/gruvbox.nvim",
     priority = 1000,
@@ -163,36 +125,13 @@ require('lazy').setup({
       vim.o.background = 'dark'
     end
   },
-  {
-    -- Set lualine as statusline
-    'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'auto',
-        component_separators = '|',
-        section_separators = '',
-      },
-    },
-  },
 
-  {
-    -- Add indentation guides even on blank lines
-    -- 'lukas-reineke/indent-blankline.nvim',
-    -- main = "ibl",
-  },
-
-  -- Fuzzy Finder (files, lsp, etc)
   {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
     dependencies = { 'nvim-lua/plenary.nvim' },
   },
 
-  -- Fuzzy Finder Algorithm which requires local dependencies to be built.
-  -- Only load if `make` is available. Make sure you have the system
-  -- requirements installed.
   {
     'nvim-telescope/telescope-fzf-native.nvim',
     -- NOTE: If you are having trouble with this installation,
@@ -285,8 +224,8 @@ vim.o.hlsearch = false
 vim.wo.number = true
 
 -- Listchars
-vim.opt.listchars:append({ tab = '› ' })
-vim.opt.listchars:append({ eol = '¬' })
+-- vim.opt.listchars:append({ tab = '› ' })
+-- vim.opt.listchars:append({ eol = '¬' })
 vim.opt.list = true
 
 -- Enable mouse mode
