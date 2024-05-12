@@ -3,7 +3,7 @@ function ColorMyPencils(color)
   vim.cmd.colorscheme(color)
 end
 
-function toggle_bg()
+local function toggle_bg()
   if vim.opt.background:get() == 'dark' then
     vim.opt.background = 'light'
     ColorMyPencils()
