@@ -1,3 +1,5 @@
+-- require('gnfisher')
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -112,8 +114,8 @@ require('lazy').setup({
   {
     'projekt0n/github-nvim-theme',
     config = function()
-      -- vim.cmd.colorscheme 'github_dark'
-      -- vim.o.background = 'dark'
+      vim.cmd.colorscheme 'github_dark'
+      vim.o.background = 'dark'
     end
   },
 
@@ -121,8 +123,8 @@ require('lazy').setup({
     "ellisonleao/gruvbox.nvim",
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'gruvbox'
-      vim.o.background = 'dark'
+      -- vim.cmd.colorscheme 'gruvbox'
+      -- vim.o.background = 'dark'
     end
   },
 
@@ -201,10 +203,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 function toggle_bg()
   if vim.opt.background:get() == 'dark' then
     vim.opt.background = 'light'
-    vim.cmd.colorscheme 'gruvbox'
+    vim.cmd.colorscheme 'github_light'
   else
     vim.opt.background = 'dark'
-    vim.cmd.colorscheme 'gruvbox'
+    vim.cmd.colorscheme 'github_dark'
     vim.api.nvim_set_hl(0, 'LineNr', { fg = '#ADD8E6' })
     vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#ADD8E6' })
   end
@@ -224,9 +226,9 @@ vim.o.hlsearch = false
 vim.wo.number = true
 
 -- Listchars
--- vim.opt.listchars:append({ tab = '› ' })
+-- vim.opt.listchars:append({ tab = ' ' })
 -- vim.opt.listchars:append({ eol = '¬' })
-vim.opt.list = true
+vim.opt.list = false
 
 -- Enable mouse mode
 vim.o.mouse = 'a'

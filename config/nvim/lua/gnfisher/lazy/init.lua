@@ -4,4 +4,5 @@ return {
     name = "plenary"
   },
   "sindrets/diffview.nvim",
+  'christoomey/vim-tmux-runner',
 }
