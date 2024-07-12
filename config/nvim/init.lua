@@ -114,8 +114,8 @@ require('lazy').setup({
   {
     'projekt0n/github-nvim-theme',
     config = function()
-      vim.cmd.colorscheme 'github_dark'
-      vim.o.background = 'dark'
+      -- vim.cmd.colorscheme 'github_dark'
+      -- vim.o.background = 'dark'
     end
   },
 
@@ -203,10 +203,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 function toggle_bg()
   if vim.opt.background:get() == 'dark' then
     vim.opt.background = 'light'
-    vim.cmd.colorscheme 'github_light'
+    vim.cmd.colorscheme 'morning'
   else
     vim.opt.background = 'dark'
-    vim.cmd.colorscheme 'github_dark'
+    vim.cmd.colorscheme 'murphy'
     vim.api.nvim_set_hl(0, 'LineNr', { fg = '#ADD8E6' })
     vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#ADD8E6' })
   end
