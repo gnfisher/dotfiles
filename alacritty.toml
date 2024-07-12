@@ -10,7 +10,8 @@ history = 100000
 multiplier = 5
 
 [font]
-normal = { family = "FiraCode Nerd Font Mono", style = "Light" }
+# normal = { family = "FiraCode Nerd Font Mono", style = "Light" }
+normal = { family = "Monaco" }
 bold = { style = "Medium" }
-size = 17
-offset.y = 12
+size = 15
+offset.y = 0

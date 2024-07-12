@@ -835,3 +835,16 @@ vim.api.nvim_set_hl(0, 'LineNr', { fg = '#ADD8E6' })
 vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#ADD8E6' })
 
 vim.keymap.set('n', '<leader>`', ':e scratch.md<CR>', { desc = 'Open scratch' })
+
+
+-- vim.cmd.colorscheme 'acme'
+-- require('gnfisher.acme')
+
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "]m", "]mzz")
+vim.keymap.set("n", "[m", "[mzz")
+vim.keymap.set("n", "]M", "]Mzz")
+vim.keymap.set("n", "[M", "[Mzz")

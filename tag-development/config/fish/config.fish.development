@@ -18,3 +18,5 @@ function g
         command git $argv
     end
 end
+
+complete -c gh-cs -f -a "(gh codespace list --json name -q '.[].name')"
