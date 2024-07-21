@@ -15,6 +15,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  spec = "gnfisher.lazy",
-  change_detection = { notify = false }
+  spec = "gnfisher.lazier",
+  change_detection = { enabled = true, notify = false }
 })
