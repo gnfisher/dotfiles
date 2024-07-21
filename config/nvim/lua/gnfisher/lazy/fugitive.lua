@@ -2,6 +2,7 @@ return {
   "tpope/vim-fugitive",
   config = function()
     vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+    vim.keymap.set("n", "<c>q", vim.cmd.Gclose)
 
     local gnfisher_Fugitive = vim.api.nvim_create_augroup("ThePrimeagen_Fugitive", {})
 

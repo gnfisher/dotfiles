@@ -28,6 +28,9 @@ return {
     require("mason-lspconfig").setup({
 
       ensure_installed = {
+        "sorbet",
+        "elixir-ls",
+        "elm-language-server",
         "lua_ls",
         "rust_analyzer",
         "gopls",

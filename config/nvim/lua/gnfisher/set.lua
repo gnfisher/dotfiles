@@ -3,9 +3,9 @@ vim.opt.guicursor = ''
 vim.opt.number = true
 vim.opt.relativenumber = true
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 8
+vim.opt.softtabstop = 8
+vim.opt.shiftwidth = 8
 vim.opt.expandtab = true
 
 vim.opt.backspace = '2'
@@ -35,7 +35,7 @@ vim.opt.signcolumn = 'yes'
 vim.o.termguicolors = true
 
 vim.opt.colorcolumn = "101"
-vim.opt.fillchars:append("vert:█")
+vim.opt.fillchars:append("vert:|")
 
 vim.opt.updatetime = 50
 
