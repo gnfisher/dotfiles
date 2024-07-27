@@ -44,4 +44,3 @@ function ToggleBg()
 end
 
 vim.keymap.set('n', '<F6>', ToggleBg, { noremap = true, silent = true })
-
