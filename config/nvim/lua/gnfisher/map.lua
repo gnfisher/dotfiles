@@ -1,5 +1,7 @@
 vim.g.mapleader = " "
 
+vim.keymap.set('n', '<Leader>;', ':', { silent = true })
+
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<C-x>c", vim.cmd.bd)
 
@@ -31,16 +33,15 @@ vim.keymap.set("v", "cp", '"+y', { silent = true })
 vim.keymap.set("v", "cv", '"+p', { silent = true })
 vim.keymap.set("v", "cV", '"+P', { silent = true })
 
-
-function toggle_bg()
-  if vim.opt.background == 'dark' then
-    vim.opt.background = 'light'
-    M.ColorMyPencils('peachpuff')
+function ToggleBg()
+  if vim.opt.background == "dark" then
+    vim.opt.background = "light"
+    vim.cmd("colorscheme peachpuff")
   else
-    vim.opt.background = 'dark'
-    M.ColorMyPencils()
+    vim.opt.background = "dark"
+    vim.cmd("colorscheme habamax")
   end
 end
 
-vim.keymap.set('n', '<F6>', toggle_bg, { noremap = true, silent = true })
+vim.keymap.set('n', '<F6>', ToggleBg, { noremap = true, silent = true })
 

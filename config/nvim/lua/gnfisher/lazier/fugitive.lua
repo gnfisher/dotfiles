@@ -1,10 +1,21 @@
 return {
   "tpope/vim-fugitive",
   config = function()
-    vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
-    vim.keymap.set("n", "<c>q", vim.cmd.Gclose)
+    local toggle_fugitive = function()
+      local winids = vim.api.nvim_list_wins()
+      for _, id in pairs(winids) do
+        -- you can omit the underscore `_` if it's the second variable.
+        local status = pcall(vim.api.nvim_win_get_var, id, "fugitive_status")
+        if status then
+          vim.api.nvim_win_close(id, false)
+          return
+        end
+      end
+      vim.cmd("Git")
+    end
+    vim.keymap.set("n", "<Leader>gs", function() toggle_fugitive() end, { noremap = true, silent = true })
 
-    local gnfisher_Fugitive = vim.api.nvim_create_augroup("ThePrimeagen_Fugitive", {})
+    local gnfisher_Fugitive = vim.api.nvim_create_augroup("Gnfisher_Fugitive", {})
 
     local autocmd = vim.api.nvim_create_autocmd
     autocmd("BufWinEnter", {
