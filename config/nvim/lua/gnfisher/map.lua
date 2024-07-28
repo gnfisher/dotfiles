@@ -2,8 +2,18 @@ vim.g.mapleader = " "
 
 vim.keymap.set('n', '<Leader>;', ':', { silent = true })
 
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-vim.keymap.set("n", "<C-x>c", vim.cmd.bd)
+vim.keymap.set("n", "<Leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<C-x>b", vim.cmd.bd)
+vim.keymap.set("n", "<C-x>h", function()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    if vim.bo[buf].buftype == 'help' then
+      vim.api.nvim_win_close(win, false)
+      return
+    end
+  end
+  print("No help window found")
+end, { noremap = true, silent = true, desc = "Close help window" })
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
