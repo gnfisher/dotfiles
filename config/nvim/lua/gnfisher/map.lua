@@ -43,12 +43,12 @@ vim.keymap.set("v", "cp", '"+y', { silent = true })
 vim.keymap.set("v", "cv", '"+p', { silent = true })
 vim.keymap.set("v", "cV", '"+P', { silent = true })
 
-function ToggleBg()
-  if vim.opt.background == "dark" then
-    vim.opt.background = "light"
+local function ToggleBg()
+  if vim.o.background == "dark" then
+    vim.o.background = "light"
     vim.cmd("colorscheme peachpuff")
   else
-    vim.opt.background = "dark"
+    vim.o.background = "dark"
     vim.cmd("colorscheme habamax")
   end
 end
