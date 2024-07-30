@@ -2,8 +2,9 @@ vim.g.mapleader = " "
 
 vim.keymap.set('n', '<Leader>;', ':', { silent = true })
 
-vim.keymap.set("n", "<Leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<C-x>b", vim.cmd.bd)
+vim.keymap.set("n", "<C-x>c", "<cmd>cclose<CR>")
+vim.keymap.set("n", "<C-x>l", "<cmd>lclose<CR>")
 vim.keymap.set("n", "<C-x>h", function()
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     local buf = vim.api.nvim_win_get_buf(win)
@@ -26,10 +27,10 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<leader>j", "<cmd>lnext<CR>zz")
+vim.keymap.set("n", "<leader>k", "<cmd>lprev<CR>zz")
 
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 

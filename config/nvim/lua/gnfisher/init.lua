@@ -42,16 +42,16 @@ autocmd("LspAttach", {
   group = GnfisherGroup,
   callback = function(e)
     local opts = { buffer = e.buf }
-    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
     vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
     vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
     vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, opts)
 
-    -- vim.keymap.set('gr', require('telescope.builtin').lsp_references)
-    vim.keymap.set("n", "<leader>ds", require('telescope.builtin').lsp_document_symbols)
-    vim.keymap.set("n", "<leader>ws", require('telescope.builtin').lsp_dynamic_workspace_symbols)
+    vim.keymap.set("n", "<Leader>ds", require('telescope.builtin').lsp_document_symbols)
+    vim.keymap.set("n", "<Leader>ws", require('telescope.builtin').lsp_dynamic_workspace_symbols)
 
     -- Create a command `:Format` local to the LSP buffer
     vim.api.nvim_buf_create_user_command(e.buf, "Format", function(_)
