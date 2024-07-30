@@ -43,15 +43,3 @@ vim.keymap.set("n", "cV", '"+P', { silent = true })
 vim.keymap.set("v", "cp", '"+y', { silent = true })
 vim.keymap.set("v", "cv", '"+p', { silent = true })
 vim.keymap.set("v", "cV", '"+P', { silent = true })
-
-local function ToggleBg()
-  if vim.o.background == "dark" then
-    vim.o.background = "light"
-    vim.cmd("colorscheme peachpuff")
-  else
-    vim.o.background = "dark"
-    vim.cmd("colorscheme habamax")
-  end
-end
-
-vim.keymap.set('n', '<F6>', ToggleBg, { noremap = true, silent = true })

@@ -2,7 +2,7 @@ require('gnfisher.set')
 require('gnfisher.map')
 require('gnfisher.lazy_init')
 
-vim.cmd("colorscheme habamax")
+-- vim.cmd("colorscheme habamax")
 
 local function jump_to_last_line()
   local ft = vim.bo.filetype
@@ -50,6 +50,8 @@ autocmd("LspAttach", {
     vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
     vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, opts)
 
+    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
     vim.keymap.set("n", "<Leader>ds", require('telescope.builtin').lsp_document_symbols)
     vim.keymap.set("n", "<Leader>ws", require('telescope.builtin').lsp_dynamic_workspace_symbols)
 
