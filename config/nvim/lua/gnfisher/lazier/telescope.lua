@@ -10,6 +10,12 @@ return {
   config = function()
     local actions = require "telescope.actions"
     require("telescope").setup({
+      defaults = {
+        layout_config = {
+          prompt_position = "top"
+        },
+        sorting_strategy = "ascending",
+      },
       mappings = {
         i = {
           ["<C-x>"] = actions.delete_buffer + actions.move_to_top,

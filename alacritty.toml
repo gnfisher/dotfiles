@@ -12,6 +12,6 @@ multiplier = 5
 [font]
 # normal = { family = "FiraCode Nerd Font Mono", style = "Light" }
 normal = { family = "Monaco" }
-bold = { style = "Medium" }
+bold = { style = "bold" }
 size = 13
 offset.y = 0
