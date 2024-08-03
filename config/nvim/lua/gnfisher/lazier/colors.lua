@@ -15,14 +15,14 @@ return {
       },
     })
 
-    vim.cmd('colorscheme github_dark_dimmed')
+    -- vim.cmd('colorscheme github_dark_dimmed')
     local function ToggleBg()
       if vim.o.background == "dark" then
         vim.o.background = "light"
-        vim.cmd("colorscheme github_light")
+        -- vim.cmd("colorscheme github_light")
       else
         vim.o.background = "dark"
-        vim.cmd("colorscheme github_dark_dimmed")
+        -- vim.cmd("colorscheme github_dark_dimmed")
       end
     end
 

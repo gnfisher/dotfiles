@@ -2,8 +2,6 @@ require('gnfisher.set')
 require('gnfisher.map')
 require('gnfisher.lazy_init')
 
--- vim.cmd("colorscheme habamax")
-
 local function jump_to_last_line()
   local ft = vim.bo.filetype
   local ln = vim.fn.line("'\"")
@@ -69,6 +67,7 @@ autocmd("LspAttach", {
   end,
 })
 
-vim.g.netrw_browse_split = 0
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
+-- vim.g.netrw_liststyle = 3
+-- vim.g.netrw_browse_split = 0
+-- vim.g.netrw_banner = 0
+-- vim.g.netrw_winsize = 25
