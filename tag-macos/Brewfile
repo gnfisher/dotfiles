@@ -1,5 +1,4 @@
 brew "asdf"
-brew "bash-completion"
 brew "bat"
 brew "coursier/formulas/coursier"
 brew "curl"

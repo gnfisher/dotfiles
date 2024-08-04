@@ -33,6 +33,8 @@ return {
         "rust_analyzer",
         "gopls",
         "elixirls",
+        "tsserver",
+        "eslint",
       },
       handlers = {
         function(server_name) -- default handler (optional)
@@ -60,6 +62,30 @@ return {
             root_dir = function(fname)
               return util.root_pattern('go.mod')(fname)
             end,
+          }
+        end,
+        ["tsserver"] = function()
+          require("lspconfig").tsserver.setup {
+            capabilities = capabilities,
+            on_attach = function(client)
+              -- Disable tsserver formatting
+              client.server_capabilities.documentFormattingProvider = false
+              client.server_capabilities.documentRangeFormattingProvider = false
+            end,
+          }
+        end,
+        ["eslint"] = function()
+          require("lspconfig").eslint.setup {
+            capabilities = capabilities,
+            on_attach = function(client, bufnr)
+              vim.api.nvim_create_autocmd("BufWritePre", {
+                buffer = bufnr,
+                command = "EslintFixAll",
+              })
+            end,
+            settings = {
+              format = { enable = true },
+            },
           }
         end,
       }

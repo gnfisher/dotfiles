@@ -54,9 +54,6 @@
 [grep]
   lineNumber = true
   patternType = extended
-[include]
-  ; path = ~/.gitconfig-gpg
-  path = ~/.gitconfig-macos
 [oh-my-zsh]
   hide-info = 1
 [credential "https://dev.azure.com"]
