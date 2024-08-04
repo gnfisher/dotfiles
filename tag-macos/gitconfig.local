@@ -1,4 +1,4 @@
 [credential]
   helper = osxkeychain
 [include]
-  path = ~/.gnupg/gitconfig-gpg
+  path = ~/.gitconfig-gpg
