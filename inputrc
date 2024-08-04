@@ -1,4 +1,0 @@
-set expand-tilde on
-set bell-style visible
-
-"\C-n": menu-complete
