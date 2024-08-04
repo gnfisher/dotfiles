@@ -1,5 +1,5 @@
 [user]
-  signingkey = BAE0FAEAF7EC7990
+  signingkey = 281C0E15C7E6D779
 [commit]
   gpgsign = true
 [gpg]
