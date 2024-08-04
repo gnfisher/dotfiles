@@ -56,7 +56,7 @@
   patternType = extended
 [oh-my-zsh]
   hide-info = 1
-[credential "https://dev.azure.com"]
-	useHttpPath = true
+[credential]
+	helper = cache
 [include]
   path = ~/.gitconfig.local

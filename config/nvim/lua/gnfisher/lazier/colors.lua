@@ -16,19 +16,17 @@ return {
     --   },
     -- })
 
+    vim.o.background = "dark"
     vim.cmd('colorscheme lucius')
+    vim.cmd('LuciusDarkHighContrast')
     local function ToggleBg()
       if vim.o.background == "dark" then
         vim.o.background = "light"
-        vim.g.lucius_style = "light"
-        vim.g.lucius_contrast = "high"
-        vim.g.lucius_contrast_bg = "normal"
+        vim.cmd('LuciusLightHighContrast')
         -- vim.cmd("colorscheme github_light")
       else
-        vim.g.lucius_style = "dark"
-        vim.g.lucius_contrast = "high"
-        vim.g.lucius_contrast_bg = "normal"
         vim.o.background = "dark"
+        vim.cmd('LuciusDarkHighContrast')
         -- vim.cmd("colorscheme github_dark_dimmed")
       end
     end
