@@ -57,13 +57,13 @@ return {
             }
           }
         end,
-        ["golangci_lint_ls"] = function()
-          require("lspconfig").golangci_lint_ls.setup {
-            root_dir = function(fname)
-              return util.root_pattern('go.mod')(fname)
-            end,
-          }
-        end,
+        -- ["golangci_lint_ls"] = function()
+        --   require("lspconfig").golangci_lint_ls.setup {
+        --     root_dir = function(fname)
+        --       return util.root_pattern('go.mod')(fname)
+        --     end,
+        --   }
+        -- end,
         ["tsserver"] = function()
           require("lspconfig").tsserver.setup {
             capabilities = capabilities,
