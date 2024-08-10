@@ -10,5 +10,6 @@ local Group = colorbuddy.Group
 local groups = colorbuddy.groups
 local styles = colorbuddy.styles
 
-Group.new("@lsp.type.method", colors.gray5, nil)
-Group.new("Special", colors.gray5, nil)
+Group.new("@lsp.type.method", colors.gray6, nil)
+Group.new("@lsp.type.property", colors.gray6, nil)
+Group.new("Special", colors.gray6, nil)

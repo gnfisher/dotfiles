@@ -3,7 +3,7 @@ local function SetDark()
   vim.cmd.colorscheme("gruvbuddy")
 end
 
-local function ToggleBg()
+function ToggleBg()
   if vim.o.background == "dark" then
     vim.o.background = "light"
     vim.cmd.colorscheme("morning")

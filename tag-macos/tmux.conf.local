@@ -1,4 +1,3 @@
-set -g status-left ' '
 set -g pane-border-lines simple
 
 bind   -T copy-mode-vi y   send -X copy-pipe "pbcopy" \; send -X clear-selection # Copy to clipboard
