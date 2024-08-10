@@ -1,34 +1,34 @@
 return {
-  "nvim-tree/nvim-tree.lua",
-  config = function()
-    vim.g.loaded_netrw = 1
-    vim.g.loaded_netrwPlugin = 1
-    require("nvim-tree").setup({
-      renderer = {
-        indent_markers = {
-          enable = true,
-        },
-        icons = {
-          glyphs = {
-            folder = {
-              arrow_closed = ">",
-              arrow_open = "v",
-            },
-          },
-          show = {
-            file = false,
-            folder = false,
-            folder_arrow = true,
-            git = false,
-          },
-        },
-      },
-    })
+  -- "nvim-tree/nvim-tree.lua",
+  -- config = function()
+  --   vim.g.loaded_netrw = 1
+  --   vim.g.loaded_netrwPlugin = 1
+  --   require("nvim-tree").setup({
+  --     renderer = {
+  --       indent_markers = {
+  --         enable = true,
+  --       },
+  --       icons = {
+  --         glyphs = {
+  --           folder = {
+  --             arrow_closed = ">",
+  --             arrow_open = "v",
+  --           },
+  --         },
+  --         show = {
+  --           file = false,
+  --           folder = false,
+  --           folder_arrow = true,
+  --           git = false,
+  --         },
+  --       },
+  --     },
+  --   })
 
-    vim.keymap.set("n", "<Leader>nt", ":NvimTreeToggle<CR>", { silent = true })
-    vim.keymap.set("n", "<Leader>nf", ":NvimTreeFocus<CR>", { silent = true })
-    vim.keymap.set("n", "<Leader>nF", ":NvimTreeFindFile<CR>", { silent = true })
-  end
+  --   vim.keymap.set("n", "<Leader>nt", ":NvimTreeToggle<CR>", { silent = true })
+  --   vim.keymap.set("n", "<Leader>nf", ":NvimTreeFocus<CR>", { silent = true })
+  --   vim.keymap.set("n", "<Leader>nF", ":NvimTreeFindFile<CR>", { silent = true })
+  -- end
   -- 'preservim/nerdtree',
   -- lazy = false,
   -- config = function()
