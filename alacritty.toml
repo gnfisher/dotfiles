@@ -11,44 +11,47 @@ multiplier = 5
 
 [font]
 # normal = { family = "SF Mono", style = "Regular" }
-normal = { family = "Monaco" }
+normal = { family = "Berkeley Mono", style = "Regular" }
+bold = { family = "Berkeley Mono", style = "Bold" }
+italic = { family = "Berkeley Mono", style = "Italic" }
+# normal = { family = "Monaco" }
 # bold = { style = "bold" }
-size = 13
-offset.y = 0
+size = 15
+offset.y = 3
 
-# Colors (LuciusBlackLowContrast)
-[colors.primary]
-    background =  '#121212'
-    foreground =  '#bcbcbc'
+# # Colors (LuciusBlackLowContrast)
+# [colors.primary]
+#     background =  '#121212'
+#     foreground =  '#bcbcbc'
 
-# Cursor colors
-[colors.cursor]
-    text= '#121212'
-    cursor= '#5f87af'
+# # Cursor colors
+# [colors.cursor]
+#     text= '#121212'
+#     cursor= '#5f87af'
 
-  # Selection colors
-  [colors.selection]
-    text= '#bcbcbc'
-    background= '#005f87'
+#   # Selection colors
+#   [colors.selection]
+#     text= '#bcbcbc'
+#     background= '#005f87'
 
-  # Normal colors
-  [colors.normal]
-    black=   '#121212'
-    red=     '#d75f5f'
-    green=   '#87af5f'
-    yellow=  '#afaf87'
-    blue=    '#5fafd7'
-    magenta= '#af87af'
-    cyan=    '#5faf87'
-    white=   '#bcbcbc'
+#   # Normal colors
+#   [colors.normal]
+#     black=   '#121212'
+#     red=     '#d75f5f'
+#     green=   '#87af5f'
+#     yellow=  '#afaf87'
+#     blue=    '#5fafd7'
+#     magenta= '#af87af'
+#     cyan=    '#5faf87'
+#     white=   '#bcbcbc'
 
-  # Bright colors
-  [colors.bright]
-    black=   '#121212'
-    red=     '#d75f5f'
-    green=   '#87af5f'
-    yellow=  '#afaf87'
-    blue=    '#5fafd7'
-    magenta= '#af87af'
-    cyan=    '#5faf87'
-    white=   '#bcbcbc'
+#   # Bright colors
+#   [colors.bright]
+#     black=   '#121212'
+#     red=     '#d75f5f'
+#     green=   '#87af5f'
+#     yellow=  '#afaf87'
+#     blue=    '#5fafd7'
+#     magenta= '#af87af'
+#     cyan=    '#5faf87'
+#     white=   '#bcbcbc'
