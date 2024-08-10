@@ -17,7 +17,7 @@ italic = { family = "Berkeley Mono", style = "Italic" }
 # normal = { family = "Monaco" }
 # bold = { style = "bold" }
 size = 15
-offset.y = 3
+offset.y = 5
 
 # # Colors (LuciusBlackLowContrast)
 # [colors.primary]

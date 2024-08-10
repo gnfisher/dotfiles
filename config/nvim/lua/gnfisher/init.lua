@@ -1,5 +1,5 @@
-require('gnfisher.set')
-require('gnfisher.map')
+vim.g.mapleader = " "
+
 require('gnfisher.lazy_init')
 
 local function jump_to_last_line()
@@ -14,7 +14,6 @@ end
 local augroup = vim.api.nvim_create_augroup
 local GnfisherGroup = augroup("gnfisher", {})
 local yank_group = augroup("YankHighlight", { clear = true })
-
 
 local autocmd = vim.api.nvim_create_autocmd
 
