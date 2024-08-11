@@ -1,8 +1,9 @@
 return {
   "github/copilot.vim",
   config = function()
-    vim.g.copilot_assume_mapped = true
-    -- vim.api.nvim_set_keymap('i', '<C-J>', [[v:lua.require'copilot'.Accept("<CR>")]], { noremap = true, expr = true })
-    -- vim.g.copilot_no_tab_map = true
+    vim.cmd(":Copilot disable")
+    vim.keymap.set("i", "<C-j>", "<Plug>(copilot-suggest)")
+    vim.keymap.set("i", "<C-]>", "<Plug>(copilot-next)")
+    vim.keymap.set("i", "<C-[>", "<Plug>(copilot-previous)")
   end
 }

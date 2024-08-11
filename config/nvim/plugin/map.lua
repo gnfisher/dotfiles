@@ -38,10 +38,8 @@ set("i", "<C-c>", "<Esc>")
 set("n", "Q", "<nop>")
 set("n", "<leader>f", vim.lsp.buf.format)
 
-set("n", "<C-j>", "<cmd>cnext<CR>zz")
-set("n", "<C-k>", "<cmd>cprev<CR>zz")
-set("n", "<leader>j", "<cmd>lnext<CR>zz")
-set("n", "<leader>k", "<cmd>lprev<CR>zz")
+set("n", "<Leader-j>", "<cmd>cnext<CR>zz")
+set("n", "<Leader-k>", "<cmd>cprev<CR>zz")
 
 set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
