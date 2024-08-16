@@ -17,15 +17,10 @@ set("n", "<C-x>h", function()
   print("No help window found")
 end, { noremap = true, silent = true, desc = "Close help window" })
 
-set("n", "<C-h>", "<C-w>h")
-set("n", "<C-j>", "<C-w>j")
-set("n", "<C-k>", "<C-w>k")
-set("n", "<C-l>", "<C-w>l")
-
-set("n", "<M-h>", "<C-w>5<")
-set("n", "<M-j>", "<C-w>5+")
-set("n", "<M-k>", "<C-w>5-")
-set("n", "<M-l>", "<C-w>5>")
+set("n", "<M-,>", "<c-w>5<")
+set("n", "<M-.>", "<c-w>5>")
+set("n", "<M-t>", "<C-W>+")
+set("n", "<M-s>", "<C-W>-")
 
 set("n", "<C-d>", "<C-d>zz")
 set("n", "<C-u>", "<C-u>zz")
@@ -38,8 +33,8 @@ set("i", "<C-c>", "<Esc>")
 set("n", "Q", "<nop>")
 set("n", "<leader>f", vim.lsp.buf.format)
 
-set("n", "<Leader-j>", "<cmd>cnext<CR>zz")
-set("n", "<Leader-k>", "<cmd>cprev<CR>zz")
+set("n", "<C-j>", "<cmd>cnext<CR>zz")
+set("n", "<C-k>", "<cmd>cprev<CR>zz")
 
 set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
