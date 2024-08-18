@@ -35,10 +35,10 @@ vim.opt.signcolumn = 'yes'
 
 vim.opt.termguicolors = true
 
-vim.opt.colorcolumn = "101"
+-- vim.opt.colorcolumn = "101"
 vim.opt.fillchars = { eob = "~" }
 vim.opt.fillchars:append("vert:|")
-vim.opt.cursorline = true
+-- vim.opt.cursorline = true
 
 vim.opt.updatetime = 50
 
