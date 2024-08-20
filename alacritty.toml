@@ -17,4 +17,4 @@ italic = { family = "Berkeley Mono", style = "Italic" }
 # normal = { family = "Monaco" }
 # bold = { style = "bold" }
 size = 15
-offset.y = 7
+offset.y = 3

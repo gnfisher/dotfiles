@@ -1,7 +1,7 @@
 local function SetDark()
   vim.o.background = "dark"
-  vim.cmd.colorscheme("murphy")
-  -- vim.cmd.colorscheme("gruvbuddy")
+  -- vim.cmd.colorscheme("murphy")
+  vim.cmd.colorscheme("gruvbuddy")
 end
 
 function ToggleBg()
