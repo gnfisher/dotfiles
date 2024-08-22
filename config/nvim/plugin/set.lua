@@ -54,3 +54,5 @@ vim.opt.completeopt = 'menuone,noinsert,noselect'
 
 vim.o.wildmenu = true
 vim.o.wildmode = "longest:list"
+
+vim.opt.showmatch = false
