@@ -8,6 +8,7 @@ set -x GOROOT (brew --prefix golang)/libexec
 set PATH $GOPATH/bin $GOROOT/bin $PATH
 
 source (brew --prefix asdf)/libexec/asdf.fish
+fish_add_path -p ~/.asdf/shims
 
 set -x GPG_TTY (tty)
 

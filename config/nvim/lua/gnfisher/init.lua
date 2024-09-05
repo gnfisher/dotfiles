@@ -65,6 +65,3 @@ autocmd("LspAttach", {
     })
   end,
 })
-
-vim.cmd('highlight clear MatchParen')
-vim.cmd('highlight clear TSPunctBracket')

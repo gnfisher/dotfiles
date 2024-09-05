@@ -15,3 +15,6 @@ end
 vim.o.background = "light"
 vim.cmd.colorscheme("delek")
 vim.keymap.set('n', '<F6>', ToggleBg, { noremap = true, silent = true })
+
+vim.cmd('highlight clear MatchParen')
+vim.cmd('highlight clear TSPunctBracket')
