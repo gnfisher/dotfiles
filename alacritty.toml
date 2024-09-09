@@ -19,7 +19,7 @@ multiplier = 5
 normal = { family = "Menlo" }
 bold = { style = "bold" }
 size = 15
-offset.y = 10
+offset.y = 3
 
 # [colors.primary]
 # background = "0xffffff"
