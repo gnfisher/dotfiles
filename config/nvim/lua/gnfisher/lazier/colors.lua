@@ -8,4 +8,5 @@ return {
     end
   },
   { 'projekt0n/github-nvim-theme' },
+  { 'rebelot/kanagawa.nvim' },
 }
