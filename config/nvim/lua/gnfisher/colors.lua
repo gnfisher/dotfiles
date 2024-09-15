@@ -1,6 +1,6 @@
 local function SetDark()
   vim.o.background = "dark"
-  vim.cmd.colorscheme("github_dark")
+  vim.cmd.colorscheme("dracula")
 end
 
 function ToggleBg()
@@ -12,7 +12,7 @@ function ToggleBg()
   end
 end
 
-vim.cmd.colorscheme("github_dark")
+vim.cmd.colorscheme("dracula")
 vim.keymap.set('n', '<F6>', ToggleBg, { noremap = true, silent = true })
 
 vim.cmd('highlight clear MatchParen')
