@@ -52,3 +52,7 @@ set("n", "cV", '"+P', { silent = true })
 set("v", "cp", '"+y', { silent = true })
 set("v", "cv", '"+p', { silent = true })
 set("v", "cV", '"+P', { silent = true })
+
+vim.keymap.set("n", "<Leader>so", function()
+  vim.cmd("so")
+end)
