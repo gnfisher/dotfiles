@@ -13,58 +13,89 @@ multiplier = 5
 # normal = { family = "JetBrainsMono Nerd Font Mono", style = "Thin" }
 # bold = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
 # italic =  { family = "JetBrainsMono Nerd Font Mono", style = "Italic" }
-# normal = { family = "SF Mono", style = "Light" }
-# bold = { family = "SF Mono", style = "Bold" }
-# italic =  { family = "SF Mono", style = "Italic" }
+normal = { family = "SF Mono", style = "Light" }
+bold = { family = "SF Mono", style = "Bold" }
+italic =  { family = "SF Mono", style = "Italic" }
 # normal = { family = "Berkeley Mono", style = "Regular" }
 # bold = { family = "Berkeley Mono", style = "Bold" }
 # italic = { family = "Berkeley Mono", style = "Italic" }
-normal = { family = "MesloLGM Nerd Font Mono" }
-italic = { style = "italic" }
-bold = { style = "bold" }
-size = 13
-offset.y = 0
+# normal = { family = "MesloLGM Nerd Font Mono" }
+# italic = { style = "italic" }
+# bold = { style = "bold" }
+size = 17
+offset.y = 3
 
-# TokyoNight Alacritty Colors
+# Colors (Solarized Dark)
+
 # Default colors
 [colors.primary]
-background = '#222436'
-foreground = '#c8d3f5'
-
-#[colors.cursor]
-#cursor = '#c8d3f5'
-#text = '#222436'
+background = '#002b36'
+foreground = '#839496'
 
 # Normal colors
 [colors.normal]
-black = '#1b1d2b'
-red = '#ff757f'
-green = '#c3e88d'
-yellow = '#ffc777'
-blue = '#82aaff'
-magenta = '#c099ff'
-cyan = '#86e1fc'
-white = '#828bb8'
+black   = '#073642'
+red     = '#dc322f'
+green   = '#859900'
+yellow  = '#b58900'
+blue    = '#268bd2'
+magenta = '#d33682'
+cyan    = '#2aa198'
+white   = '#eee8d5'
 
 # Bright colors
 [colors.bright]
-black = '#444a73'
-red = '#ff757f'
-green = '#c3e88d'
-yellow = '#ffc777'
-blue = '#82aaff'
-magenta = '#c099ff'
-cyan = '#86e1fc'
-white = '#c8d3f5'
+black   = '#002b36'
+red     = '#cb4b16'
+green   = '#586e75'
+yellow  = '#657b83'
+blue    = '#839496'
+magenta = '#6c71c4'
+cyan    = '#93a1a1'
+white   = '#fdf6e3'
 
-# Indexed Colors
-[[colors.indexed_colors]]
-index = 16
-color = '#ff966c'
 
-[[colors.indexed_colors]]
-index = 17
-color = '#c53b53'
+
+## TokyoNight Alacritty Colors
+## Default colors
+#[colors.primary]
+#background = '#222436'
+#foreground = '#c8d3f5'
+
+##[colors.cursor]
+##cursor = '#c8d3f5'
+##text = '#222436'
+
+## Normal colors
+#[colors.normal]
+#black = '#1b1d2b'
+#red = '#ff757f'
+#green = '#c3e88d'
+#yellow = '#ffc777'
+#blue = '#82aaff'
+#magenta = '#c099ff'
+#cyan = '#86e1fc'
+#white = '#828bb8'
+
+## Bright colors
+#[colors.bright]
+#black = '#444a73'
+#red = '#ff757f'
+#green = '#c3e88d'
+#yellow = '#ffc777'
+#blue = '#82aaff'
+#magenta = '#c099ff'
+#cyan = '#86e1fc'
+#white = '#c8d3f5'
+
+## Indexed Colors
+#[[colors.indexed_colors]]
+#index = 16
+#color = '#ff966c'
+
+#[[colors.indexed_colors]]
+#index = 17
+#color = '#c53b53'
 
 # Dracula
 

@@ -5,5 +5,5 @@ end
 set -x EDITOR "nvim"
 set -x VISUAL "nvim"
 
-fish_config theme choose "base16 default dark"
+fish_config theme choose "solarized dark"
 fish_config prompt choose "arrow"
