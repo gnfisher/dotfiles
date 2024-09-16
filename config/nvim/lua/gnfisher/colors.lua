@@ -1,6 +1,6 @@
 local function SetDark()
   vim.o.background = "dark"
-  vim.cmd.colorscheme("gruvbuddy")
+  vim.cmd.colorscheme("tokyonight-moon")
 end
 
 function ToggleBg()
@@ -12,8 +12,8 @@ function ToggleBg()
   end
 end
 
-vim.cmd.colorscheme("gruvbuddy")
+vim.cmd.colorscheme("tokyonight-moon")
 vim.keymap.set('n', '<F6>', ToggleBg, { noremap = true, silent = true })
 
-vim.cmd('highlight clear MatchParen')
-vim.cmd('highlight clear TSPunctBracket')
+-- vim.cmd('highlight clear MatchParen')
+-- vim.cmd('highlight clear TSPunctBracket')
