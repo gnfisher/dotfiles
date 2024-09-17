@@ -49,11 +49,11 @@ require("mason-lspconfig").setup({
         end,
       }
     end,
-    ["tsserver"] = function()
-      require("lspconfig").tsserver.setup {
+    ["ts_ls"] = function()
+      require("lspconfig").ts_ls.setup {
         capabilities = capabilities,
         on_attach = function(client)
-          -- Disable tsserver formatting, using eslint
+          -- Disable ts_ls formatting, using eslint
           client.server_capabilities.documentFormattingProvider = false
           client.server_capabilities.documentRangeFormattingProvider = false
         end,
