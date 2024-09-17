@@ -19,10 +19,10 @@ italic =  { family = "JetBrainsMono Nerd Font Mono", style = "Italic" }
 # normal = { family = "Berkeley Mono", style = "Regular" }
 # bold = { family = "Berkeley Mono", style = "Bold" }
 # italic = { family = "Berkeley Mono", style = "Italic" }
-# normal = { family = "MesloLGM Nerd Font Mono" }
-# italic = { style = "italic" }
-# bold = { style = "bold" }
-size = 17
+normal = { family = "Monaco Nerd Font Mono" }
+italic = { style = "italic" }
+bold = { style = "bold" }
+size = 13
 offset.y = 3
 
 # Colors (Solarized Dark)
