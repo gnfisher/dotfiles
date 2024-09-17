@@ -13,9 +13,9 @@ multiplier = 5
 # normal = { family = "JetBrainsMono Nerd Font Mono", style = "Thin" }
 # bold = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
 # italic =  { family = "JetBrainsMono Nerd Font Mono", style = "Italic" }
-normal = { family = "SF Mono", style = "Light" }
-bold = { family = "SF Mono", style = "Bold" }
-italic =  { family = "SF Mono", style = "Italic" }
+normal = { family = "SFMono Nerd Font", style = "Light" }
+bold = { family = "SFMono Nerd Font", style = "Bold" }
+italic =  { family = "SFMono Nerd Font", style = "Italic" }
 # normal = { family = "Berkeley Mono", style = "Regular" }
 # bold = { family = "Berkeley Mono", style = "Bold" }
 # italic = { family = "Berkeley Mono", style = "Italic" }

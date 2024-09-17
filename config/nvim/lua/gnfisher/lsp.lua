@@ -17,7 +17,7 @@ require("mason-lspconfig").setup({
     "rust_analyzer",
     "gopls",
     "elixirls",
-    "tsserver",
+    "ts_ls",
     "eslint",
   },
 
