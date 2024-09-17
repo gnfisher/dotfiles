@@ -10,9 +10,9 @@ history = 100000
 multiplier = 5
 
 [font]
-normal = { family = "JetBrainsMono Nerd Font Mono", style = "Light" }
-bold = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
-italic =  { family = "JetBrainsMono Nerd Font Mono", style = "Italic" }
+# normal = { family = "JetBrainsMono Nerd Font Mono", style = "Light" }
+# bold = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
+# italic =  { family = "JetBrainsMono Nerd Font Mono", style = "Italic" }
 # normal = { family = "SFMono Nerd Font", style = "Light" }
 # bold = { family = "SFMono Nerd Font", style = "Bold" }
 # italic =  { family = "SFMono Nerd Font", style = "Italic" }
