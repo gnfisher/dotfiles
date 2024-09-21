@@ -10,7 +10,6 @@ local function SetColor(color)
 end
 
 return {
-  { 'projekt0n/github-nvim-theme' },
   {
     "folke/tokyonight.nvim",
     lazy = false,
@@ -19,6 +18,7 @@ return {
       SetColor()
     end
   },
+  { 'projekt0n/github-nvim-theme' },
   {
     "ellisonleao/gruvbox.nvim",
     name = "gruvbox",
