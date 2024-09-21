@@ -10,7 +10,7 @@ history = 100000
 multiplier = 5
 
 [font]
-# normal = { family = "JetBrainsMono Nerd Font", style = "Light" }
+# normal = { family = "JetBrainsMono Nerd Font" }
 # bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
 # italic =  { family = "JetBrainsMono Nerd Font", style = "Italic" }
 # normal = { family = "SFMono Nerd Font", style = "Light" }
@@ -22,7 +22,7 @@ multiplier = 5
 normal = { family = "Menlo" }
 italic = { style = "italic" }
 bold = { style = "bold" }
-size = 13
+size = 15
 offset.y = 3
 
 # Colors (Solarized Dark)
