@@ -11,11 +11,23 @@ end
 
 return {
   {
-    "folke/tokyonight.nvim",
+    'rose-pine/neovim',
     lazy = false,
+    name = 'rose-pine',
+    config = function()
+      require('rose-pine').setup({
+        disable_background = true,
+        styles = {
+          italic = false,
+        },
+      })
+      SetColor()
+    end
+  },
+  {
+    "folke/tokyonight.nvim",
     opts = {},
     config = function()
-      SetColor()
     end
   },
   { 'projekt0n/github-nvim-theme' },
@@ -49,16 +61,4 @@ return {
       })
     end,
   },
-  {
-    'rose-pine/neovim',
-    name = 'rose-pine',
-    config = function()
-      require('rose-pine').setup({
-        disable_background = true,
-        styles = {
-          italic = false,
-        },
-      })
-    end
-  }
 }
