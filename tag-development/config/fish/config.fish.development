@@ -5,6 +5,9 @@ set GONOSUMDB github.com/github/*
 
 set PATH $HOME/.bin $PATH
 
+alias l "ll -a"
+alias n nvim
+
 alias gfo "git fetch origin main"
 alias gco "git checkout"
 alias grb "git rebase main"
