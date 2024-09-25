@@ -1,14 +1,16 @@
 local function SetColor(color)
   color = color or "rose-pine-moon"
   vim.cmd.colorscheme(color)
-  vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-  vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
-  vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
-  vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "none" })
-  vim.api.nvim_set_hl(0, "TelescopeResultsBorder", { bg = "none" })
-  vim.api.nvim_set_hl(0, "TelescopePreviewBorder", { bg = "none" })
-  vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = "none" })
+  if color == "rose-pine-moon" then
+    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+    vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "none" })
+    vim.api.nvim_set_hl(0, "TelescopeResultsBorder", { bg = "none" })
+    vim.api.nvim_set_hl(0, "TelescopePreviewBorder", { bg = "none" })
+    vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = "none" })
+  end
 end
 
 return {
@@ -23,7 +25,13 @@ return {
           italic = false,
         },
       })
-      SetColor()
+    end
+  },
+  {
+    'miikanissi/modus-themes.nvim',
+    lazy = false,
+    config = function()
+      SetColor("modus")
     end
   },
   {

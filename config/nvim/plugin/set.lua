@@ -1,7 +1,9 @@
 vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
 
-vim.opt.number = true
-vim.opt.relativenumber = true
+vim.o.background = "light"
+
+vim.opt.number = false
+vim.opt.relativenumber = false
 vim.api.nvim_set_option('textwidth', 80)
 
 vim.opt.tabstop = 2

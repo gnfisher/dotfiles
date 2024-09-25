@@ -56,3 +56,13 @@ set("v", "cV", '"+P', { silent = true })
 vim.keymap.set("n", "<Leader>so", function()
   vim.cmd("so")
 end)
+
+function ToggleBg()
+  if vim.o.background == "dark" then
+    vim.o.background = "light"
+  else
+    vim.o.background = "light"
+  end
+end
+
+vim.keymap.set("n", "<F6>", ToggleBg)
