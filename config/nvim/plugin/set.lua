@@ -3,7 +3,7 @@ vim.opt.guicursor =
 
 vim.o.background = "light"
 
-vim.opt.number = false
+vim.opt.number = true
 vim.opt.relativenumber = false
 vim.api.nvim_set_option('textwidth', 80)
 

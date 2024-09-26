@@ -17,6 +17,28 @@ set("n", "<C-x>h", function()
   print("No help window found")
 end, { noremap = true, silent = true, desc = "Close help window" })
 
+local function close_terminal_buffers()
+  local closed = false
+  local closed_count = 0
+
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    if vim.bo[buf].buftype == 'terminal' then
+      -- Use vim.api.nvim_buf_delete() with force=true, which is equivalent to :bd!
+      vim.api.nvim_buf_delete(buf, { force = true })
+      closed = true
+      closed_count = closed_count + 1
+    end
+  end
+
+  if not closed then
+    print("No terminal buffers found")
+  else
+    print(string.format("Closed %d terminal buffer(s)", closed_count))
+  end
+end
+vim.keymap.set("n", "<C-x>t", close_terminal_buffers, { noremap = true, silent = true, desc = "Close terminal windows" })
+
 set('n', '<C-h>', '<C-w>h')
 set('n', '<C-j>', '<C-w>j')
 set('n', '<C-k>', '<C-w>k')
