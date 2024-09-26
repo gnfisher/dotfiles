@@ -1,4 +1,5 @@
-vim.opt.guicursor = "n-v-c:block-blinkon5-blinkoff5-blinkwait10,i-ci-ve:ver25,r-cr:hor20,o:hor50"
+vim.opt.guicursor =
+"n-v-c:block-blinkon1-blinkoff1-blinkwait1,i-ci-ve:ver25-blinkon1-blinkoff1-blinkwait1,r-cr:hor20,o:hor50"
 
 vim.o.background = "light"
 
