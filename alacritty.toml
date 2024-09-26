@@ -4,7 +4,7 @@ TERM = "xterm-256color"
 [window]
 decorations = "buttonless"
 option_as_alt = "Both"
-padding = { x = 2, y = 2 }
+padding = { x = 10, y = 10 }
 
 [scrolling]
 history = 100000
