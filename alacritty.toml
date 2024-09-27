@@ -18,7 +18,7 @@ normal = { family = "DejaVuSansM Nerd Font", style = "Regular" }
 # bold = { family = "Berkeley Mono", style = "Bold" }
 # italic =  { family = "Berkeley Mono", style = "Italic" }
 size = 13
-offset.y = 5
+offset.y = 8
 # offset.x = 1
 
 [colors.primary]
