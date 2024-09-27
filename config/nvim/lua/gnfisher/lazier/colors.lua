@@ -1,5 +1,5 @@
 local function SetColor(color)
-  color = color or "rose-pine-moon"
+  color = color or "modus"
   vim.cmd.colorscheme(color)
   if color == "rose-pine-moon" then
     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })

@@ -10,7 +10,7 @@ history = 100000
 multiplier = 5
 
 [font]
-normal = { family = "DejaVuSansM Nerd Font", style = "Regular" }
+normal = { family = "Monaco", style = "Regular" }
 # normal = { family = "FiraCode Nerd Font", style = "Light" }
 # bold = { family = "FiraCode Nerd Font", style = "Bold" }
 # italic =  { family = "FiraCode Nerd Font", style = "Italic" }
@@ -18,29 +18,28 @@ normal = { family = "DejaVuSansM Nerd Font", style = "Regular" }
 # bold = { family = "Berkeley Mono", style = "Bold" }
 # italic =  { family = "Berkeley Mono", style = "Italic" }
 size = 13
-offset.y = 8
 # offset.x = 1
 
-[colors.primary]
-background = "#FFFFFF"
-foreground = "#000000"
+# [colors.primary]
+# background = "#FFFFFF"
+# foreground = "#000000"
 
-[colors.normal]
-black = "#000000"
-red = "#CD0000"
-green = "#00CD00"
-yellow = "#CDCD00"
-blue = "#0000EE"
-magenta = "#CD00CD"
-cyan = "#00CDCD"
-white = "#E5E5E5"
+# [colors.normal]
+# black = "#000000"
+# red = "#CD0000"
+# green = "#00CD00"
+# yellow = "#CDCD00"
+# blue = "#0000EE"
+# magenta = "#CD00CD"
+# cyan = "#00CDCD"
+# white = "#E5E5E5"
 
-[colors.bright]
-black = "#7F7F7F"
-red = "#FF0000"
-green = "#00FF00"
-yellow = "#FFFF00"
-blue = "#5C5CFF"
-magenta = "#FF00FF"
-cyan = "#00FFFF"
-white = "#FFFFFF"
+# [colors.bright]
+# black = "#7F7F7F"
+# red = "#FF0000"
+# green = "#00FF00"
+# yellow = "#FFFF00"
+# blue = "#5C5CFF"
+# magenta = "#FF00FF"
+# cyan = "#00FFFF"
+# white = "#FFFFFF"
