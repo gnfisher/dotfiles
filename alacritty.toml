@@ -10,15 +10,16 @@ history = 100000
 multiplier = 5
 
 [font]
+normal = { family = "DejaVuSansM Nerd Font", style = "Regular" }
 # normal = { family = "FiraCode Nerd Font", style = "Light" }
 # bold = { family = "FiraCode Nerd Font", style = "Bold" }
 # italic =  { family = "FiraCode Nerd Font", style = "Italic" }
-normal = { family = "Berkeley Mono" }
-bold = { family = "Berkeley Mono", style = "Bold" }
-italic =  { family = "Berkeley Mono", style = "Italic" }
-size = 15
-offset.y = 1
-offset.x = 1
+# normal = { family = "Berkeley Mono" }
+# bold = { family = "Berkeley Mono", style = "Bold" }
+# italic =  { family = "Berkeley Mono", style = "Italic" }
+size = 13
+offset.y = 5
+# offset.x = 1
 
 [colors.primary]
 background = "#FFFFFF"
