@@ -1,8 +1,6 @@
 vim.opt.guicursor =
 "n-v-c:block-blinkon1-blinkoff1-blinkwait1,i-ci-ve:ver25-blinkon1-blinkoff1-blinkwait1,r-cr:hor20,o:hor50"
 
-vim.o.background = "light"
-
 vim.opt.number = true
 vim.opt.relativenumber = false
 vim.api.nvim_set_option('textwidth', 80)

@@ -1,74 +1,19 @@
 local function SetColor(color)
-  color = color or "modus"
+  color = color or "tokyonight-storm"
   vim.cmd.colorscheme(color)
-  if color == "rose-pine-moon" then
-    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-    vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
-    vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
-    vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "none" })
-    vim.api.nvim_set_hl(0, "TelescopeResultsBorder", { bg = "none" })
-    vim.api.nvim_set_hl(0, "TelescopePreviewBorder", { bg = "none" })
-    vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = "none" })
-  end
 end
 
 return {
   {
-    'rose-pine/neovim',
-    lazy = false,
-    name = 'rose-pine',
-    config = function()
-      require('rose-pine').setup({
-        disable_background = true,
-        styles = {
-          italic = false,
-        },
-      })
-    end
-  },
-  {
     'miikanissi/modus-themes.nvim',
     lazy = false,
-    config = function()
-      SetColor("modus")
-    end
   },
   {
     "folke/tokyonight.nvim",
+    lazy = false,
     opts = {},
     config = function()
+      SetColor("tokyonight-storm")
     end
-  },
-  { 'projekt0n/github-nvim-theme' },
-  {
-    "ellisonleao/gruvbox.nvim",
-    name = "gruvbox",
-    config = function()
-      require("gruvbox").setup({
-        terminal_colors = true, -- add neovim terminal colors
-        undercurl = true,
-        underline = false,
-        bold = true,
-        italic = {
-          strings = false,
-          emphasis = false,
-          comments = false,
-          operators = false,
-          folds = false,
-        },
-        strikethrough = true,
-        invert_selection = false,
-        invert_signs = false,
-        invert_tabline = false,
-        invert_intend_guides = false,
-        inverse = true, -- invert background for search, diffs, statuslines and errors
-        contrast = "",  -- can be "hard", "soft" or empty string
-        palette_overrides = {},
-        overrides = {},
-        dim_inactive = false,
-        transparent_mode = false,
-      })
-    end,
   },
 }

@@ -68,6 +68,34 @@ set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- Telescope keybinds
+--
+
+set("n", "<leader>ff", require('telescope.builtin').find_files)
+set("n", "<leader>ft", require('telescope.builtin').git_files)
+set("n", "<leader>fh", require('telescope.builtin').help_tags)
+set("n", "<leader>fg", require('telescope.builtin').live_grep)
+set("n", "<leader>fd", require('telescope.builtin').diagnostics)
+set('n', '<leader>/', require('telescope.builtin').current_buffer_fuzzy_find)
+set("n", "<leader>gw", require('telescope.builtin').grep_string)
+set("n", "<leader><space>", require('telescope.builtin').buffers)
+
+-- Fugitive keybinds
+--
+
+set("n", "<Leader>gs", ":ToggleFugitive<CR>", { noremap = true, silent = true })
+set("n", "gu", "<cmd>diffget //2<CR>")
+set("n", "gh", "<cmd>diffget //3<CR>")
+
+-- Utility keybinds
+--
+
+-- Reload vim config (in dotfiles)
+set("n", "<Leader>so", function()
+  vim.cmd("so")
+end)
+
+-- Better copy paste
 set("n", "cp", '"+y', { silent = true })
 set("n", "cv", '"+p', { silent = true })
 set("n", "cV", '"+P', { silent = true })
@@ -75,16 +103,5 @@ set("v", "cp", '"+y', { silent = true })
 set("v", "cv", '"+p', { silent = true })
 set("v", "cV", '"+P', { silent = true })
 
-vim.keymap.set("n", "<Leader>so", function()
-  vim.cmd("so")
-end)
-
-function ToggleBg()
-  if vim.o.background == "dark" then
-    vim.o.background = "light"
-  else
-    vim.o.background = "light"
-  end
-end
-
-vim.keymap.set("n", "<F6>", ToggleBg)
+-- Toggle background
+set("n", "<F6>", ":ToggleBg<CR>")

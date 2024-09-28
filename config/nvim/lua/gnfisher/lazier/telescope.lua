@@ -6,6 +6,22 @@ return {
     "nvim-telescope/telescope-ui-select.nvim"
   },
   config = function()
-    require("gnfisher.telescope")
+    local actions = require "telescope.actions"
+
+    pcall(require("telescope").load_extension, "ui-select")
+
+    require("telescope").setup({
+      mappings = {
+        i = {
+          ["<C-x>"] = actions.delete_buffer + actions.move_to_top,
+          ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+        }
+      },
+      extensions = {
+        ["ui-select"] = {
+          require("telescope.themes").get_dropdown {},
+        },
+      }
+    })
   end
 }
