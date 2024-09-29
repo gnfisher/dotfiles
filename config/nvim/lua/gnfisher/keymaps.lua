@@ -70,19 +70,77 @@ set("n", "<M-.>", "<c-w>5>")
 set("n", "<M-t>", "<C-W>+")
 set("n", "<M-s>", "<C-W>-")
 
--- C-d/C-u & n/N reposition cursor in center of screen
+-- Center while navigating
 set("n", "<C-d>", "<C-d>zz")
 set("n", "<C-u>", "<C-u>zz")
 set("n", "n", "nzzzv")
 set("n", "N", "Nzzzv")
-
--- Navigate the quickfix window
-set("n", "<Leader>j", "<cmd>cnext<CR>zz")
-set("n", "<Leader>k", "<cmd>cprev<CR>zz")
+set("n", "{", "{zz")
+set("n", "}", "}zz")
+set("n", "N", "Nzz")
+set("n", "n", "nzz")
+set("n", "G", "Gzz")
+set("n", "gg", "ggzz")
+set("n", "gd", "gdzz")
+set("n", "<C-i>", "<C-i>zz")
+set("n", "<C-o>", "<C-o>zz")
+set("n", "%", "%zz")
+set("n", "*", "*zz")
+set("n", "#", "#zz")
 
 -- More natural k/j
 set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- Navigate to next qflist item
+set("n", "<leader>cn", ":cnext<cr>zz")
+
+-- Navigate to previos qflist item
+set("n", "<leader>cp", ":cprevious<cr>zz")
+
+-- Open the qflist
+set("n", "<leader>co", ":copen<cr>zz")
+
+-- Close the qflist
+set("n", "<leader>cc", ":cclose<cr>zz")
+
+
+-- Diagnostics
+--
+
+-- Goto next diagnostic of any severity
+set("n", "]d", function()
+  vim.diagnostic.goto_next({})
+  vim.api.nvim_feedkeys("zz", "n", false)
+end)
+
+-- Goto previous diagnostic of any severity
+set("n", "[d", function()
+  vim.diagnostic.goto_prev({})
+  vim.api.nvim_feedkeys("zz", "n", false)
+end)
+
+-- Goto next error diagnostic
+set("n", "]e", function()
+  vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+  vim.api.nvim_feedkeys("zz", "n", false)
+end)
+
+-- Goto previous error diagnostic
+set("n", "[e", function()
+  vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+  vim.api.nvim_feedkeys("zz", "n", false)
+end)
+
+-- Open the diagnostic under the cursor in a float window
+set("n", "<leader>d", function()
+  vim.diagnostic.open_float({
+    border = "rounded",
+  })
+end)
+
+-- Place all dignostics into a qflist
+set("n", "<leader>ld", vim.diagnostic.setqflist, { desc = "Quickfix [L]ist [D]iagnostics" })
 
 
 -- Oil
