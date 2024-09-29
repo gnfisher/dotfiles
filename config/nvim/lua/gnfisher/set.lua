@@ -20,7 +20,21 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
 vim.opt.clipboard = 'unnamedplus'
-require('base.rdm')
+-- In codespaces if rdm is present use it for clipboard.
+-- See https://github.com/BlakeWilliams/remote-development-manager
+if vim.fn.executable('rdm') == 1 and os.getenv("CODESPACES") ~= nil then
+  vim.g.clipboard = {
+    name = "rdm",
+    copy = {
+      ["+"] = { "rdm", "copy" },
+      ["*"] = { "rdm", "copy" }
+    },
+    paste = {
+      ["+"] = { "rdm", "paste" },
+      ["*"] = { "rdm", "paste" }
+    },
+  }
+end
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
