@@ -141,6 +141,8 @@ end)
 
 -- Place all dignostics into a qflist
 set("n", "<leader>ld", vim.diagnostic.setqflist, { desc = "Quickfix [L]ist [D]iagnostics" })
+set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 
 
 -- Oil
