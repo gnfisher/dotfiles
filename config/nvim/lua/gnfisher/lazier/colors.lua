@@ -1,5 +1,5 @@
 local function SetColor(color)
-  color = color or "tokyonight-storm"
+  color = color or "default"
   vim.cmd.colorscheme(color)
 end
 
