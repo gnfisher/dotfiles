@@ -1,12 +1,12 @@
-import = [
-"~/.config/alacritty/catppuccin-macchiato.toml"
-]
+# import = [
+# "~/.config/alacritty/catppuccin-macchiato.toml"
+# ]
 
 [env]
 TERM = "xterm-256color"
 
 [window]
-decorations = "None"
+# decorations = "None"
 option_as_alt = "Both"
 padding = { x = 2, y = 2 }
 
@@ -15,13 +15,11 @@ history = 100000
 multiplier = 5
 
 [font]
-# normal = { family = "Monaco", style = "Regular" }
 normal = { family = "FiraCode Nerd Font", style = "Light" }
-italic =  { family = "FiraCode Nerd Font", style = "Italic" }
+# italic =  { family = "FiraCode Nerd Font", style = "Italic" }
 # normal = { family = "SauceCodePro Nerd Font", style = "Regular" }
 # bold = { family = "FiraCode Nerd Font", style = "Bold" }
 # normal = { family = "Berkeley Mono" }
 # bold = { family = "Berkeley Mono", style = "Bold" }
 # italic =  { family = "Berkeley Mono", style = "Italic" }
 size = 15
-offset.x = 1
