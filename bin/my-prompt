@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Check if the input is provided
+if [ -z "$1" ]; then
+  echo "Usage: $0 <query> [model]"
+  exit 1
+fi
+
+# Set the model to the default if not provided
+MODEL=${2:-"default-model"}
+
+# Send the input to the Anthropic API and stream back the response
+curl -s -X POST "https://api.anthropic.com/v1/complete" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -d "{\"prompt\": \"$1\", \"model\": \"$MODEL\"}" | jq -r '.completion' | while IFS= read -r line; do
+    echo "$line"
+  done
