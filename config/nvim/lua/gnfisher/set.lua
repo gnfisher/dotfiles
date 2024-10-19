@@ -1,7 +1,10 @@
+vim.cmd.colorscheme("lucius")
+vim.cmd("LuciusDarkHighContrast")
+
 vim.opt.guicursor =
 "n-v-c:block-blinkon1-blinkoff1-blinkwait1,i-ci-ve:ver25-blinkon1-blinkoff1-blinkwait1,r-cr:hor20,o:hor50"
 
-vim.opt.number = true
+vim.opt.number = false
 vim.opt.relativenumber = false
 vim.api.nvim_set_option('textwidth', 80)
 
@@ -47,8 +50,8 @@ vim.opt.mousefocus = true
 vim.opt.virtualedit = 'block'
 
 vim.o.scroll = 10
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = 'yes'
+vim.opt.scrolloff = 2
+vim.opt.signcolumn = 'no'
 
 vim.opt.termguicolors = true
 

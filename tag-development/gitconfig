@@ -33,7 +33,7 @@
   uncommit = reset --soft HEAD^
   unstage = reset
 [color]
-  ui = true
+	ui = auto
 [blame]
   date = short
 [difftool]
