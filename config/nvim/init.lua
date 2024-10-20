@@ -1,2 +1,2 @@
-vim.opt.syntax = 'off'
+vim.opt.syntax = 'on'
 require('gnfisher')
