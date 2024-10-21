@@ -7,7 +7,7 @@ set -x
 
 if [[ "$CODESPACES" = "true" ]]; then
   sudo apt update
-  sudo apt-get install -y rcm tmux universal-ctags wget fuse
+  sudo apt-get install -y rcm universal-ctags wget
   rcup -f -v -d . -t development -t github
 
   # Use RDM for copy/paste and open support
@@ -19,8 +19,6 @@ if [[ "$CODESPACES" = "true" ]]; then
 elif [[ "$(uname)" = "Darwin" ]]; then
   brew install rcm
   rcup -v -d . -t macos -t development -t gpg
-  rcup -v
-
 else
   >&2 echo "error: Unknown system"
   exit 1

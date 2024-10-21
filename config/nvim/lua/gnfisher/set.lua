@@ -1,4 +1,4 @@
-vim.cmd.colorscheme("lucius")
+vim.cmd([[colorscheme lucius]])
 vim.cmd("LuciusDarkHighContrast")
 
 vim.opt.number = false
@@ -67,8 +67,9 @@ vim.opt.smartcase = true
 
 vim.opt.completeopt = 'menuone,noinsert,noselect'
 
+vim.o.wildcharm=26 -- 26 = <C-z>
 vim.o.wildmenu = true
 vim.o.wildmode = "longest:list"
-vim.o.wildcharm=26 -- 26 = <C-z>
+vim.o.wildignore= ".DS_Store,node_modules,build,dist,.git"
 
 vim.opt.showmatch = false
