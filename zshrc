@@ -27,6 +27,8 @@ export GREP_OPTIONS="--color"
 export HISTSIZE=100000
 export HISTFILE="$HOME/.history"
 export SAVEHIST=$HISTSIZE
+bindkey '^xp' history-beginning-search-backward
+bindkey '^xn' history-beginning-search-forward
 
 # Use vim as the editor
 export EDITOR=vi
