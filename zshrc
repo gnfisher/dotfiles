@@ -1,3 +1,9 @@
+# Disable Ctrl-S and Ctrl-Q flow control
+# `stty -ixon` disables XON/XOFF flow control at the terminal level
+# `unsetopt flowcontrol` disables flow control at the shell level
+stty -ixon
+unsetopt flowcontrol
+
 # Initialize prompt
 autoload -Uz promptinit
 promptinit
