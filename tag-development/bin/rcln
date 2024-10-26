@@ -1,0 +1,49 @@
+#!/bin/bash
+set -e
+
+directory="."
+dotfiles_dir="$HOME/.dotfiles"
+noop=false
+
+# Parse command line arguments
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    -d|--dotfiles)
+      if [ -z "$2" ]; then
+        echo "Error: -d/--dotfiles requires a directory path"
+        exit 1
+      fi
+      dotfiles_dir="$(eval echo "${2%/}")"  # Expand and strip trailing slash if present
+      shift 2
+      ;;
+    -n|--noop)
+      noop=true
+      shift
+      ;;
+    --*)
+        echo "Unknown option: $1"
+        exit 1
+        ;;
+    -*)
+        echo "Unknown option: $1"
+        exit 1
+        ;;
+    *)
+      directory="$(eval echo "${1%/}")" # Expand and strip trailing slash if present
+      shift
+      ;;
+  esac
+done
+
+if [ ! -d "$directory" ]; then
+    echo "Error: Directory '$directory' does not exist"
+    exit 1
+fi
+
+if [ $noop = true ]; then
+  echo "Running in dry-run mode"
+  find "$directory" -path "$directory/[A-Z]*/*" -prune -o -type l -lname "$dotfiles_dir/*" -exec test ! -e {} \; -print
+  exit 0
+fi
+
+find "$directory" -path "$directory/[A-Z]*/*" -prune -o -type l -lname "$dotfiles_dir/*" -exec test ! -e {} \; -print0 | xargs -0 rm
