@@ -11,7 +11,18 @@ prompt redhat
 
 # Initialize completion
 autoload -Uz compinit
-compinit -D
+compinit -C
+
+# Enable shift-tab to go backwards
+bindkey '^[[Z' reverse-menu-complete
+
+setopt append_history         # Append, not replace
+setopt inc_append_history     # Immediately append history
+setopt always_to_end          # Always go to end of line on complete
+setopt correct                # Correct typos
+setopt hist_ignore_dups       # Do not show dupes in history
+setopt hist_ignore_space      # Ignore commands starting with space
+setopt prompt_subst           # Necessary for pretty prompts
 
 # Add PATH
 export PATH=/usr/local/sbin:/usr/local/bin:${PATH}
@@ -31,8 +42,14 @@ bindkey '^xp' history-beginning-search-backward
 bindkey '^xn' history-beginning-search-forward
 
 # Use vim as the editor
-export EDITOR=vi
+export EDITOR=vim
 setopt emacs
+
+# Don't notify about running jobs
+unsetopt notify
+
+# Set grep options
+alias grep='grep --color=auto --ignore-case'
 
 # Use C-x C-e to edit the current command line
 autoload -U edit-command-line
@@ -49,9 +66,7 @@ function cdf() { cd *$1*/ }
 
 # Add homebrew
 export PATH="/opt/homebrew/bin:$PATH"
-
-# Source asdf
-source $(brew --prefix asdf)/libexec/asdf.sh
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
 # Source completions
 source $HOME/.zsh/completions.zsh
@@ -66,3 +81,18 @@ export GONOPROXY=
 export GONOSUMDB=github.com/github/*
 export GOPATH=`go env GOPATH`
 export PATH=$GOPATH/bin:$PATH
+
+# If in VS Code, use code as the editor
+if [[ "$TERM_PROGRAM" == "vscode" ]]; then
+  export EDITOR=vim
+  export VISUAL="code --wait"
+fi
+
+# Load fzf if it is installed and exists
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export FZF_DEFAULT_COMMAND='rg --files --hidden -g ""'
+export FZF_DEFAULT_OPTS='--color=16'
+
+# Source macOS specific configs
+[[ "$OSTYPE" == "darwin"* ]] && source $HOME/.zsh/macos.zsh
