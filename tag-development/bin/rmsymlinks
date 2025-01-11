@@ -2,20 +2,25 @@
 
 # Function to print usage
 print_usage() {
-    echo "Usage: $0 [-d] [directory]"
+    echo "Usage: $0 [-d] [-r] [directory]"
     echo "  -d: Delete dead symlinks instead of just listing them"
+    echo "  -r: Recursively process subdirectories"
     echo "  If no directory is specified, the current directory will be used."
 }
 
 # Initialize variables
 delete_mode=false
+recursive_mode=false
 search_dir="."
 
 # Parse command line arguments
-while getopts ":d" opt; do
+while getopts ":dr" opt; do
     case ${opt} in
         d )
             delete_mode=true
+            ;;
+        r )
+            recursive_mode=true
             ;;
         \? )
             echo "Invalid option: $OPTARG" 1>&2
@@ -36,12 +41,25 @@ if [ $# -eq 1 ]; then
     search_dir="$1"
 fi
 
+# Check if we have permission to read the directory
+if [ ! -r "$search_dir" ]; then
+    echo "Error: No permission to read directory '$search_dir'" 1>&2
+    exit 1
+fi
+
 # Function to process dead symlinks
 process_dead_symlinks() {
+    local maxdepth_arg=""
+    if [ "$recursive_mode" = false ]; then
+        maxdepth_arg="-maxdepth 1"
+    fi
+
     if [ "$delete_mode" = true ]; then
-        find "$search_dir" -type l -exec test ! -e {} \; -delete -print
+        # Using -exec rm within find for deletion
+        find "$search_dir" $maxdepth_arg -type l -exec sh -c 'for l; do [ -e "$l" ] || { rm "$l" && echo "$l"; }; done' _ {} + 2>/dev/null
     else
-        find "$search_dir" -type l -exec test ! -e {} \; -print
+        # Using -exec with + to batch process symlinks
+        find "$search_dir" $maxdepth_arg -type l -exec sh -c 'for l; do [ -e "$l" ] || echo "$l"; done' _ {} + 2>/dev/null
     fi
 }
 

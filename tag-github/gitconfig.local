@@ -1,2 +1,2 @@
-[credential]
-	helper = /usr/local/share/gcm-core/git-credential-manager
+[includeIf "exec:test -f /usr/local/share/gcm-core/git-credential-manager"]
+    path = ~/.gitconfig-gcm

@@ -16,17 +16,16 @@ if [[ "$CODESPACES" = "true" ]]; then
   chmod +x /usr/local/bin/rdm
   gh config set browser "rdm open"
 
-elif [[ "$(uname)" = "Darwin" ]]; then
-  brew install rcm
-  rcup -v -d . -t macos -t development -t gpg
-  rcup -v
-
 else
   >&2 echo "error: Unknown system"
   exit 1
 fi
 
+# Git URL configuration
 if [[ "$CODESPACES" = "true" ]]; then
-  # Default to HTTPS for GitHub access
-  git config --global url.https://github.com/.insteadOf git@github.com:
+    # Use HTTPS for GitHub in Codespaces
+    git config --global url.https://github.com/.insteadOf git@github.com:
+else
+    # Use SSH everywhere else
+    git config --global url.git@github.com:.insteadOf https://github.com/
 fi
