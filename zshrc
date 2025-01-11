@@ -36,8 +36,18 @@ setopt PUSHD_SILENT            # Don't print dir stack after pushd/popd
 autoload -Uz colors && colors   # Load colors
 export CLICOLOR=1              # Enable colors for ls
 export LSCOLORS=ExFxCxDxBxegedabagacad
+# Git status in prompt
+autoload -Uz vcs_info
+precmd() { vcs_info }
 
-# Prompt configuration
+# Configure vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:git:*' formats '%F{green}(%b)%f%F{red}%u%f%F{yellow}%c%f'
+zstyle ':vcs_info:git:*' stagedstr "+"
+zstyle ':vcs_info:git:*' unstagedstr "*"
+
+# Prompt format: hostname directory(branch)*+$
 setopt PROMPT_SUBST            # Enable prompt substitution
 
 # Function to get host display name
@@ -51,8 +61,8 @@ function get_host_display() {
     fi
 }
 
-# Prompt format: hostname directory$
-PROMPT='$(get_host_display) %F{cyan}%1~ %F{red}$ %f'
+# Prompt format: hostname directory(branch)*+$
+PROMPT='$(get_host_display) %F{cyan}%1~ ${vcs_info_msg_0_} %F{red}$ %f'
 
 # Key bindings
 bindkey -e                     # Emacs key bindings
