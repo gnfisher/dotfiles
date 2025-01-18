@@ -7,9 +7,6 @@ return {
   },
   config = function()
     local actions = require "telescope.actions"
-
-    pcall(require("telescope").load_extension, "ui-select")
-
     require("telescope").setup({
       mappings = {
         i = {
@@ -17,11 +14,6 @@ return {
           ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
         }
       },
-      extensions = {
-        ["ui-select"] = {
-          require("telescope.themes").get_dropdown {},
-        },
-      }
     })
   end
 }

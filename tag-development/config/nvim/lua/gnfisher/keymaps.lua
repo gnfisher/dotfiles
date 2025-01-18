@@ -1,5 +1,7 @@
 local set = vim.keymap.set
 
+vim.cmd('colorscheme lucius')
+
 -- Space is leader so make it a noop
 set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 

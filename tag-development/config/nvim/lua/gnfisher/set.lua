@@ -1,6 +1,7 @@
-vim.opt.guicursor =
-"n-v-c:block-blinkon1-blinkoff1-blinkwait1,i-ci-ve:ver25-blinkon1-blinkoff1-blinkwait1,r-cr:hor20,o:hor50"
+vim.cmd('syntax on')
+vim.cmd('filetype plugin indent on')
 
+vim.opt.cmdheight = 2
 vim.opt.number = true
 vim.opt.relativenumber = false
 vim.api.nvim_set_option('textwidth', 80)
@@ -17,9 +18,10 @@ vim.opt.smartindent = true
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
+vim.opt.undofile = false
 
 vim.opt.clipboard = 'unnamedplus'
+
 -- In codespaces if rdm is present use it for clipboard.
 -- See https://github.com/BlakeWilliams/remote-development-manager
 if vim.fn.executable('rdm') == 1 and os.getenv("CODESPACES") ~= nil then
