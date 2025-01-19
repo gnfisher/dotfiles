@@ -11,7 +11,7 @@ require("gnfisher.functions.toggle_bg")
 require("gnfisher.functions.trim_whitespace")
 require("gnfisher.functions.gitsh")
 
-pcall(vim.cmd, "colorscheme molokai")
+pcall(vim.cmd, "colorscheme jellybeans")
 
 vim.g.netrw_banner = 0
 

@@ -151,5 +151,7 @@ set("n", "<leader>e", function()
   require("oil").toggle_float()
 end)
 
-vim.keymap.set('n', '<leader>gg', ':Gitsh<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>gt', ':Gitsigns toggle_signs<CR>', { noremap = true, silent = true })
+set('n', '<leader>gg', ':Gitsh<CR>', { noremap = true, silent = true })
+set('n', '<leader>gt', ':Gitsigns toggle_signs<CR>', { noremap = true, silent = true })
+
+set('n', '-', ':Ex<cr>')

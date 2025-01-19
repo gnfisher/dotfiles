@@ -1,8 +1,12 @@
 return {
   {
-    'tanvirtin/monokai.nvim',
+    'ishan9299/nvim-solarized-lua',
   },
   {
-    'UtkarshVerma/molokai.nvim',
-  },
+    "wtfox/jellybeans.nvim",
+    priority = 1000,
+    config = function()
+      require("jellybeans").setup()
+    end,
+  }
 }

@@ -1,8 +1,15 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
+  dependencies = {
+    'RRethy/nvim-treesitter-endwise',
+  },
   config = function()
     require("nvim-treesitter.configs").setup({
+      endwise = {
+        enable = true
+      },
+
       -- A list of parser names, or "all"
       ensure_installed = {
         "vimdoc", "javascript", "typescript", "c", "lua", "rust",
