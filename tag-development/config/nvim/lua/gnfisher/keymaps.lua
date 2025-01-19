@@ -1,7 +1,5 @@
 local set = vim.keymap.set
 
-vim.cmd('colorscheme lucius')
-
 -- Space is leader so make it a noop
 set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
@@ -153,23 +151,5 @@ set("n", "<leader>e", function()
   require("oil").toggle_float()
 end)
 
-
--- Telescope keybinds
---
-
-set("n", "<leader>ff", require('telescope.builtin').find_files)
-set("n", "<leader>ft", require('telescope.builtin').git_files)
-set("n", "<leader>fh", require('telescope.builtin').help_tags)
-set("n", "<leader>fg", require('telescope.builtin').live_grep)
-set("n", "<leader>fd", require('telescope.builtin').diagnostics)
-set('n', '<leader>/', require('telescope.builtin').current_buffer_fuzzy_find)
-set("n", "<leader>gw", require('telescope.builtin').grep_string)
-set("n", "<leader><space>", require('telescope.builtin').buffers)
-
-
--- Fugitive keybinds
---
-
-set("n", "<Leader>gs", ":ToggleFugitive<CR>", { noremap = true, silent = true })
-set("n", "gu", "<cmd>diffget //2<CR>")
-set("n", "gh", "<cmd>diffget //3<CR>")
+vim.keymap.set('n', '<leader>gg', ':Gitsh<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>gt', ':Gitsigns toggle_signs<CR>', { noremap = true, silent = true })

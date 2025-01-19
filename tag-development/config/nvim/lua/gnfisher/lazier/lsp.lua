@@ -1,6 +1,81 @@
+-- LSP configuration with lazy loading
+local M = {}
+
+-- Common capabilities for all servers
+local function make_capabilities()
+  return vim.tbl_deep_extend(
+    "force",
+    {},
+    vim.lsp.protocol.make_client_capabilities()
+  )
+end
+
+-- Server-specific configurations
+local servers = {
+  lua_ls = {
+    on_attach = function(client)
+      client.server_capabilities.semanticTokensProvider = nil
+    end,
+    settings = {
+      Lua = {
+        runtime = { version = "Lua 5.1" },
+        diagnostics = {
+          globals = { "vim", "it", "describe", "before_each", "after_each" },
+        }
+      }
+    }
+  },
+  gopls = {
+  },
+  ts_ls = {
+    on_attach = function(client)
+      -- Disable formatting in favor of eslint
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
+      client.server_capabilities.semanticTokensProvider = nil
+    end
+  },
+  eslint = {
+    on_attach = function(client, bufnr)
+      client.server_capabilities.semanticTokensProvider = nil
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = bufnr,
+        command = "EslintFixAll",
+      })
+    end,
+    settings = {
+      format = { enable = true },
+    }
+  }
+}
+
+-- Keybinding setup
+local function setup_buffer_keymaps(bufnr)
+  local opts = { buffer = bufnr, noremap = true, silent = true }
+
+  vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
+  vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
+  vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, opts)
+  vim.keymap.set("n", "<Leader>ds", require('telescope.builtin').lsp_document_symbols, opts)
+  vim.keymap.set("n", "<Leader>ws", require('telescope.builtin').lsp_dynamic_workspace_symbols, opts)
+
+  -- Diagnostic navigation
+  vim.keymap.set('n', ']d', function()
+    vim.diagnostic.goto_next({ float = false })
+    require('echo-diagnostics').echo_line_diagnostic()
+  end, opts)
+
+  vim.keymap.set('n', '[d', function()
+    vim.diagnostic.goto_prev({ float = false })
+    require('echo-diagnostics').echo_line_diagnostic()
+  end, opts)
+end
+
+-- Return plugin spec for lazy.nvim
 return {
   {
     'seblj/nvim-echo-diagnostics',
+    event = "VeryLazy",
     config = function()
       vim.api.nvim_create_autocmd("CursorHold", {
         pattern = "*",
@@ -12,123 +87,63 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    tag = "v1.0.0",
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
     },
-
+    ft = { "lua", "typescript", "javascript", "go" }, -- specific filetypes
     config = function()
-      vim.diagnostic.config({
-        signs = false,
-        virtual_text = false,
-        underline = true,
-        float = false,
-        severity_sort = true,
-      })
+      -- Core LSP setup
+      local capabilities = make_capabilities()
 
-      local util = require 'lspconfig.util'
-      local capabilities = vim.tbl_deep_extend(
-        "force",
-        {},
-        vim.lsp.protocol.make_client_capabilities()
-      )
-
-      require("mason").setup()
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "lua_ls",
-          "gopls",
-          "ts_ls",
-          "eslint",
-        },
-        handlers = {
-          function(server_name) -- default handler (optional)
-            require("lspconfig")[server_name].setup {
-              capabilities = capabilities
-            }
-          end,
-
-          ["lua_ls"] = function()
-            local lspconfig = require("lspconfig")
-            lspconfig.lua_ls.setup {
-              capabilities = capabilities,
-              settings = {
-                Lua = {
-                  runtime = { version = "Lua 5.1" },
-                  diagnostics = {
-                    globals = { "vim", "it", "describe", "before_each", "after_each" },
-                  }
-                }
-              }
-            }
-          end,
-          ["golangci_lint_ls"] = function()
-            require("lspconfig").golangci_lint_ls.setup {
-              root_dir = function(fname)
-                return util.root_pattern('go.mod')(fname)
-              end,
-            }
-          end,
-          ["ts_ls"] = function()
-            require("lspconfig").ts_ls.setup {
-              capabilities = capabilities,
-              on_attach = function(client)
-                -- Disable ts_ls formatting, using eslint
-                client.server_capabilities.documentFormattingProvider = false
-                client.server_capabilities.documentRangeFormattingProvider = false
-              end,
-            }
-          end,
-          ["eslint"] = function()
-            require("lspconfig").eslint.setup {
-              capabilities = capabilities,
-              on_attach = function(client, bufnr)
-                vim.api.nvim_create_autocmd("BufWritePre", {
-                  buffer = bufnr,
-                  command = "EslintFixAll",
-                })
-              end,
-              settings = {
-                format = { enable = true },
-              },
-            }
-          end,
+      -- Initialize Mason first
+      require("mason").setup({
+        ui = {
+          border = "rounded",
+          icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+          }
         }
       })
 
+      -- Configure Mason-LSPConfig
+      require("mason-lspconfig").setup({
+        ensure_installed = vim.tbl_keys(servers),
+        automatic_installation = true,
+      })
+
+      -- Set up autocommand for LSP attach
       vim.api.nvim_create_autocmd("LspAttach", {
-        callback = function(e)
-          local opts = { buffer = e.buf }
-          vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
-          vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
-          vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, opts)
-          vim.keymap.set("n", "<Leader>ds", require('telescope.builtin').lsp_document_symbols)
-          vim.keymap.set("n", "<Leader>ws", require('telescope.builtin').lsp_dynamic_workspace_symbols)
+        group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+        callback = function(ev)
+          -- Setup buffer-local keymaps
+          setup_buffer_keymaps(ev.buf)
 
-          vim.keymap.set('n', ']d', function()
-            vim.diagnostic.goto_next({ float = false })
-            require('echo-diagnostics').echo_line_diagnostic()
-          end)
-
-          vim.keymap.set('n', '[d', function()
-            vim.diagnostic.goto_prev({ float = false })
-            require('echo-diagnostics').echo_line_diagnostic()
-          end)
-          -- Create a command `:Format` local to the LSP buffer
-          vim.api.nvim_buf_create_user_command(e.buf, "Format", function(_)
-            vim.lsp.buf.format()
-          end, { desc = "Format current buffer with LSP" })
-
+          -- Set up formatting on save
           vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = e.buf,
+            buffer = ev.buf,
             callback = function()
-              vim.lsp.buf.format { async = false }
+              vim.lsp.buf.format({ async = false })
+              -- Ensure diagnostics persist after format
+              vim.defer_fn(function()
+                vim.diagnostic.show(nil, ev.buf)
+              end, 100)
             end
           })
-        end,
-        group = vim.api.nvim_create_augroup("lsp_attach", {}),
+        end
       })
-    end,
+
+      -- Lazy load server setups
+      local lspconfig = require("lspconfig")
+      for server_name, server_opts in pairs(servers) do
+        server_opts = vim.tbl_deep_extend("force", {
+          capabilities = capabilities,
+        }, server_opts or {})
+
+        lspconfig[server_name].setup(server_opts)
+      end
+    end
   }
 }
