@@ -55,9 +55,9 @@ local function setup_buffer_keymaps(bufnr)
 
   vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
   vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
-  vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, opts)
-  vim.keymap.set("n", "<Leader>ds", require('telescope.builtin').lsp_document_symbols, opts)
-  vim.keymap.set("n", "<Leader>ws", require('telescope.builtin').lsp_dynamic_workspace_symbols, opts)
+  vim.keymap.set("n", "<Leader>a", vim.lsp.buf.code_action, opts)
+  vim.keymap.set("n", "<Leader>sd", require('telescope.builtin').lsp_document_symbols, opts)
+  vim.keymap.set("n", "<Leader>sw", require('telescope.builtin').lsp_dynamic_workspace_symbols, opts)
 
   -- Diagnostic navigation
   vim.keymap.set('n', ']d', function()

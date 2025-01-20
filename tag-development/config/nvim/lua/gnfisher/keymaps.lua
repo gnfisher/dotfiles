@@ -92,17 +92,15 @@ set("n", "#", "#zz")
 set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Navigate to next qflist item
-set("n", "<leader>cn", ":cnext<cr>zz")
+-- Quickfix
+set("n", "<leader>n", ":cnext<cr>zz")
+set("n", "<leader>p", ":cprevious<cr>zz")
+set("n", "<leader>o", ":copen<cr>zz")
+set("n", "<leader>c", ":cclose<cr>zz")
 
--- Navigate to previos qflist item
-set("n", "<leader>cp", ":cprevious<cr>zz")
-
--- Open the qflist
-set("n", "<leader>co", ":copen<cr>zz")
-
--- Close the qflist
-set("n", "<leader>cc", ":cclose<cr>zz")
+-- Tabs
+set("n", "<C-t>", ":<C-u>tabnew<cr>")
+set("n", "<C-t>", ":<C-u>tabnew<cr>")
 
 
 -- Diagnostics
@@ -132,24 +130,12 @@ set("n", "[e", function()
   vim.api.nvim_feedkeys("zz", "n", false)
 end)
 
--- Open the diagnostic under the cursor in a float window
-set("n", "<leader>d", function()
-  vim.diagnostic.open_float({
-    border = "rounded",
-  })
-end)
-
 -- Place all dignostics into a qflist
 set("n", "<leader>ld", vim.diagnostic.setqflist, { desc = "Quickfix [L]ist [D]iagnostics" })
 
 
--- Oil
+-- Git
 --
-
--- Toggle oil float view
-set("n", "<leader>e", function()
-  require("oil").toggle_float()
-end)
 
 set('n', '<leader>gg', ':Gitsh<CR>', { noremap = true, silent = true })
 set('n', '<leader>gt', ':Gitsigns toggle_signs<CR>', { noremap = true, silent = true })
