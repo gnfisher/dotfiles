@@ -1,5 +1,0 @@
-alias open="rdm open"
-alias xdg-open="rdm open"
-alias pbcopy="rdm copy"
-
-set PATH /home/linuxbrew/.linuxbrew/bin $PATH
