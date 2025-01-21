@@ -62,7 +62,7 @@ function get_host_display() {
 }
 
 # Prompt format: hostname directory(branch)*+$
-PROMPT='$(get_host_display) %F{cyan}%1~ ${vcs_info_msg_0_}%F{red}$ %f'
+PROMPT='$(get_host_display): %F{cyan}%1~ ${vcs_info_msg_0_}%F{red}$ %f'
 
 # Key bindings
 bindkey -e                     # Emacs key bindings

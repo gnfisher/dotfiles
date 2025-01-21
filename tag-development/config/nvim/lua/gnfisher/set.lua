@@ -2,7 +2,7 @@ vim.cmd('syntax on')
 vim.cmd('filetype plugin indent on')
 
 vim.opt.cmdheight = 2
-vim.opt.number = true
+vim.opt.number = false
 vim.opt.relativenumber = false
 vim.api.nvim_set_option('textwidth', 80)
 
@@ -50,7 +50,7 @@ vim.opt.virtualedit = 'block'
 
 vim.o.scroll = 10
 vim.opt.scrolloff = 8
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = 'no'
 
 vim.opt.termguicolors = true
 

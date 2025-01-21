@@ -11,7 +11,16 @@ require("gnfisher.functions.toggle_bg")
 require("gnfisher.functions.trim_whitespace")
 require("gnfisher.functions.gitsh")
 
-pcall(vim.cmd, "colorscheme jellybeans")
+pcall(vim.cmd, "colorscheme grb-lucius")
+pcall(vim.cmd, "GrbLuciusDarkHighContrast")
+-- require('gnfisher.modern-lucius').setup({
+--   style = 'dark',         -- or 'light'
+--   contrast = 'high',      -- or 'low'/'high'
+--   contrast_bg = 'normal', -- or 'high'
+--   bold = true,
+--   underline = true,
+--   transparent = false,
+-- })
 
 vim.g.netrw_banner = 0
 
