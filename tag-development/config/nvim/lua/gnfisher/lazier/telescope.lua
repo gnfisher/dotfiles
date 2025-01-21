@@ -2,13 +2,13 @@ return {
   "nvim-telescope/telescope.nvim",
   tag = "0.1.5",
   keys = {
-    { ";",          "<cmd>Telescope git_files<cr>",                 desc = "Find File" },
-    { "<leader>;",  "<cmd>Telescope find_files<cr>",                desc = "Find File" },
-    { "fd",         "<cmd>Telescope live_grep<cr>",                 desc = "Live Grep" },
-    { "fb",         "<cmd>Telescope buffers<cr>",                   desc = "Buffers" },
+    { "<leader>;",  ":<C-u>Telescope git_files<cr>",                desc = "Find Git File" },
+    { "<leader>ff", ":<C-u>Telescope find_files<cr>",               desc = "Find File" },
+    { "<leader>fg", "<cmd>Telescope live_grep<cr>",                 desc = "Live Grep" },
+    { "<leader>fb", "<cmd>Telescope buffers<cr>",                   desc = "Buffers" },
     { "<leader>d",  "<cmd>Telescope diagnostics<cr>",               desc = "Diagnostics" },
     { "<leader>/",  "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Fuzzy Find in Buffer" },
-    { "<leader>gw", "<cmd>Telescope grep_string<cr>",               desc = "Grep Word" },
+    { "<S-k>",      "<cmd>Telescope grep_string<cr>",               desc = "Grep Word" },
     { "<leader>fh", "<cmd>Telescope help_tags<cr>",                 desc = "Help Tags" },
   },
   dependencies = {

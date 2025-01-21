@@ -15,7 +15,7 @@ require("gnfisher.functions.gitsh")
 pcall(vim.cmd, "let g:lucius_no_term_bg = 1")
 pcall(vim.cmd, "colorscheme grb-lucius")
 pcall(vim.cmd, "GrbLuciusDarkHighContrast")
-vim.api.nvim_set_hl(0, 'Normal', { bg = 'NONE' })
+-- vim.api.nvim_set_hl(0, 'Normal', { bg = 'NONE' })
 
 -- netrw
 vim.g.netrw_banner = 0

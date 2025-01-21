@@ -4,7 +4,7 @@ local set = vim.keymap.set
 set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- One less key to press
-set('n', '<Leader>;', ':', { silent = true })
+-- set('n', '<Leader>;', ':', { silent = true })
 
 -- Don't accidentally jump to Ex mode
 set("n", "Q", "<nop>")
