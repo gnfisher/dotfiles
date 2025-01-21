@@ -11,17 +11,13 @@ require("gnfisher.functions.toggle_bg")
 require("gnfisher.functions.trim_whitespace")
 require("gnfisher.functions.gitsh")
 
+-- Colors
+pcall(vim.cmd, "let g:lucius_no_term_bg = 1")
 pcall(vim.cmd, "colorscheme grb-lucius")
 pcall(vim.cmd, "GrbLuciusDarkHighContrast")
--- require('gnfisher.modern-lucius').setup({
---   style = 'dark',         -- or 'light'
---   contrast = 'high',      -- or 'low'/'high'
---   contrast_bg = 'normal', -- or 'high'
---   bold = true,
---   underline = true,
---   transparent = false,
--- })
+vim.api.nvim_set_hl(0, 'Normal', { bg = 'NONE' })
 
+-- netrw
 vim.g.netrw_banner = 0
 
 -- Set up diagnostic config early

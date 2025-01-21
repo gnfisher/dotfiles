@@ -100,7 +100,8 @@ set("n", "<leader>c", ":cclose<cr>zz")
 
 -- Tabs
 set("n", "<C-t>", ":<C-u>tabnew<cr>")
-set("n", "<C-t>", ":<C-u>tabnew<cr>")
+set("n", "<Tab>", ":<C-u>tabnext<cr>")
+set("n", "<S-Tab>", ":<C-u>tabprev<cr>")
 
 
 -- Diagnostics
