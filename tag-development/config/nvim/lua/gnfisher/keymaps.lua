@@ -1,5 +1,8 @@
 local set = vim.keymap.set
 
+-- Save stuff
+set("n", "<C-s>", ":<C-u>w<cr>")
+
 -- Space is leader so make it a noop
 set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
@@ -43,7 +46,7 @@ set("t", "<Esc>", "<C-\\><C-n>")
 set("n", "<C-x>b", vim.cmd.bd)
 
 -- Close the quickfix window
-set("n", "<C-x>c", "<cmd>cclose<CR>")
+set("n", "<C-x>q", "<cmd>cclose<CR>")
 
 -- Close the location list window
 set("n", "<C-x>l", "<cmd>lclose<CR>")
@@ -111,24 +114,28 @@ set("n", "<S-Tab>", ":<C-u>tabprev<cr>")
 set("n", "]d", function()
   vim.diagnostic.goto_next({})
   vim.api.nvim_feedkeys("zz", "n", false)
+  require('echo-diagnostics').echo_line_diagnostic()
 end)
 
 -- Goto previous diagnostic of any severity
 set("n", "[d", function()
   vim.diagnostic.goto_prev({})
   vim.api.nvim_feedkeys("zz", "n", false)
+  require('echo-diagnostics').echo_line_diagnostic()
 end)
 
 -- Goto next error diagnostic
 set("n", "]e", function()
   vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
   vim.api.nvim_feedkeys("zz", "n", false)
+  require('echo-diagnostics').echo_line_diagnostic()
 end)
 
 -- Goto previous error diagnostic
 set("n", "[e", function()
   vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
   vim.api.nvim_feedkeys("zz", "n", false)
+  require('echo-diagnostics').echo_line_diagnostic()
 end)
 
 -- Place all dignostics into a qflist

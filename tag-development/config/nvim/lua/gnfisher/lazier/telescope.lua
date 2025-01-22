@@ -8,7 +8,7 @@ return {
     { "<leader>fb", "<cmd>Telescope buffers<cr>",                   desc = "Buffers" },
     { "<leader>d",  "<cmd>Telescope diagnostics<cr>",               desc = "Diagnostics" },
     { "<leader>/",  "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Fuzzy Find in Buffer" },
-    { "<S-k>",      "<cmd>Telescope grep_string<cr>",               desc = "Grep Word" },
+    { "<leader>fw", "<cmd>Telescope grep_string<cr>",               desc = "Grep Word" },
     { "<leader>fh", "<cmd>Telescope help_tags<cr>",                 desc = "Help Tags" },
   },
   dependencies = {
