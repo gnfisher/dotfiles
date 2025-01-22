@@ -2,7 +2,7 @@ return {
   "nvim-telescope/telescope.nvim",
   tag = "0.1.5",
   keys = {
-    { "<leader>;",  ":<C-u>Telescope git_files<cr>",                desc = "Find Git File" },
+    { "<leader>fd", ":<C-u>Telescope git_files<cr>",                desc = "Find Git File" },
     { "<leader>ff", ":<C-u>Telescope find_files<cr>",               desc = "Find File" },
     { "<leader>fg", "<cmd>Telescope live_grep<cr>",                 desc = "Live Grep" },
     { "<leader>fb", "<cmd>Telescope buffers<cr>",                   desc = "Buffers" },

@@ -62,6 +62,7 @@ return {
       "hrsh7th/cmp-cmdline",
       "hrsh7th/nvim-cmp",
       "L3MON4D3/LuaSnip",
+    },
     ft = { "lua", "typescript", "javascript", "go" }, -- specific filetypes
     config = function()
       local cmp = require('cmp')
