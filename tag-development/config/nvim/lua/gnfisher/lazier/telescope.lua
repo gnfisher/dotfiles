@@ -1,36 +1,30 @@
 return {
   "nvim-telescope/telescope.nvim",
+
   tag = "0.1.5",
-  keys = {
-    { "<leader>fd", ":<C-u>Telescope git_files<cr>",                desc = "Find Git File" },
-    { "<leader>ff", ":<C-u>Telescope find_files<cr>",               desc = "Find File" },
-    { "<leader>fg", "<cmd>Telescope live_grep<cr>",                 desc = "Live Grep" },
-    { "<leader>fb", "<cmd>Telescope buffers<cr>",                   desc = "Buffers" },
-    { "<leader>d",  "<cmd>Telescope diagnostics<cr>",               desc = "Diagnostics" },
-    { "<leader>/",  "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Fuzzy Find in Buffer" },
-    { "<leader>fw", "<cmd>Telescope grep_string<cr>",               desc = "Grep Word" },
-    { "<leader>fh", "<cmd>Telescope help_tags<cr>",                 desc = "Help Tags" },
-  },
+
   dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-telescope/telescope-ui-select.nvim",
-    "gnfisher/nvim-telescope-ctags-plus",
+    "nvim-lua/plenary.nvim"
   },
+
   config = function()
-    local actions = require "telescope.actions"
+    require('telescope').setup({})
 
-    require("telescope").setup({
-      mappings = {
-        i = {
-          ["<C-x>"] = actions.delete_buffer + actions.move_to_top,
-          ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-        }
-      },
-    })
-    require("telescope").load_extension("ctags_plus")
-
-    vim.defer_fn(function()
-      require("telescope").load_extension("ui-select")
-    end, 100)
+    local builtin = require('telescope.builtin')
+    vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+    vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+    vim.keymap.set('n', '<leader>fw', function()
+      local word = vim.fn.expand("<cword>")
+      builtin.grep_string({ search = word })
+    end)
+    vim.keymap.set('n', '<leader>fW', function()
+      local word = vim.fn.expand("<cWORD>")
+      builtin.grep_string({ search = word })
+    end)
+    vim.keymap.set('n', '<leader>fs', function()
+      builtin.grep_string({ search = vim.fn.input("Grep > ") })
+    end)
+    vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+    vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
   end
 }
