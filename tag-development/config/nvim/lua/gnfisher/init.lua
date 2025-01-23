@@ -16,3 +16,4 @@ vim.g.netrw_banner = 0
 vim.cmd([[
   cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 ]])
+

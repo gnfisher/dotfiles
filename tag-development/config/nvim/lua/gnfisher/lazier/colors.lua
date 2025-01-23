@@ -1,5 +1,6 @@
 function ColorMyPencils(color)
   color = color or "rose-pine-moon"
+  vim.g.rose_pine_disable_background = true
   vim.cmd.colorscheme(color)
 
   vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -42,8 +43,9 @@ return {
         palette_overrides = {},
         overrides = {},
         dim_inactive = false,
-        transparent_mode = false,
+        transparent_mode = true,
       })
+      ColorMyPencils()
     end,
   },
   {
@@ -65,6 +67,7 @@ return {
           floats = "dark",   -- style for floating windows
         },
       })
+      ColorMyPencils()
     end
   },
 
@@ -76,10 +79,11 @@ return {
         disable_background = true,
         styles = {
           italic = false,
+          transparency = true,
         },
       })
 
-      ColorMyPencils();
+      ColorMyPencils()
     end
   },
 
