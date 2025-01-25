@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# Function to kill a process by port number
+kill_process_by_port() {
+    local port="$1"
+    local pid
+    pid=$(lsof -ti :"$port" 2>/dev/null)
+    if [ -z "$pid" ]; then
+        echo "No process found on port $port."
+        return 0
+    fi
+
+    kill -9 "$pid"
+    if [ $? -eq 0 ]; then
+        echo "Killed process $pid running on port $port."
+        return 0
+    else
+        echo "Failed to kill process $pid on port $port."
+        return 1
+    fi
+}
+
+# Kill processes on ports 80 and 2206
+kill_process_by_port 80
+kill_process_by_port 2206
+
+# Check the exit status and return the appropriate value
+if [ $? -eq 0 ]; then
+    exit 0  # Success
+else
+    exit 1  # Failure
+fi
