@@ -1,6 +1,11 @@
 local set = vim.keymap.set
 
 vim.g.mapleader = " "
+
+set("n", "<Leader>so", function()
+  vim.cmd("so")
+end)
+
 set('n', '-', ':Ex<cr>')
 
 set("v", "J", ":m '>+1<CR>gv=gv")
@@ -13,16 +18,12 @@ set("n", "n", "nzzzv")
 set("n", "N", "Nzzzv")
 
 set("n", "Q", "<nop>")
-set("n", "<leader>f", vim.lsp.buf.format)
+set("n", "<leader>=", vim.lsp.buf.format)
 
 set("n", "<C-k>", "<cmd>cnext<CR>zz")
 set("n", "<C-j>", "<cmd>cprev<CR>zz")
 set("n", "<leader>k", "<cmd>lnext<CR>zz")
 set("n", "<leader>j", "<cmd>lprev<CR>zz")
-
-set("n", "<Leader>so", function()
-  vim.cmd("so")
-end)
 
 set("n", "cp", '"+y', { silent = true })
 set("n", "cv", '"+p', { silent = true })
@@ -55,6 +56,3 @@ set("n", "[d", function()
 end)
 
 set("n", "<leader>ld", vim.diagnostic.setqflist, { desc = "Quickfix [L]ist [D]iagnostics" })
-
-set('n', '<leader>gg', ':Gitsh<CR>', { noremap = true, silent = true })
-set('n', '<leader>gt', ':Gitsigns toggle_signs<CR>', { noremap = true, silent = true })
