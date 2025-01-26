@@ -42,12 +42,11 @@ precmd() { vcs_info }
 
 # Configure vcs_info
 zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git:*' formats '%F{green}(%b)%f%F{red}%u%f%F{yellow}%c%f'
-zstyle ':vcs_info:git:*' stagedstr "+"
-zstyle ':vcs_info:git:*' unstagedstr "*"
+zstyle ':vcs_info:*' check-for-changes false
+zstyle ':vcs_info:*' formats '(%b)'
+setopt PROMPT_SUBST
+precmd() { vcs_info }
 
-# Prompt format: hostname directory(branch)*+$
 setopt PROMPT_SUBST            # Enable prompt substitution
 
 # Function to get host display name
@@ -55,14 +54,14 @@ function get_host_display() {
     if [[ -n "$CODESPACES" ]]; then
         echo "%F{magenta}${${CODESPACE_NAME}##*-}"  # Magenta for Codespaces
     elif [[ -n "$SSH_CONNECTION" ]]; then
-        echo "%F{red}%m"  # Red for remote SSH hosts
+        echo "%F{cyan}%m"  # Cyan for remote SSH hosts
     else
-        echo "%F{yellow}%m"  # Yellow for local hostname
+        echo "%F{green}%m"  # Green for local hostname
     fi
 }
 
 # Prompt format: hostname directory(branch)*+$
-PROMPT='$(get_host_display): %F{cyan}%1~ ${vcs_info_msg_0_}%F{red}$ %f'
+PROMPT='$(get_host_display):%1~${vcs_info_msg_0_} $%f '
 
 # Key bindings
 bindkey -e                     # Emacs key bindings
