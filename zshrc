@@ -56,12 +56,12 @@ function get_host_display() {
     elif [[ -n "$SSH_CONNECTION" ]]; then
         echo "%F{cyan}%m"  # Cyan for remote SSH hosts
     else
-        echo "%F{green}%m"  # Green for local hostname
+        echo "%F{yellow}%m"  # Green for local hostname
     fi
 }
 
 # Prompt format: hostname directory(branch)*+$
-PROMPT='$(get_host_display):%1~${vcs_info_msg_0_} $%f '
+PROMPT='$(get_host_display)%{$fg[green]%}:%1~${vcs_info_msg_0_}%f $ '
 
 # Key bindings
 bindkey -e                     # Emacs key bindings
