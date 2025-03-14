@@ -6,15 +6,7 @@ set -x
 
 
 if [[ "$CODESPACES" = "true" ]]; then
-  sudo apt update
-  sudo apt-get install -y rcm tmux universal-ctags wget fuse
   rcup -f -v -d . -t development -t github
-
-  # Use RDM for copy/paste and open support
-  wget https://github.com/BlakeWilliams/remote-development-manager/releases/download/v0.0.3/rdm-linux-amd64
-  sudo mv rdm-linux-amd64 /usr/local/bin/rdm
-  chmod +x /usr/local/bin/rdm
-  gh config set browser "rdm open"
 
 elif [[ "$(uname)" = "Darwin" ]]; then
   brew install rcm
